@@ -49,17 +49,15 @@
     
     $tcpdf->SetFont($textfont_body, '', 10);
     
-    $tcpdf->MultiCell(170, 20, "En el Periodo de Enero a Diciembre del ".$anio." el registro de citas se dio de la siguiente manera como puede apreciarse en el Grafico de Barras que se muestra continuacion.", 0, 'J', 1, 1, 20, 45, true, 0, false, true, 40, 'T');
+    $tcpdf->MultiCell(170, 20, "En el Periodo de Enero a Diciembre del ".$anio." el registro de citas se dio de la siguiente manera como puede apreciarse en el Grafico de Barras que se muestra continuacion.", 0, 'J', 1, 1, 20, 47, true, 0, false, true, 40, 'T');
         
     //$tcpdf->Cell(56,7, $this->Session->read('cabina'),'LT',0,'C', 1);
-    
-    $tcpdf->Cell(56,7, 'citas_reg_111',0,0,'C', 1);
     
     //-----INICIO CUERPO ESTADSITICO ANUAL-----
     
     $tcpdf->SetFont($textfont_title, 'S', 10);
     
-    $tcpdf->MultiCell(60, 0, "GRAFICO No 1", 0, 'C', 1, 1, 80, 63, true, 0, false, true, 40, 'T');
+    $tcpdf->MultiCell(60, 0, "GRAFICO No 1", 0, 'C', 1, 1, 80, 60, true, 0, false, true, 40, 'T');
     
     
     //ARRAY DE VALORES REALES
@@ -92,51 +90,60 @@
     
     $sobra = ($mayor % 20);
     
-    $falta = 20 - $sobra - 0.5;
+    $falta = 20 - $sobra;
         
-    $limite = ($mayor + $falta)/2;
+    $limite = (($mayor + $falta)/2);
     
-    $id = $mayor + $falta;
+    $id = $mayor + $falta + 20;
+    
+    if($id%20>0){
+        $id = $id - 0.5;
+    }else if((($id/20)/0.25)%2 != 0){
+        $id = $id + 0.5;
+    }
     
     $fila = "";
     
     while($id>=0){
                 
-                $fila .= $id."\n\n"; 
-                $id = $id-20;
+                $fila .= $id."\n\n\n"; 
+                $id = $id-20;                
             }
-    
-    
+        
     $tcpdf->SetFont($textfont_body, '', 8);
     
+    $tcpdf->MultiCell(60, 0, $sobra, 0, 'C', 1, 1, 120, 63, true, 0, false, true, 40, 'T');
+    $tcpdf->MultiCell(60, 0, $falta, 0, 'C', 1, 1, 130, 63, true, 0, false, true, 40, 'T');
+    $tcpdf->MultiCell(60, 0, $limite, 0, 'C', 1, 1, 140, 63, true, 0, false, true, 40, 'T');
+        
     //CUERPO              
     
     //numeros de linea
     
-    $tcpdf->MultiCell(10, $limite, $fila, 0, 0, 1, 0, 40, 75, true, 0, false, true, 40, 'T');
+    $tcpdf->MultiCell(10, $limite, $fila, 0, 0, 1, 0, 40, 69, true, 0, false, true, 40, 'T');
     
     //linea de la y
     
-    $tcpdf->MultiCell(5, $limite, '', 'L', 'J', 1, 0, 50, 75, true, 0, false, true, 40, 'T');
+    $tcpdf->MultiCell(5, $limite+10, '', 'L', 'J', 1, 0, 50, 70, true, 0, false, true, 40, 'T');
     
     $tcpdf->SetFont($textfont_body, '', 8);
     
     
     for($i = 0; $i<12; $i++){
-        
+        //generador de colores de cada barra
         $color[$i][0] = rand(50,170);
         $color[$i][1] = rand(130,250);
         $color[$i][2] = rand(250,255); 
         
         $tcpdf->SetFillColor($color[$i][0], $color[$i][1], $color[$i][2]);
-        $tcpdf->MultiCell(10, $anio2[$i], $anio[$i], 1, 'C', 1, 0, 55+(10*$i), $limite - $anio2[$i]+75, true, 0, false, true, 40, 'T');
+        $tcpdf->MultiCell(10, $anio2[$i], $anio[$i], 1, 'C', 1, 0, 55+(10*$i), $limite - $anio2[$i]+80, true, 0, false, true, 40, 'T');
         //$tcpdf->SetFillColor(255, 255, 255);
-        $tcpdf->MultiCell(10, 0, $letra[$i], 0, 'C', 0, 0, 55+(10*$i), $limite+78, true, 0, false, true, 40, 'T');
+        $tcpdf->MultiCell(10, 0, $letra[$i], 0, 'C', 0, 0, 55+(10*$i), $limite+83, true, 0, false, true, 40, 'T');
         
     }
         
     $tcpdf->SetFillColor(255, 255, 255);
-    $tcpdf->MultiCell(130, 0, '', 'T', 'J', 1, 1, 50, $limite+75, true, 0, false, true, 40, 'T');
+    $tcpdf->MultiCell(130, 0, '', 'T', 'J', 1, 1, 50, $limite+80, true, 0, false, true, 40, 'T');
     /* NOMBRES DE LEYENDA
     $tcpdf->SetFont($textfont_body, '', 8);
     
@@ -175,7 +182,7 @@
         
     // reset pointer to the last page
     
-    //-----FIN CUERPO ESTADSITICO ANUAL-----
+    //-----FIN CUERPO ESTADISTICO ANUAL-----
     
     
     $tcpdf->lastPage();
@@ -183,7 +190,7 @@
     // ---------------------------------------------------------
     
     //Close and output PDF document
-    $tcpdf->Output('REPORTE_ANUAL_ATENCIONES_'.$anio.'.pdf', 'I');
+    $tcpdf->Output('REPORTE_ANUAL_CITAS_REGISTRADAS_'.$anio.'.pdf', 'I');
     
     //============================================================+
     // END OF FILE                                                
