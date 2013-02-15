@@ -34,11 +34,18 @@ $cakeDescription = __d('SISCONEEL', 'EsSalud - SISCONEEL');
 		echo $this->Html->css('/bootstrap-cerulean/css/bootstrap-responsive');
 		echo $this->Html->css('/theme/css/master.css');
 
-		echo $this->Javascript->link(array( '/plugins/jquery/jquery-1.8.2.min.js',
+		
+		echo $this->Html->script('/plugins/jquery/jquery-1.8.2.min');
+		echo $this->Html->script('/bootstrap-cerulean/js/bootstrap.min');
+		
+		
+		/*
+		echo $this->Javascript->link(array( '',
 											'jquery.jeditable.mini.js',
 											'/plugins/dataTables/jquery.dataTables.min.js',
 											'main.js'
 											));
+		*/
 	
 		echo $this->Html->css('/plugins/dataTables/jquery.dataTables');
 
@@ -69,7 +76,8 @@ $cakeDescription = __d('SISCONEEL', 'EsSalud - SISCONEEL');
 						<li class="active"><a href="#">Home</a></li>
 						<li><a href="#">Llamadas</a></li>
 						<li><a href="#">Reportes</a></li>
-						<li><a href="#">Panel</a></li>
+						<li><a href="#">Panel de Control</a></li>
+						<li><a href="#">Ayuda</a></li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
 							<ul class="dropdown-menu">
@@ -88,9 +96,14 @@ $cakeDescription = __d('SISCONEEL', 'EsSalud - SISCONEEL');
 						<li><a href="#">Link</a></li>
 						<li class="divider-vertical"></li>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<?php echo $current_user['nombres']." ".$current_user['ap_paterno']." ".$current_user['ap_materno'];	?>
+								<b class="caret"></b>
+							</a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Action</a></li>
+								<li>
+									<?php  echo $this->Html->link("Cerrar Session",  array('controller'=>'users', 'action'=>'logout')); ?>				
+								</li>
 								<li><a href="#">Another action</a></li>
 								<li><a href="#">Something else here</a></li>
 								<li class="divider"></li>
@@ -108,7 +121,6 @@ $cakeDescription = __d('SISCONEEL', 'EsSalud - SISCONEEL');
 		<div class="row-fluid">
 			<div class="span3">
 				<ul class="main-menu" style="list-style-type: none;">
-					<li>MENU</li>                    
 					<li>LLAMADAS</li>
 					<li>
 						<?php echo $this->html->link('Registrar Citas', array('controller'=>'Llamadas','action'=>'registrar')); ?>
@@ -195,13 +207,7 @@ $cakeDescription = __d('SISCONEEL', 'EsSalud - SISCONEEL');
 				</ul>    
 			</div>            
 			<div class="span8">
-				<ul>
-					<li>USUARIO:</li>
-					<li>
-						<?php                    
-							echo $current_user['nombres']." ".$current_user['ap_paterno']." ".$current_user['ap_materno'];
-						?>
-					</li>
+				<ul>					
 					<li>CABINA:</li>
 					<li>
 						<?php                    
@@ -212,22 +218,19 @@ $cakeDescription = __d('SISCONEEL', 'EsSalud - SISCONEEL');
 					<li>
 						<?php
 							$turno = $this->Session->read('turno');
-						
+
 							if($turno == "manana"){
 								echo "Ma&ntilde;ana";
 							}else if($turno == "tarde"){
 								echo "Tarde"; 
 							}else{
 								echo "Apoyo";
-							} 
-							
+							}
 						?>
 					</li>
 				</ul>                        
 	
-				<?php         
-					echo $this->Html->link("Cerrar Session",  array('controller'=>'users', 'action'=>'logout'), array('class' => 'button medium blue') );
-				?>
+				
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $this->fetch('content'); ?>				
 		</div>
