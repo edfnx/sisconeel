@@ -1,0 +1,25 @@
+/*
+<li style="color: white; font-size: x-large; font-weight: bold; background-color: #2375F1;">MENU</li>                    
+                    <li style=" color: white; font-size: medium; font-weight: bold; background-color: #2375F1; margin-top: 10px; margin-bottom: 1px;">LLAMADAS</li>
+                    <li style="background-color: #67A4FF; margin-bottom: 1px;">
+                        <?php
+                            echo $this->html->link('Registrar Citas', array('controller'=>'Llamadas','action'=>'registrar'),array('class' => 'menus'));
+                        ?>
+                    </li>
+                    <li style="background-color: #67A4FF; margin-bottom: 1px;">
+                        <?php
+                            echo $this->html->link('Confirmar Citas', array('controller'=>'llamadas','action'=>'confirmar'),array('class' => 'menus'));
+                        ?>
+                    </li>                    
+                    <li style="background-color: #67A4FF; margin-bottom: 1px;">
+                        <?php
+                            echo $this->html->link('Eliminar Citas', array('controller'=>'llamadas','action'=>'eliminar'),array('class' => 'menus'));
+                        ?>
+                    </li>
+                    <li style="background-color: #67A4FF; margin-bottom: 1px;">
+                        <?php
+                            echo $this->html->link('Citas Otorgadas', array('controller'=>'llamadas','action'=>'index_otorg'),array('class' => 'menus'));
+                        ?>
+                    </li>
+                    <li style="background-color: #67A4FF; margin-bottom: 1px;">
+*/

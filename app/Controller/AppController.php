@@ -33,7 +33,7 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
         
-    public $layout = 'admin';
+    public $layout = 'bootstrap/admin_layout';
     
     public $components = array(
         'Session',

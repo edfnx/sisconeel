@@ -5,7 +5,6 @@
         var $name='Llamadas';        
         var $uses=array('RegLlamada','Ca','Medico','LlamadaObserv','User','ConfLlamada','Respuesta','ElimLlamada','RelFamiliar');
         
-        public $layout = 'admin';
         
         public function index(){
             

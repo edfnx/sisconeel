@@ -5,7 +5,6 @@
         var $name='Panels';        
         var $uses=array('Ca','Medico','LlamadaObserv','Respuesta','RelFamiliar','User');
         
-        public $layout = 'admin';
         
         public function index(){
             

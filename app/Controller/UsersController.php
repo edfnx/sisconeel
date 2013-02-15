@@ -1,10 +1,10 @@
 <?php
     class UsersController extends AppController {
-        public $helpers = array('Html', 'Form');
-        var $name='Users';        
-        public $components = array('Session');
-        var $uses=array('User','Historial');
         
+        public $helpers = array('Html', 'Form');
+        public $name='Users';        
+        public $components = array('Session');
+        public $uses=array('User','Historial');
         public $layout = 'admin';
         
         function beforeFilter(){
@@ -79,7 +79,7 @@
                     $this->Session->setFlash('el usuario o el password son incorrectos');
                 }
             }
-            $this->layout = 'login';
+            $this->layout = 'bootstrap/login_layout';
         }
         
         public function logout(){
@@ -133,7 +133,7 @@
                 }
             }
             
-            $this->layout = 'login';
+            $this->layout = 'bootstrap/login_layout';
         } 
         
         public function index2($id = null) {
@@ -160,7 +160,7 @@
                                                             ));
                 $this->set('diagnosticos',$Listadiagnosticos);
                 
-                $this->layout = 'admin';   
+                $this->layout = 'bootstrap/login_layout';   
             }                                   
         }
               
@@ -187,7 +187,8 @@
                                                             ));
                 $this->set('diagnosticos',$Listadiagnosticos);
                 
-                $this->layout = 'admin';   
+                $this->layout = 'bootstrap/login_layout';
+
             }
         }
                
