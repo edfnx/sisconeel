@@ -124,23 +124,9 @@
     					?>
     			</select>
                 <?php
-                     echo $this->Form->input('ConfLlamada.observacion',
-                                                array(
-                                                        'label'=>'Observacion',
-                                                        'placeholder'=>'Observacion',
-                                                        //'class'=> "span9"
-                                                        )
-                                                );
+                     echo $this->Form->input('ConfLlamada.observacion',array('label'=>'Observacion','placeholder'=>'Observacion'));
                 ?>                                
-                <?php
-                    echo $this->Form->hidden('ConfLlamada.user_id',
-                                                array(
-                                                        'value'=>$current_user['id']
-                                                        )
-                                                ); 
-                ?>                
-                <?php
-                    echo $this->Form->end('Confirmar Llamada') 
-                ?>
+                <?php echo $this->Form->hidden('ConfLlamada.user_id',array('value'=>$current_user['id'])); ?>                
+                <?php echo $this->Form->end('Confirmar Llamada') ?>
             </div>
             

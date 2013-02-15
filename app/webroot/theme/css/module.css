@@ -1,25 +1,121 @@
-/*
-<li style="color: white; font-size: x-large; font-weight: bold; background-color: #2375F1;">MENU</li>                    
-                    <li style=" color: white; font-size: medium; font-weight: bold; background-color: #2375F1; margin-top: 10px; margin-bottom: 1px;">LLAMADAS</li>
-                    <li style="background-color: #67A4FF; margin-bottom: 1px;">
-                        <?php
-                            echo $this->html->link('Registrar Citas', array('controller'=>'Llamadas','action'=>'registrar'),array('class' => 'menus'));
-                        ?>
-                    </li>
-                    <li style="background-color: #67A4FF; margin-bottom: 1px;">
-                        <?php
-                            echo $this->html->link('Confirmar Citas', array('controller'=>'llamadas','action'=>'confirmar'),array('class' => 'menus'));
-                        ?>
-                    </li>                    
-                    <li style="background-color: #67A4FF; margin-bottom: 1px;">
-                        <?php
-                            echo $this->html->link('Eliminar Citas', array('controller'=>'llamadas','action'=>'eliminar'),array('class' => 'menus'));
-                        ?>
-                    </li>
-                    <li style="background-color: #67A4FF; margin-bottom: 1px;">
-                        <?php
-                            echo $this->html->link('Citas Otorgadas', array('controller'=>'llamadas','action'=>'index_otorg'),array('class' => 'menus'));
-                        ?>
-                    </li>
-                    <li style="background-color: #67A4FF; margin-bottom: 1px;">
-*/
+section.main{
+    margin-top: 0;
+    padding-top: 50px;
+    min-height: 300px;
+}
+
+
+footer.main-footer{
+    padding: 35px 0;
+    background-color: whiteSmoke;
+    text-align: center;
+}
+
+.ss-navbar{
+    min-height: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgb(69, 174, 234);
+    
+    background-image: -moz-linear-gradient(top, rgb(84, 180, 235), rgb(47, 164, 231));
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgb(84, 180, 235)), to(rgb(47, 164, 231)));
+    background-image: -webkit-linear-gradient(top, rgb(84, 180, 235), rgb(47, 164, 231));
+    background-image: -o-linear-gradient(top, rgb(84, 180, 235), rgb(47, 164, 231));
+    background-image: linear-gradient(to bottom, rgb(84, 180, 235), rgb(47, 164, 231));
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff54b4eb', endColorstr='#ff2fa4e7', GradientType=0);
+    border: 1px solid rgb(25, 144, 213);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+
+
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    margin-bottom: 0;
+
+    border-radius: 0;
+
+}
+
+.ss-navbar  ul > li{
+    margin-top: 15px;
+}
+
+.ss-navbar  ul > li > a{
+    color: white;
+    text-decoration: none;
+    padding-top: 17px;
+    padding-bottom: 17px;
+    margin-right: 1px;
+}
+.ss-navbar  ul > li > a:hover, .ss-navbar  ul > li.active > a{
+    background-color: rgb(22, 132, 194);
+}
+.ss-subnav{
+    margin-bottom: 60px;
+    width: 100%;
+    height: 36px;
+    background-color: rgb(238, 238, 238);
+    background-repeat: repeat-x;
+    background-image: -moz-linear-gradient(top, whiteSmoke 0%, rgb(238, 238, 238) 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,whiteSmoke), color-stop(100%,rgb(238, 238, 238)));
+    background-image: -webkit-linear-gradient(top, whiteSmoke 0%,rgb(238, 238, 238) 100%);
+    background-image: -ms-linear-gradient(top, whiteSmoke 0%,rgb(238, 238, 238) 100%);
+    background-image: -o-linear-gradient(top, whiteSmoke 0%,rgb(238, 238, 238) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#eeeeee',GradientType=0 );
+    background-image: linear-gradient(top, whiteSmoke 0%,rgb(238, 238, 238) 100%);
+    border: 1px solid rgb(229, 229, 229);
+}
+
+.ss-nav > li {
+    list-style: none;
+    margin-top: 8px;
+}
+.ss-nav > li {
+    float: left;
+}
+
+.ss-subnav .ss-nav > li > a {
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-left: 1px solid whiteSmoke;
+    border-right: 1px solid rgb(229, 229, 229);
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+.ss-nav > li > a {
+    padding-right: 12px;
+    padding-left: 12px;
+    margin-right: 2px;
+    line-height: 14px;
+}
+
+.ss-nav > li > a:hover {
+    text-decoration: none;
+    background-color: whiteSmoke;
+}
+
+.ss-subnav-fixed
+{
+    top: 40px;
+    left: 0;
+    right: 0;
+    z-index: 1020;
+    border-color: rgb(213, 213, 213);
+    border-width: 0 0 1px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: inset 0 1px 0 white, 0 1px 5px rgba(0, 0, 0, .1);
+    -moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 0 white, 0 1px 5px rgba(0, 0, 0, .1);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}

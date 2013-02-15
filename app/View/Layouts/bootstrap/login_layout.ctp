@@ -42,9 +42,7 @@ $cakeDescription = __d('SISCONEEL', 'EsSalud - SISCONEEL: Sistema de Control de 
 			<h1 style="text-align: center; font-size:  large; "><?php echo $cakeDescription; ?></h1>
 		</div>
 		<div id="content">
-
 			<?php echo $this->Session->flash(); ?>
-
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div style="text-align: center;" id="footer">

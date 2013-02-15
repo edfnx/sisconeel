@@ -39,50 +39,12 @@
                 <!-- margin-left: 200px; width: 300px; height: 700px;  style="width: 300px; position: relative; top: 20%; left: 30%;"-->
                 <h1 style="font-size: large;">Registrar Cita</h1>    
                                
-                <?php 
-                     echo $this->Form->create('RegLlamada');   
-                ?>
-                <?php
-                    echo $this->Form->hidden('RegLlamada.turno',
-                                                array(
-                                                        'value'=>$this->Session->read('turno')
-                                                        )
-                                                ); 
-                ?>
-                <?php
-                    echo $this->Form->hidden('RegLlamada.cabina',
-                                                array(
-                                                        'value'=>$this->Session->read('cabina')
-                                                        )
-                                                ); 
-                ?>
-                <?php
-                     echo $this->Form->input('RegLlamada.dni_pac',
-                                                array(
-                                                        'label'=>'DNI',
-                                                        'placeholder'=>'DNI',
-                                                        'class'=> "input small"
-                                                        )
-                                                );
-                ?>
-                <?php
-                     echo $this->Form->input('RegLlamada.aps_nombs',
-                                                array(
-                                                        'label'=>'Apellidos y Nombres',
-                                                        'placeholder'=>'Apellidos y Nombres',
-                                                        'class'=> "input medium"
-                                                        )
-                                                );
-                ?>
-                <?php
-                     echo $this->Form->input('RegLlamada.telefono',
-                                                array(
-                                                        'label'=>'Telefono o Celular',
-                                                        'placeholder'=>'Telefono o Celular',
-                                                        'class'=> "input small"
-                                                        )
-                                                );
-                ?>
+                <?php echo $this->BtForm->create();  ?>
+                <?php echo $this->Form->hidden('RegLlamada.turno', array('value'=>$this->Session->read('turno'))); ?>
+                <?php echo $this->Form->hidden('RegLlamada.cabina', array('value'=>$this->Session->read('cabina'))); ?>
+                <?php echo $this->BtForm->input('RegLlamada.dni_pac', 'DNI'); ?>
+                <?php echo $this->BtForm->input('RegLlamada.aps_nombs', 'Apellidos y Nombres'); ?>
+                <?php echo $this->BtForm->input('RegLlamada.telefono', 'Telefono o Celular'); ?>
                 <label>
                     Centro Asistencial
                 </label>
@@ -224,22 +186,8 @@
     				</select>
                 </p>             
                 
-                <?php
-                    echo $this->Form->hidden('RegLlamada.user_id',
-                                                array(
-                                                        'value'=>$current_user['id']
-                                                        )
-                                                ); 
-                ?>
-                <?php
-                    echo $this->Form->hidden('RegLlamada.user_mod',
-                                                array(
-                                                        'value'=>$current_user['id']
-                                                        )
-                                                );
-                ?>                
-                <?php
-                    echo $this->Form->end('Registrar Llamada') 
-                ?>
+                <?php echo $this->Form->hidden('RegLlamada.user_id', array('value'=>$current_user['id'])); ?>
+                <?php echo $this->Form->hidden('RegLlamada.user_mod', array('value'=>$current_user['id'])); ?>                
+                <?php echo $this->Form->end('Registrar Llamada') ?>
             </div>
         

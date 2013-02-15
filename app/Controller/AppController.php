@@ -34,6 +34,8 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
         
     public $layout = 'bootstrap/admin_layout';
+
+    public $helpers = array('BtForm');
     
     public $components = array(
         'Session',
