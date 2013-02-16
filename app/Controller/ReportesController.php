@@ -35,7 +35,7 @@
                                                     
                     }else if($this->data['Completo']['tipo'] == 2){
                         
-                        $this->redirect(array('action'=>'citas_reg_121'), null, true);    
+                        $this->redirect(array('action'=>'citas_reg_12'), null, true);    
                         
                     }                        
                     
@@ -101,21 +101,199 @@
             $this->set('anio',$anio);                
             
             ///CONTEO DE ATENCIONES POR MES EN EL AÑO                                   
-            $this->set('enero', $this->RegLlamada->find('all', array('conditions' => array('RegLlamada.created LIKE' => '%'.$anio.'-01%'))));
-            $this->set('febrero', $this->RegLlamada->find('all', array('conditions' => array('RegLlamada.created LIKE' => '%'.$anio.'-02%'))));
-            $this->set('marzo', $this->RegLlamada->find('all', array('conditions' => array('RegLlamada.created LIKE' => '%'.$anio.'-03%'))));
-            $this->set('abril', $this->RegLlamada->find('all', array('conditions' => array('RegLlamada.created LIKE' => '%'.$anio.'-04%'))));
-            $this->set('mayo', $this->RegLlamada->find('all', array('conditions' => array('RegLlamada.created LIKE' => '%'.$anio.'-05%'))));
-            $this->set('junio', $this->RegLlamada->find('all', array('conditions' => array('RegLlamada.created LIKE' => '%'.$anio.'-06%'))));
-            $this->set('julio', $this->RegLlamada->find('all', array('conditions' => array('RegLlamada.created LIKE' => '%'.$anio.'-07%'))));
-            $this->set('agosto', $this->RegLlamada->find('all', array('conditions' => array('RegLlamada.created LIKE' => '%'.$anio.'-08%'))));
-            $this->set('setiembre', $this->RegLlamada->find('all', array('conditions' => array('RegLlamada.created LIKE' => '%'.$anio.'-09%'))));
-            $this->set('octubre', $this->RegLlamada->find('all', array('conditions' => array('RegLlamada.created LIKE' => '%'.$anio.'-10%'))));
-            $this->set('noviembre', $this->RegLlamada->find('all', array('conditions' => array('RegLlamada.created LIKE' => "%$anio-11%"))));
-            $this->set('diciembre', $this->RegLlamada->find('all', array('conditions' => array('RegLlamada.created LIKE' => "%$anio-12%"))));
-            
-            
-            
+            $this->set('enero', $this->RegLlamada->find('all', 
+                                                                array(  'fields' => array(
+                                                                                            'RegLlamada.turno',
+                                                                                            'RegLlamada.cabina',
+                                                                                            'RegLlamada.dni_pac',
+                                                                                            'ca.cas',
+                                                                                            'Medico.espec',
+                                                                                            'RegLlamada.estado',
+                                                                                            'RegLlamada.created',
+                                                                                            'User.username'                                                                                                                                                                                               
+                                                                                            ),
+                                                                        'conditions' => array(
+                                                                                            'RegLlamada.created LIKE' => '%'.$anio.'-01%'),
+                                                                        'recursive'=>0)
+                                                                        
+                                                        ));
+            $this->set('febrero', $this->RegLlamada->find('all', 
+                                                                array(  'fields' => array(
+                                                                                            'RegLlamada.turno',
+                                                                                            'RegLlamada.cabina',
+                                                                                            'RegLlamada.dni_pac',
+                                                                                            'ca.cas',
+                                                                                            'Medico.espec',
+                                                                                            'RegLlamada.estado',
+                                                                                            'RegLlamada.created',
+                                                                                            'User.username'                                                                                                                                                                                               
+                                                                                            ),
+                                                                        'conditions' => array(
+                                                                                            'RegLlamada.created LIKE' => '%'.$anio.'-02%'),
+                                                                        'recursive'=>0)
+                                                                        
+                                                        ));
+            $this->set('marzo', $this->RegLlamada->find('all', 
+                                                                array(  'fields' => array(
+                                                                                            'RegLlamada.turno',
+                                                                                            'RegLlamada.cabina',
+                                                                                            'RegLlamada.dni_pac',
+                                                                                            'ca.cas',
+                                                                                            'Medico.espec',
+                                                                                            'RegLlamada.estado',
+                                                                                            'RegLlamada.created',
+                                                                                            'User.username'                                                                                                                                                                                               
+                                                                                            ),
+                                                                        'conditions' => array(
+                                                                                            'RegLlamada.created LIKE' => '%'.$anio.'-03%'),
+                                                                        'recursive'=>0)
+                                                                        
+                                                        ));
+            $this->set('abril', $this->RegLlamada->find('all', 
+                                                                array(  'fields' => array(
+                                                                                            'RegLlamada.turno',
+                                                                                            'RegLlamada.cabina',
+                                                                                            'RegLlamada.dni_pac',
+                                                                                            'ca.cas',
+                                                                                            'Medico.espec',
+                                                                                            'RegLlamada.estado',
+                                                                                            'RegLlamada.created',
+                                                                                            'User.username'                                                                                                                                                                                               
+                                                                                            ),
+                                                                        'conditions' => array(
+                                                                                            'RegLlamada.created LIKE' => '%'.$anio.'-04%'),
+                                                                        'recursive'=>0)
+                                                                        
+                                                        ));
+            $this->set('mayo', $this->RegLlamada->find('all', 
+                                                                array(  'fields' => array(
+                                                                                            'RegLlamada.turno',
+                                                                                            'RegLlamada.cabina',
+                                                                                            'RegLlamada.dni_pac',
+                                                                                            'ca.cas',
+                                                                                            'Medico.espec',
+                                                                                            'RegLlamada.estado',
+                                                                                            'RegLlamada.created',
+                                                                                            'User.username'                                                                                                                                                                                               
+                                                                                            ),
+                                                                        'conditions' => array(
+                                                                                            'RegLlamada.created LIKE' => '%'.$anio.'-05%'),
+                                                                        'recursive'=>0)
+                                                                        
+                                                        ));
+            $this->set('junio', $this->RegLlamada->find('all', 
+                                                                array(  'fields' => array(
+                                                                                            'RegLlamada.turno',
+                                                                                            'RegLlamada.cabina',
+                                                                                            'RegLlamada.dni_pac',
+                                                                                            'ca.cas',
+                                                                                            'Medico.espec',
+                                                                                            'RegLlamada.estado',
+                                                                                            'RegLlamada.created',
+                                                                                            'User.username'                                                                                                                                                                                               
+                                                                                            ),
+                                                                        'conditions' => array(
+                                                                                            'RegLlamada.created LIKE' => '%'.$anio.'-06%'),
+                                                                        'recursive'=>0)
+                                                                        
+                                                        ));
+            $this->set('julio', $this->RegLlamada->find('all', 
+                                                                array(  'fields' => array(
+                                                                                            'RegLlamada.turno',
+                                                                                            'RegLlamada.cabina',
+                                                                                            'RegLlamada.dni_pac',
+                                                                                            'ca.cas',
+                                                                                            'Medico.espec',
+                                                                                            'RegLlamada.estado',
+                                                                                            'RegLlamada.created',
+                                                                                            'User.username'                                                                                                                                                                                               
+                                                                                            ),
+                                                                        'conditions' => array(
+                                                                                            'RegLlamada.created LIKE' => '%'.$anio.'-07%'),
+                                                                        'recursive'=>0)
+                                                                        
+                                                        ));
+            $this->set('agosto', $this->RegLlamada->find('all', 
+                                                                array(  'fields' => array(
+                                                                                            'RegLlamada.turno',
+                                                                                            'RegLlamada.cabina',
+                                                                                            'RegLlamada.dni_pac',
+                                                                                            'ca.cas',
+                                                                                            'Medico.espec',
+                                                                                            'RegLlamada.estado',
+                                                                                            'RegLlamada.created',
+                                                                                            'User.username'                                                                                                                                                                                               
+                                                                                            ),
+                                                                        'conditions' => array(
+                                                                                            'RegLlamada.created LIKE' => '%'.$anio.'-08%'),
+                                                                        'recursive'=>0)
+                                                                        
+                                                        ));
+            $this->set('setiembre', $this->RegLlamada->find('all', 
+                                                                array(  'fields' => array(
+                                                                                            'RegLlamada.turno',
+                                                                                            'RegLlamada.cabina',
+                                                                                            'RegLlamada.dni_pac',
+                                                                                            'ca.cas',
+                                                                                            'Medico.espec',
+                                                                                            'RegLlamada.estado',
+                                                                                            'RegLlamada.created',
+                                                                                            'User.username'                                                                                                                                                                                               
+                                                                                            ),
+                                                                        'conditions' => array(
+                                                                                            'RegLlamada.created LIKE' => '%'.$anio.'-09%'),
+                                                                        'recursive'=>0)
+                                                                        
+                                                        ));
+            $this->set('octubre', $this->RegLlamada->find('all', 
+                                                                array(  'fields' => array(
+                                                                                            'RegLlamada.turno',
+                                                                                            'RegLlamada.cabina',
+                                                                                            'RegLlamada.dni_pac',
+                                                                                            'ca.cas',
+                                                                                            'Medico.espec',
+                                                                                            'RegLlamada.estado',
+                                                                                            'RegLlamada.created',
+                                                                                            'User.username'                                                                                                                                                                                               
+                                                                                            ),
+                                                                        'conditions' => array(
+                                                                                            'RegLlamada.created LIKE' => '%'.$anio.'-10%'),
+                                                                        'recursive'=>0)
+                                                                        
+                                                        ));
+            $this->set('noviembre', $this->RegLlamada->find('all', 
+                                                                array(  'fields' => array(
+                                                                                            'RegLlamada.turno',
+                                                                                            'RegLlamada.cabina',
+                                                                                            'RegLlamada.dni_pac',
+                                                                                            'ca.cas',
+                                                                                            'Medico.espec',
+                                                                                            'RegLlamada.estado',
+                                                                                            'RegLlamada.created',
+                                                                                            'User.username'                                                                                                                                                                                               
+                                                                                            ),
+                                                                        'conditions' => array(
+                                                                                            'RegLlamada.created LIKE' => '%'.$anio.'-11%'),
+                                                                        'recursive'=>0)
+                                                                        
+                                                        ));
+            $this->set('diciembre', $this->RegLlamada->find('all', 
+                                                                array(  'fields' => array(
+                                                                                            'RegLlamada.turno',
+                                                                                            'RegLlamada.cabina',
+                                                                                            'RegLlamada.dni_pac',
+                                                                                            'ca.cas',
+                                                                                            'Medico.espec',
+                                                                                            'RegLlamada.estado',
+                                                                                            'RegLlamada.created',
+                                                                                            'User.username'                                                                                                                                                                                               
+                                                                                            ),
+                                                                        'conditions' => array(
+                                                                                            'RegLlamada.created LIKE' => '%'.$anio.'-12%'),
+                                                                        'recursive'=>0)
+                                                                        
+                                                        ));                                                                                               
+                        
             $this->layout = 'pdf'; //this will use the pdf.ctp layout 
 			$this->response->type('pdf');
         }
