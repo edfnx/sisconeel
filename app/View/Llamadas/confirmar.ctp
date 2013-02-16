@@ -1,18 +1,36 @@
 <?php $this->set('title_for_layout','Confirmar Cita'); ?>
 
-			Citas Confirmadas<br />Cabina <?php echo $this->Session->read('cabina'); ?>                        
+<div class="row">
+	<div class="span10 offset1">
+		<div class="row-fluid">
+			<div class="span4">
+				<div class="ss-boxit">
+					<div class="amount">
+						<?php  echo $llamconftotalcab; ?>
+					</div>
+					Citas Confirmadas Cabina <?php echo $this->Session->read('cabina'); ?>                        
+				</div>
+			</div>
+			<div class="span4">
+				<div class="ss-boxit">
+					<div class="amount">
+						<?php echo $llamconftotaluser; ?>
+					</div>
+					Citas Confirmadas por el/la operador(a)
+				</div>
+			</div>
+			<div class="span4">
+				<div class="ss-boxit">
+					<div class="amount">
+						<?php echo $llamconfcabuser; ?>
+					</div>					
+	   					Citas Confirmadas Cabina <?php echo $this->Session->read('cabina'); ?> por el/la operador(a)
+				</div>
+			</div>
+		</div>	
+	</div>
+</div>
 
-			<?php  echo $llamconftotalcab; ?>
-		
-			Citas Confirmadas<br /> por el/la operador(a)                           
-		
-			<?php echo $llamconftotaluser; ?>
-		
-		   Citas Confirmadas Cabina <?php echo $this->Session->read('cabina'); ?><br />
-			por el/la operador(a)
-		
-			<?php echo $llamconfcabuser; ?>
-							
 <div class="row">
 	<div class="span12">
 		<div class="page-header">
@@ -29,11 +47,14 @@
 			<?php echo $this->Ajax->observeField('llamadaid', array('url'=>array('action'=>'datos'), 'update'=>'divdatos')); ?>
 		</div>
 		
-	   
-		<label>
-		Datos Personales
-		</label>
-		<div id="divdatos"></div> 
+	   <div class="control-group">
+			<label class="control-label">
+				Datos Personales
+			</label>
+			<div class="controls">		
+				<div id="divdatos"></div> 
+			</div>
+		</div>
 
 		<?php echo $this->BtForm->input('ConfLlamada.respuesta_id', 'Respuesta',  array('empty' => 'Selecione respuesta')); ?>		
 		<?php echo $this->BtForm->input('ConfLlamada.datos_llamada', 'Persona que contesto', array('placeholder'=>'Nombres Apellidos del familiar')); ?> 
@@ -43,7 +64,3 @@
 		<?php echo $this->Form->end('Confirmar Llamada') ?>
 	</div>
 </div>
-
-<pre>
-	<?php print_r($relFamiliars)?>
-</pre>
