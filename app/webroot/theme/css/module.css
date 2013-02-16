@@ -1,6 +1,6 @@
 section.main{
     margin-top: 0;
-    padding-top: 50px;
+    padding-top: 40px;
     min-height: 300px;
 }
 
@@ -10,6 +10,46 @@ footer.main-footer{
     background-color: whiteSmoke;
     text-align: center;
 }
+
+.ss-form p{
+    border: 1px solid #efefef;
+}
+
+
+/** ss-boxit **/
+
+.ss-boxit{
+    border: 1px solid #aaa;
+    text-align: center;
+    font-size: 0.9em;
+    padding: 7px 10px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    box-shadow: 0px 0px 2px #eee;
+}
+
+.ss-boxit .amount{
+    font-weight: bold;
+    font-size: 1.2em;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #efefef;
+    margin-bottom: 8px;
+}
+
+/**Cake date */
+
+.cake-date select{
+    width: 60px;
+}
+
+.cake-date select:nth-child(1){
+    width: 80px;
+}
+
+.cake-date select:nth-child(2){
+    width: 120px;
+}
+
 
 .ss-navbar{
     min-height: 50px;

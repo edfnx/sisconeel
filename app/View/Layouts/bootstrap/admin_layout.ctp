@@ -60,8 +60,6 @@ $cakeDescription = __d('SISCONEEL', 'EsSalud - SISCONEEL');
 	?>
 </head>
 <body>
-	
-
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner ">
 			<div class="container">
@@ -206,11 +204,8 @@ $cakeDescription = __d('SISCONEEL', 'EsSalud - SISCONEEL');
 	</div>
 	<section class="main">
 		<div class="container">
-			<div class="row-fluid">
-				<div class="span12">		
-				<?php echo $this->Session->flash(); ?>
-				<?php echo $this->fetch('content'); ?>				
-			</div>
+			<?php echo $this->Session->flash(); ?>
+			<?php echo $this->fetch('content'); ?>				
 		</div>
 	</section>
 	<footer class="main-footer">
