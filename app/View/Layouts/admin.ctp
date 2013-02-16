@@ -124,6 +124,11 @@ $cakeDescription = __d('SISCONEEL', 'EsSalud - SISCONEEL: Sistema de Control de 
                     </li>
                     <li style="background-color: #67A4FF; margin-bottom: 1px;">
                         <?php
+                            echo $this->html->link('Especialidades', array('controller'=>'Panels','action'=>'especialidades'),array('class' => 'menus'));
+                        ?>
+                    </li>
+                    <li style="background-color: #67A4FF; margin-bottom: 1px;">
+                        <?php
                             echo $this->html->link('Medicos', array('controller'=>'Panels','action'=>'medicos'),array('class' => 'menus'));
                         ?>
                     </li>

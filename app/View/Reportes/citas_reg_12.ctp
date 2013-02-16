@@ -56,14 +56,14 @@
         //foreach($fichauno as $ficha1);
         
         $tcpdf->Cell(10,7, "Num" ,'LT',0,'C', 1);
-        $tcpdf->Cell(56,7, "Turno" ,'LT',0,'C', 1); 
-        $tcpdf->Cell(56,7, "Cabina" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "DNI" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "CAS" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "Especialidad" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "Estado" ,'LT',0,'C', 1);
+        $tcpdf->Cell(20,7, "Turno" ,'LT',0,'C', 1); 
+        $tcpdf->Cell(20,7, "Cabina" ,'LT',0,'C', 1);
+        $tcpdf->Cell(30,7, "DNI" ,'LT',0,'C', 1);
+        $tcpdf->Cell(50,7, "CAS" ,'LT',0,'C', 1);
+        $tcpdf->Cell(40,7, "Especialidad" ,'LT',0,'C', 1);
+        $tcpdf->Cell(20,7, "Estado" ,'LT',0,'C', 1);
         $tcpdf->Cell(36,7, "Fecha Creacion" ,'LT',0,'C', 1);
-        $tcpdf->Cell(56,7, "Registrado Por" ,'LRT',1,'C', 1);
+        $tcpdf->Cell(40,7, "Registrado Por" ,'LRT',1,'C', 1);
         
         $num = 1;
             
@@ -73,18 +73,18 @@
                 $tcpdf->SetFont($textfont_body, '', 10);
                 
                 $tcpdf->Cell(10,7, $num ,'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $ene['RegLlamada']['turno'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $ene['RegLlamada']['cabina'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $ene['RegLlamada']['dni_pac'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $ene['Ca']['cas'],'LT',0,'C', 1); 
-                $tcpdf->Cell(56,7, $ene['Medico']['espec'] ,'LT',0,'C', 1);
-                $tcpdf->Cell(58,7, $ene['RegLlamada']['estado'] ,'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $ene['RegLlamada']['turno'],'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $ene['RegLlamada']['cabina'],'LT',0,'C', 1);
+                $tcpdf->Cell(30,7, $ene['RegLlamada']['dni_pac'],'LT',0,'C', 1);
+                $tcpdf->Cell(50,7, $ene['Ca']['cas'],'LT',0,'C', 1); 
+                $tcpdf->Cell(40,7, $ene['Medico']['espec'] ,'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $ene['RegLlamada']['estado'] ,'LT',0,'C', 1);
                 $tcpdf->Cell(36,7, $ene['RegLlamada']['created'] ,'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $ene['User']['username'],'LRT',1,'C', 1);
+                $tcpdf->Cell(40,7, $ene['User']['username'],'LRT',1,'C', 1);
                                 
                 $num = $num+1;
             endforeach; 
-        $tcpdf->Cell(272,0, '','T',1,'C', 1);
+        $tcpdf->Cell(266,0, '','T',1,'C', 1);
         }
         
    //FEBRERO 2

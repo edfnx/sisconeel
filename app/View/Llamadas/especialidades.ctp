@@ -1,9 +1,9 @@
-    <select id="especialidadid" name="data[RegLlamada][especialidad]">
+    <select id="especialidadid" name="data[RegLlamada][especialidade_id]">
         <option value="" selected="" >Seleccione Especialidad</option>
         <?php
             foreach($especialidades as $especialidad):
-                $id = $especialidad['Medico']['espec'];
-                $nombre = $especialidad['Medico']['espec'];
+                $id = $especialidad['Especialidade']['id'];
+                $nombre = $especialidad['Especialidade']['especialidad'];
                 echo "<option value='$id'>$nombre</option>";
             endforeach;
         ?>

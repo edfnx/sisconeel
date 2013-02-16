@@ -3,7 +3,7 @@
     class PanelsController extends AppController {
         public $helpers = array('Html', 'Form');
         var $name='Panels';        
-        var $uses=array('Ca','Medico','LlamadaObserv','Respuesta','RelFamiliar','User');
+        var $uses=array('Ca','Especialidade','Medico','LlamadaObserv','Respuesta','RelFamiliar','User');
         
         
         public function index(){
@@ -42,13 +42,54 @@
             }
         }
         
+        public function especialidades(){
+            $this->set('especialidades',$this->Especialidade->find('all', array('recursive'=>0)));
+        }
+        
+        public function add_especialidades(){
+            
+            $this->set('cas',$this->Ca->find('list',array('fields'=>array('Ca.id','Ca.cas'))));
+            
+            if($this->request->is('post')) {
+                if($this->Especialidade->save($this->request->data)) {
+                   $this->Session->setFlash('Especialidad Registrada');
+                   $this->redirect(array('action'=>'especialidades'), null, true);
+                } else {
+                    $this->Session->setFlash('Ha ocurrido un error, Intente de Nuevo');
+                }
+            }
+        }
+        
+        public function edit_especialidades($id=null){
+            $this->Especialidade->id = $id;
+            $this->Especialidade->recursive = 0;
+            
+            $this->set('cas',$this->Ca->find('all',array('fields'=>array('Ca.id','Ca.cas'),'recursive'=>0)));
+            
+            if($this->request->is('get')) {
+                $dato = $this->Especialidade->read();
+                $this->set('datos',$dato);
+                $this->request->data = $dato;
+            } else {
+                    //$this->data['User']['password'] = AuthComponent::password($this->data['User']['password']);
+                if ($this->Especialidade->save($this->request->data)) {
+                    $this->Session->setFlash('El CAS se ha Actualizado Correctamente');
+                    $this->redirect(array('action' => 'cas'));
+                } else {
+                    $this->Session->setFlash('No se pudo Actualizar, Intente de Nuevo');
+                } 
+            }
+        }
+        
         public function medicos(){
             $this->set('medicos',$this->Medico->find('all', array('recursive'=>0)));
         }
         
         public function add_medicos(){
             
-            $this->set('cas',$this->Ca->find('all',array('fields'=>array('Ca.id','Ca.cas'))));
+            $this->set('cas',$this->Ca->find('list',array('fields'=>array('Ca.id','Ca.cas'))));
+            
+            $this->set('especialidades',$this->Especialidade->find('list',array('fields'=>array('Especialidade.id','Especialidade.especialidad'))));
                         
             if($this->request->is('post')) {
                 if($this->Medico->save($this->request->data)) {
@@ -65,6 +106,8 @@
             $this->Medico->recursive = 0;
             
             $this->set('cas',$this->Ca->find('all',array('fields'=>array('Ca.id','Ca.cas'),'recursive'=>0)));
+            
+            $this->set('especialidades',$this->Especialidade->find('all',array('fields'=>array('Especialidade.id','Especialidade.especialidad'))));
             
             if($this->request->is('get')) {
                 $dato = $this->Medico->read();

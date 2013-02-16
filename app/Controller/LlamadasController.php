@@ -3,7 +3,7 @@
     class LlamadasController extends AppController {
         public $helpers = array('Html', 'Form','Ajax','SuprForm');
         var $name='Llamadas';        
-        var $uses=array('RegLlamada','Ca','Medico','LlamadaObserv','User','ConfLlamada','Respuesta','ElimLlamada','RelFamiliar');
+        var $uses=array('RegLlamada','Ca','Medico','LlamadaObserv','User','ConfLlamada','Respuesta','ElimLlamada','RelFamiliar','Especialidade');
         
         
         public function index(){
@@ -94,11 +94,12 @@
             
             $cas = $this->data['RegLlamada']['ca_id'];
             
-            $this->set('especialidades',$this->Medico->find('all',
+            $this->Session->write('cas', $cas);
+            
+            $this->set('especialidades',$this->Especialidade->find('all',
                                                     array(
-                                                            'group'=>'Medico.espec',
-                                                            'fields'=>array('Medico.espec'),
-                                                            'conditions'=>array('Medico.ca_id'=>$cas)
+                                                            'fields'=>array('Especialidade.id','Especialidade.especialidad'),
+                                                            'conditions'=>array('Especialidade.ca_id'=>$cas)
                                                             )
                                                             ));
             
@@ -107,12 +108,15 @@
         
         public function medicos(){
             
-            $espec = $this->data['RegLlamada']['especialidad'];
+            $cas = $this->Session->read('cas');
+            $this->Session->delete('cas');
+            
+            $espec = $this->data['RegLlamada']['especialidade_id'];
             
             $this->set('medicos',$this->Medico->find('all',
                                                     array(
                                                             'fields'=>array('Medico.id','Medico.medico'),
-                                                            'conditions'=>array('Medico.espec'=>$espec)
+                                                            'conditions'=>array('Medico.ca_id'=>$cas,'Medico.especialidade_id'=>$espec,)
                                                             )
                                                             ));
             
