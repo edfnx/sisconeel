@@ -21,8 +21,7 @@
             <?php       
                 echo $this->Form->select('Completo.tipo',
                                             array(  '1'=>'Estadistico',
-                                                    '2'=>'Listado',
-                                                    '3'=>'Ambos'
+                                                    '2'=>'Listado'
                                                     ),
                                             array('empty'=>false,'value'=>'1')
                                             );                                                    
@@ -53,29 +52,7 @@
             </select>           
             
         </p>        
-        
-        <p>
-            <label>MES</label>
-            <?php       
-                echo $this->Form->select('Completo.mes',
-                                            array(  '01'=>'Enero',
-                                                    '02'=>'Febrero',
-                                                    '03'=>'Marzo',
-                                                    '04'=>'Abril',
-                                                    '05'=>'Mayo',
-                                                    '06'=>'Junio',
-                                                    '07'=>'Julio',
-                                                    '08'=>'Agosto',
-                                                    '09'=>'Setiembre',
-                                                    '10'=>'Octubre',
-                                                    '11'=>'Noviembre',
-                                                    '12'=>'Diciembre'
-                                                    ),
-                                            array('empty'=>'Todos')
-                                            );                                                    
-            ?>
-        </p>
-        
+                
         <?php
             echo $this->Form->end('Generar Reporte') 
         ?>                
@@ -101,8 +78,7 @@
             <?php       
                 echo $this->Form->select('Completo.tipo',
                                             array(  '1'=>'Estadistico',
-                                                    '2'=>'Listado',
-                                                    '3'=>'Ambos'
+                                                    '2'=>'Listado'
                                                     ),
                                             array('empty'=>false,'value'=>'1')
                                             );                                                    
@@ -199,8 +175,7 @@
             <?php       
                 echo $this->Form->select('Completo.tipo',
                                             array(  '1'=>'Estadistico',
-                                                    '2'=>'Listado',
-                                                    '3'=>'Ambos'
+                                                    '2'=>'Listado'
                                                     ),
                                             array('empty'=>false,'value'=>'1')
                                             );                                                    
