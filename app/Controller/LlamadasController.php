@@ -18,19 +18,59 @@
             
             $user = $this->Session->read('user');
             //cas
-            $this->set('cas',$this->Ca->find('all',array('fields'=>array('Ca.id','Ca.cas'),'recursive'=>0)));
+            $this->set('cas',$this->Ca->find('all',
+                                                array(
+                                                        'fields'=>array(
+                                                                        'Ca.id',
+                                                                        'Ca.cas'),
+                                                'recursive'=>0)
+                                            ));
             //observaciones
-            $this->set('observaciones',$this->LlamadaObserv->find('all',array('fields'=>array('LlamadaObserv.id','LlamadaObserv.observacion'), 'recursive'=>0)));
+            $this->set('observaciones',$this->LlamadaObserv->find('all',
+                                                                    array(
+                                                                            'fields'=>array(
+                                                                                            'LlamadaObserv.id',
+                                                                                            'LlamadaObserv.observacion'), 
+                                                                            'recursive'=>0)
+                                                                    ));
             //relaciones familiares
-            $this->set('relfamiliares',$this->RelFamiliar->find('all',array('fields'=>array('RelFamiliar.id','RelFamiliar.relacion'), 'recursive'=>0)));
+            $this->set('relfamiliares',$this->RelFamiliar->find('all',
+                                                                array(
+                                                                        'fields'=>array(
+                                                                                        'RelFamiliar.id',
+                                                                                        'RelFamiliar.relacion'), 
+                                                                        'recursive'=>0)
+                                                                ));
             //fecha actual
             $fecha = date('Y-m-d');
             //total de llamadas registradas en la cabina en el dia
-            $this->set('llamregstotalcab',$this->RegLlamada->find('count',array('conditions' => array('RegLlamada.turno'=>$turno,'RegLlamada.cabina'=>$cabina,'RegLlamada.created LIKE' => "%$fecha%"), 'recursive'=>0)));
+            $this->set('llamregstotalcab',$this->RegLlamada->find('count',
+                                                                    array(
+                                                                            'conditions' => array(
+                                                                                                    'RegLlamada.turno'=>$turno,
+                                                                                                    'RegLlamada.cabina'=>$cabina,
+                                                                                                    'RegLlamada.created LIKE' => "%$fecha%"), 
+                                                                            'recursive'=>0)
+                                                                    ));
             //total de llamadas registradas del usuario en el dia
-            $this->set('llamregstotaluser',$this->RegLlamada->find('count',array('conditions' => array('RegLlamada.turno'=>$turno,'RegLlamada.created LIKE' => "%$fecha%",'RegLlamada.user_id'=>$user), 'recursive'=>0)));
+            $this->set('llamregstotaluser',$this->RegLlamada->find('count',
+                                                                    array(
+                                                                            'conditions' => array(
+                                                                                                    'RegLlamada.turno'=>$turno,
+                                                                                                    'RegLlamada.created LIKE' => "%$fecha%",
+                                                                                                    'RegLlamada.user_id'=>$user), 
+                                                                            'recursive'=>0)
+                                                                    ));
             //total de llamadas registradas del usuario en la cabina en el dia
-            $this->set('llamregscabuser',$this->RegLlamada->find('count',array('conditions' => array('RegLlamada.turno'=>$turno,'RegLlamada.cabina'=>$cabina,'RegLlamada.created LIKE' => "%$fecha%",'RegLlamada.user_id'=>$user), 'recursive'=>0)));
+            $this->set('llamregscabuser',$this->RegLlamada->find('count',
+                                                                    array(
+                                                                            'conditions' => array(
+                                                                                                    'RegLlamada.turno'=>$turno,
+                                                                                                    'RegLlamada.cabina'=>$cabina,
+                                                                                                    'RegLlamada.created LIKE' => "%$fecha%",
+                                                                                                    'RegLlamada.user_id'=>$user), 
+                                                                            'recursive'=>0)
+                                                                    ));
             
             //$this->set('llamconftotaluserw',$this->RegLlamada->find('count',array('conditions' => array('RegLlamada.turno'=>$turno,'RegLlamada.cabina'=>$cabina,'RegLlamada.user_id'=>$user), 'recursive'=>0)));
             
@@ -91,19 +131,63 @@
             //fecha del dia siguiente para poder confirmar las citas del dia siguiente y no dejar citas al aire
             $fecha_maniana = date('Y-m-d', strtotime("+1 day"));            
             //total de llamadas registradas en la cabina en el dia
-            $this->set('regLlamadas',$this->RegLlamada->find('list',array('fields'=>array('RegLlamada.id','RegLlamada.dni_pac'),'conditions' => array('RegLlamada.cabina'=>$cabina,'RegLlamada.fecha_cita LIKE' => "%$fecha_maniana%",'Regllamada.cita_otorgada' => 1,'RegLlamada.estado'=>0), 'recursive'=>0)));
-            
+
+            $this->set('regLlamadas',$this->RegLlamada->find('list',
+                                                                    array(
+                                                                            'fields'=>array(
+                                                                                                'RegLlamada.id',
+                                                                                                'RegLlamada.dni_pac'),
+                                                                            'conditions' => array(
+                                                                                                    'RegLlamada.cabina'=>$cabina,
+                                                                                                    'RegLlamada.fecha_cita LIKE' => "%$fecha_maniana%",
+                                                                                                    'Regllamada.cita_otorgada' => 1,
+                                                                                                    'RegLlamada.estado'=>0), 
+                                                                            'recursive'=>0)
+                                                                    ));
             //respuestas
-            $this->set('respuestas',$this->Respuesta->find('list',array('fields'=>array('Respuesta.id','Respuesta.respuesta'), 'recursive'=>0)));
-            //relaciones 
-            $this->set('relFamiliars',$this->RelFamiliar->find('list',array('fields'=>array('RelFamiliar.id','RelFamiliar.relacion'), 'recursive'=>0)));
-            
+            $this->set('respuestas',$this->Respuesta->find('list',
+                                                            array(
+                                                                    'fields'=>array(
+                                                                                    'Respuesta.id',
+                                                                                    'Respuesta.respuesta'), 
+                                                                    'recursive'=>0)
+                                                            ));
+            //relaciones
+            $this->set('relFamiliars',$this->RelFamiliar->find('list',
+                                                            array(
+                                                                    'fields'=>array(
+                                                                                    'RelFamiliar.id',
+                                                                                    'RelFamiliar.relacion'), 
+                                                                    'recursive'=>0)
+                                                            ));            
+
             //total de llamadas registradas en la cabina en el dia en el turno
-            $this->set('llamconftotalcab',$this->ConfLlamada->find('count',array('conditions' => array('ConfLlamada.turno'=>$turno,'ConfLlamada.cabina'=>$cabina,'ConfLlamada.created LIKE' => "%$fecha%"), 'recursive'=>0)));
+            $this->set('llamconftotalcab',$this->ConfLlamada->find('count',
+                                                                    array(
+                                                                            'conditions' => array(
+                                                                                                    'ConfLlamada.turno'=>$turno,
+                                                                                                    'ConfLlamada.cabina'=>$cabina,
+                                                                                                    'ConfLlamada.created LIKE' => "%$fecha%"), 
+                                                                    'recursive'=>0)));
             //total de llamadas registradas del usuario en el dia en el turno
-            $this->set('llamconftotaluser',$this->ConfLlamada->find('count',array('conditions' => array('ConfLlamada.turno'=>$turno,'ConfLlamada.created LIKE' => "%$fecha%",'ConfLlamada.user_id'=>$user), 'recursive'=>0)));
+            $this->set('llamconftotaluser',$this->ConfLlamada->find('count',
+                                                                    array(
+                                                                            'conditions' => array(
+                                                                                                    'ConfLlamada.turno'=>$turno,
+                                                                                                    'ConfLlamada.created LIKE' => "%$fecha%",
+                                                                                                    'ConfLlamada.user_id'=>$user), 
+                                                                            'recursive'=>0)
+                                                                    ));
             //total de llamadas registradas del usuario en la cabina en el dia en el turno
-            $this->set('llamconfcabuser',$this->ConfLlamada->find('count',array('conditions' => array('ConfLlamada.turno'=>$turno,'ConfLlamada.cabina'=>$cabina,'ConfLlamada.created LIKE' => "%$fecha%",'ConfLlamada.user_id'=>$user), 'recursive'=>0)));
+            $this->set('llamconfcabuser',$this->ConfLlamada->find('count',
+                                                                    array(
+                                                                            'conditions' => array(
+                                                                                                    'ConfLlamada.turno'=>$turno,
+                                                                                                    'ConfLlamada.cabina'=>$cabina,
+                                                                                                    'ConfLlamada.created LIKE' => "%$fecha%",
+                                                                                                    'ConfLlamada.user_id'=>$user), 
+                                                                            'recursive'=>0)
+                                                                            ));
                         
             //$this->set('fichados',$this->PacienteAfiliacione->find('all', array('conditions' => array('paciente_id' => $FichaPaciente), 'recursive' => 0 )));
                         
