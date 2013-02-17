@@ -40,19 +40,18 @@ $cakeDescription = __d('SISCONEEL', 'EsSalud - SISCONEEL');
 		echo $this->Html->script('/bootstrap-cerulean/js/bootstrap.min');
 		echo $this->Html->script('/plugins/jquery.jeditable.mini.js');
 
+		/* 'main.js' */
 
-		
-		/*
-		echo $this->Javascript->link(array( '',
-											'jquery.jeditable.mini.js',
-											'main.js'
-											));
-		*/
 		// Data table 
 		
 		echo $this->Html->script('/plugins/dataTables/jquery.dataTables.min.js');
 		echo $this->Html->css('/plugins/dataTables/jquery.dataTables');
 
+		echo $this->Html->script('/plugins/flot/jquery.flot');
+		echo $this->Html->script('/plugins/flot/jquery.flot.categories');
+		echo $this->Html->script('/theme/js/main');
+		
+		
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
@@ -178,16 +177,19 @@ $cakeDescription = __d('SISCONEEL', 'EsSalud - SISCONEEL');
 			</div>
 		</div><!-- /navbar-inner -->
 	</div>
-	<div class="subnav subnav-fixed">
-		<ul class="nav nav-pills">
-			<li> 
-				<a href="#">				
+
+	<div class="ss-subnav ss-subnav-fixed">
+		<div class="container">
+
+			<ul class="ss-nav">
+				<li> 
+				
 					CABINA:
 					<?php echo $this->Session->read('cabina'); ?>
-				</a> 
-			</li>
-			<li>
-				<a href="#">
+				
+				</li>
+				<li class="separtor"></li>
+				<li>
 					TURNO:
 					<?php
 						$turno = $this->Session->read('turno');
@@ -200,10 +202,37 @@ $cakeDescription = __d('SISCONEEL', 'EsSalud - SISCONEEL');
 							echo "Apoyo";
 						}
 					?>
-				</a>
-			</li>
-		</ul>
+				</li>
+			</ul>
 
+			<div class="fix-right">
+			
+				<ul class="ss-nav">
+				<li> 
+				
+					CABINA:
+					<?php echo $this->Session->read('cabina'); ?>
+				
+				</li>
+				<li class="separtor"></li>
+				<li>
+					TURNO:
+					<?php
+						$turno = $this->Session->read('turno');
+
+						if($turno == "manana"){
+							echo "Ma&ntilde;ana";
+						}else if($turno == "tarde"){
+							echo "Tarde"; 
+						}else{
+							echo "Apoyo";	
+						}
+					?>
+				</li>
+				</ul>
+			
+			</div>
+		</div>
 	</div>
 	<section class="main">
 		<div class="container">

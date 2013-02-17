@@ -1,42 +1,33 @@
 <?php $this->set('title_for_layout','Control de Acceso'); ?>
 
-<div style="width: 300px; position: relative; top: 20%; left: 40%; text-align: center;">
-    <!-- margin-left: 200px; width: 300px; height: 700px;-->
-    <div>        
-        <h1 style="font-size:  small;">Ingrese Usuario y Contrase&ntilde;a</h1>    
+<div class="row">
+    <div class="span6 offset3">
+        <div class="page-header">        
+            <h4>Iniciar sesión</h4>    
+        </div>
+        
+        <?php echo $this->BtForm->create(); ?>
+        <?php echo $this->BtForm->input('username', 'Usuario',
+                                        array(
+                                                'placeholder'=>'Ingrese su Usuario'
+                                                )
+                                        );
+        ?>
+        <?php echo $this->BtForm->input('password', 'Password',
+                                        array(
+                                                'placeholder'=>'Ingrese su Password'
+                                                )
+                                        );
+        ?>
+        <?php echo $this->BtForm->input('cabina', 'Numero de Cabina',
+                                        array(
+                                                'placeholder'=>'Numero de Cabina',
+                                                )
+                                        );
+        ?>
+        <?php echo $this->BtForm->submit('Ingresar'); ?>
+                    
+        <?php echo $this->Form->end() ?>
+        
     </div>
-    
-    <form></form>
-    
-    <?php 
-         echo $this->Form->create('User');
-    ?>
-    <?php
-         echo $this->Form->input('username',
-                                    array(
-                                            'label'=>'Usuario',
-                                            'placeholder'=>'Ingrese su Usuario'
-                                            )
-                                    );
-    ?>
-    <?php
-         echo $this->Form->input('password',
-                                    array(
-                                            'label'=>'Password',
-                                            'placeholder'=>'Ingrese su Password'
-                                            )
-                                    );
-    ?>
-    <?php
-         echo $this->Form->input('cabina',
-                                    array(
-                                            'label'=>'Numero de Cabina',
-                                            'placeholder'=>'Numero de Cabina',
-                                            'class'=>'input xsmall'
-                                            )
-                                    );
-    ?>
-    <?php
-        echo $this->Form->end('Ingresar') 
-    ?>
 </div>

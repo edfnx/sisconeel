@@ -51,6 +51,17 @@ footer.main-footer{
 }
 
 
+/** page-header **/
+
+.page-header{
+    text-align: center;
+}
+
+.ss-navbar-fixed{
+    position: fixed;
+    z-index: 100;
+}
+
 .ss-navbar{
     min-height: 50px;
     padding-left: 20px;
@@ -93,12 +104,36 @@ footer.main-footer{
     padding-bottom: 17px;
     margin-right: 1px;
 }
-.ss-navbar  ul > li > a:hover, .ss-navbar  ul > li.active > a{
-    background-color: rgb(22, 132, 194);
+
+
+/** MODULE ss-subnav **/
+
+.ss-subnav-fixed
+{
+    top: 50px;
+    left: 0;
+    right: 0;
+    z-index: 1020;
+
+    position: fixed;
+
+    
+    border-color: rgb(213, 213, 213);
+    border-width: 0 0 1px;
+
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: inset 0 1px 0 white, 0 1px 5px rgba(0, 0, 0, .1);
+    -moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 0 white, 0 1px 5px rgba(0, 0, 0, .1);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
+
 .ss-subnav{
-    margin-bottom: 60px;
-    width: 100%;
+
+    margin-bottom: 10px;
+    
     height: 36px;
     background-color: rgb(238, 238, 238);
     background-repeat: repeat-x;
@@ -112,14 +147,35 @@ footer.main-footer{
     border: 1px solid rgb(229, 229, 229);
 }
 
+.ss-subnav > .container{
+    position: relative;
+}
+
+ .container > .ss-nav {
+    margin-left: 0px;
+}
 .ss-nav > li {
     list-style: none;
     margin-top: 8px;
-}
-.ss-nav > li {
     float: left;
+    color: rgb(47, 164, 231);
+    font-size: 0.85em;
 }
 
+.ss-nav > li.separtor {
+    height: 36px;
+    margin: 0 9px;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #efefef;
+}
+
+.fix-right{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+/*
 .ss-subnav .ss-nav > li > a {
     margin: 0;
     padding-top: 10px;
@@ -130,8 +186,7 @@ footer.main-footer{
     -moz-border-radius: 0;
     border-radius: 0;
 }
-
-.ss-nav > li > a {
+.ss-nav > li {
     padding-right: 12px;
     padding-left: 12px;
     margin-right: 2px;
@@ -143,19 +198,9 @@ footer.main-footer{
     background-color: whiteSmoke;
 }
 
-.ss-subnav-fixed
-{
-    top: 40px;
-    left: 0;
-    right: 0;
-    z-index: 1020;
-    border-color: rgb(213, 213, 213);
-    border-width: 0 0 1px;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    -webkit-box-shadow: inset 0 1px 0 white, 0 1px 5px rgba(0, 0, 0, .1);
-    -moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
-    box-shadow: inset 0 1px 0 white, 0 1px 5px rgba(0, 0, 0, .1);
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+*/
+
+/** form-actions **/
+.form-actions{
+    background-color: white;
 }

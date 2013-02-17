@@ -294,8 +294,70 @@
             $this->layout = 'pdf'; //this will use the pdf.ctp layout 
 			$this->response->type('pdf');
         }
+
+
+        //REPORTES PDF DE CITAS REGISTRADAS
+
+        public function citas_reg_11_json(){
+
+            // Cabeceras JSON
+            $this->viewClass = 'Json';
+            $this->RequestHandler->setContent('json', 'application/json');
+
+            $anio = $this->Session->read('anio');
+            $this->Session->delete('anio');            
+            $mes = $this->Session->read('mes');
+            $this->Session->delete('mes');
+                        
+            $this->set('anio',$anio);                
+            
+            $months = array(
+                'ENE',
+                'FEB',
+                'MAR',
+                'ABR',
+                'MAY',
+                'JUN',
+                'JUL',
+                'AGO',
+                'SET',
+                'OCT',
+                'NOV',
+                'DIC',
+                );
+
+            $data = array();
+
+            foreach ($months as $key => $month) {
+                $i = $key + 1;
+                array_push($data, 
+                    array(
+                        $months[$key], 
+                        $this->RegLlamada->find('count', array('conditions' => array('RegLlamada.created LIKE' => '%'.$anio.'-0'.$i.'%')))
+                    )
+                );
+            }
+            
+            $this->set('data', $data);
+            $this->set('__serialize', 'data');
+
+        }
+
+        public function citas_reg_11_html(){
+            $anio = $this->Session->read('anio');
+            $this->Session->delete('anio');            
+            $mes = $this->Session->read('mes');
+            $this->Session->delete('mes');
+                        
+            $this->set('anio',$anio);                
+
+            $this->layout = "/bootstrap/pdf_layout";
+        }
+
+
         
         //REPORTE LISTADO ANULA COMPLETO
+
         public function citas_reg_12(){
             $anio = $this->Session->read('anio');
             $this->Session->delete('anio');            
