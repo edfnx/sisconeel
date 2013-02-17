@@ -5,7 +5,7 @@
         public $name='Users';        
         public $components = array('Session');
         public $uses=array('User','Historial');
-        public $layout = 'admin';
+        
         
         function beforeFilter(){
             parent::beforeFilter();

@@ -6,12 +6,34 @@
 	body{
 		padding-top: 0;
 	}
+
+	.ss-subnav-fixed
+	{
+		top: -23px;
+		position: relative;
+	}
+
+	.ss-subnav > .container{
+    	
+	}
 }
  
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) { 
+
 	body{
 		padding-top: 0;
+	}
+
+	.ss-subnav-fixed
+	{
+		top: -20px;
+		position: relative;
+	}
+
+	.ss-subnav > .container{
+    	margin-left: 10px;
+    	margin-right: 10px;
 	}
  }
  

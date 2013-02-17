@@ -44,7 +44,8 @@ class AppController extends Controller {
             'logoutRedirect'=>array('controller'=>'users','action'=>'login'),
             'authError'=>'Acceso Restringido - No tiene suficientes permisos para entrar en este area',
             'authorize'=>array('controller')
-        )
+        ),
+        'RequestHandler'
     );
         
     public function isAuthorized($user){
