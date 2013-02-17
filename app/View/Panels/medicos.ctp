@@ -25,7 +25,7 @@
                     <tr style="font-size: x-small;">
                         <td><?php   echo $medico['Medico']['id']; ?></td>
                         <td><?php   echo $medico['Ca']['cas']; ?></td>
-                        <td><?php   echo $medico['Medico']['espec']; ?></td>
+                        <td><?php   echo $medico['Especialidade']['especialidad']; ?></td>
                         <td><?php   echo $medico['Medico']['medico']; ?></td>
                         <td><?php   echo $medico['Medico']['created']; ?></td>
                         <td><?php   echo $medico['User']['nombres']." ".$medico['User']['ap_paterno']." ".$medico['User']['ap_materno']; ?></td>

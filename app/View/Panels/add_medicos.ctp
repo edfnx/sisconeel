@@ -11,28 +11,11 @@
     <?php 
          echo $this->Form->create('Medico');   
     ?>
-    <label>
-        Centro Asistencial
-    </label>
-    <select id="casid" name="data[Medico][ca_id]">
-	   <option>Seleccione CAS</option>
-	   <?php
-            foreach($cas as $ca):
-			    $id = $ca['Ca']['id'];
-				$nombre = $ca['Ca']['cas'];
-				echo "<option value='$id'>$nombre</option>";
-            endforeach;
-	   ?>
-    </select>
-    <?php
-         echo $this->Form->input('Medico.espec',
-                                    array(
-                                            'label'=>'Especialidad',
-                                            'placeholder'=>'Especialidad',
-                                            //'class'=> "span9"
-                                            )
-                                    );
-    ?>
+    
+    <?php echo $this->BtForm->input('Medico.ca_id', 'Cas',  array('empty' => 'Selecione Cas')); ?>
+    
+    <?php echo $this->BtForm->input('Medico.especialidade_id', 'Especialidad',  array('empty' => 'Selecione Especialidad')); ?>
+        
     <?php
          echo $this->Form->input('Medico.medico',
                                     array(
@@ -57,6 +40,6 @@
                                     ); 
     ?>
     <?php
-        echo $this->Form->end('Actualizar Medico') 
+        echo $this->Form->end('Agregar Medico') 
     ?>
 </div>

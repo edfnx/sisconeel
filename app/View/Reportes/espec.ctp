@@ -1,0 +1,1 @@
+<?php echo $this->BtForm->input('Cas.especialidad', 'Especialidad',  array('empty' => 'Todas las Especialidades')); ?>

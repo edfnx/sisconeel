@@ -127,6 +127,9 @@ $cakeDescription = __d('SISCONEEL', 'EsSalud - SISCONEEL');
 									<?php echo $this->html->link('CAS', array('controller'=>'Panels','action'=>'cas')); ?>
 								</li>
 								<li>
+									<?php echo $this->html->link('Especialidades', array('controller'=>'Panels','action'=>'especialidades')); ?>
+								</li>
+                                <li>
 									<?php echo $this->html->link('Medicos', array('controller'=>'Panels','action'=>'medicos')); ?>
 								</li>
 								<li>
