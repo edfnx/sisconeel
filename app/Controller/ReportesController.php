@@ -30,12 +30,11 @@
                                                             'recursive'=>0)
                                                 ));
             //ESPECIALIDAD
-            $this->set('especialidads',$this->Medico->find('list',
+            $this->set('especialidads',$this->Especialidade->find('list',
                                                     array(
-                                                            'group'=>'Medico.espec',
                                                             'fields'=>array(
-                                                                            'Medico.id',
-                                                                            'Medico.espec'),
+                                                                            'Especialidade.id',
+                                                                            'Especialidade.especialidad'),
                                                             'recursive'=>0)
                                                 ));
             
@@ -249,15 +248,15 @@
         
         public function espec(){
             
-            $espec = $this->data['Cas']['cas'];
+            $cas = $this->data['Cas']['cas'];
             
-            $this->set('especialidads',$this->Medico->find('list',
+            $this->set('especialidads',$this->Especialidade->find('list',
                                                     array(
                                                             'fields'=>array(
-                                                                            'Medico.id',
-                                                                            'Medico.espec'),
+                                                                            'Especialidade.id',
+                                                                            'Especialidade.especialidad'),
                                                             'conditiona'=>array(
-                                                                            'Medico.ca_id'=>$espec),
+                                                                            'Especialidade.ca_id'=>$cas),
                                                             'recursive'=>0)
                                                 ));
                         
@@ -842,28 +841,15 @@
             $espec = $this->Session->read('especialidad');
             $this->Session->delete('especialidad');
             
-            $this->set('especialidades', $this->RegLlamada->query("SELECT user_id ,count(user_id) FROM reg_llamadas WHERE created LIKE '%$anio%' GROUP BY user_id"));
+            $this->set('tot_especialidades', $this->RegLlamada->query("SELECT especialidade_id ,count(especialidade_id) FROM reg_llamadas WHERE created LIKE '%$anio%' GROUP BY especialidade_id"));
                         
-            $this->set('operadores' ,$this->User->find('all',array(
+            $this->set('especialidads' ,$this->Especialidade->find('all',array(
                                                         'fields'=>array(
-                                                                        'User.id',
-                                                                        'User.nombres',
-                                                                        'User.ap_paterno',
-                                                                        'User.ap_materno'),
+                                                                        'Especialidade.id',
+                                                                        'Especialidade.especialidad'),
                                                         'recursive'=>0)
                                         ));
-            
-            $this->set('operador_citas', $this->RegLlamada->query("SELECT user_id ,count(user_id) FROM reg_llamadas WHERE created LIKE '%$anio%' GROUP BY user_id"));
                         
-            $this->set('operadores' ,$this->User->find('all',array(
-                                                        'fields'=>array(
-                                                                        'User.id',
-                                                                        'User.nombres',
-                                                                        'User.ap_paterno',
-                                                                        'User.ap_materno'),
-                                                        'recursive'=>0)
-                                        ));
-            
             $this->layout = 'pdf'; //this will use the pdf.ctp layout 
 			$this->response->type('pdf');
         }
