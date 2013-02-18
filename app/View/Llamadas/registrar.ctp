@@ -63,7 +63,7 @@
 							); 
 						?>
 
-						<?php echo $this->BtForm->input('RegLlamada.especialidad_id','Especialidad',
+						<?php echo $this->BtForm->input('RegLlamada.especialidade_id','Especialidad',
 							array(
 								'id' => 'specialist-f1',
 								'empty' => '(Seleccione)',
@@ -86,7 +86,7 @@
 								'empty' => '(Seleccione)',
 								'disabled' => 'true'
 								)
-						);?>
+						); ?>
 
 						<?php echo $this->BtForm->input('RegLlamada.consultorio','Consultorio'); ?>
 						<?php echo $this->BtForm->input('RegLlamada.acto_medico', 'Acto Medico', array('required' => 'required')); ?>
@@ -116,29 +116,8 @@
 
 							</div>
 						</div>
-						<div class="control-group">
-							<label class="control-label">
-								Observacion de la Cita
-							</label>
-							<div class="controls">
-								<select id="obs" name="data[RegLlamada][llamada_observ_id]">
-									<option>Seleccione Observacion</option>
-									<?php
-										foreach($observaciones as $observacion):
-											$id = $observacion['LlamadaObserv']['id'];
-											$nombre = $observacion['LlamadaObserv']['observacion'];
-										   
-											if($id == 1){
-												echo "<option value='$id' selected>$nombre</option>";
-											}else{
-												echo "<option value='$id'>$nombre</option>";   
-											}   
-										endforeach;
-									?>
-								</select>
-								
-							</div>
-						</div>
+						<?php echo $this->BtForm->input('RegLlamada.llamada_observ_id', 'Observacion de la Cita');
+						?>
 
 						<div class="control-group">
 							<label class="control-label">
@@ -189,7 +168,7 @@
 							); 
 						?>
 
-						<?php echo $this->BtForm->input('RegLlamada.especialidad_id','Especialidad',
+						<?php echo $this->BtForm->input('RegLlamada.especialidade_id','Especialidad',
 							array(
 								'id' => 'specialist-f2',
 								'empty' => '(Seleccione)',
@@ -197,15 +176,8 @@
 								)
 						);?>
 
-						<?php echo $this->BtForm->input('RegLlamada.llamada_observ_id', 'Observacion de la Cita',
-								array('empty' => '(Seleccione)')
-							);
+						<?php echo $this->BtForm->input('RegLlamada.llamada_observ_id', 'Observacion de la Cita');
 						?>
-
-							<script type="text/javascript">
-								cas = <?php echo utf8_decode(json_encode($llamadaObservs)); ?> ;
-								console.log(cas);
-							</script>
 
 						<?php echo $this->Form->hidden('RegLlamada.cita_otorgada', array('value' => 'no')); ?>
 						<?php echo $this->Form->hidden('RegLlamada.user_id', array('value'=>$current_user['id'])); ?>
@@ -220,4 +192,4 @@
 		
 	</div>
 </div>
-			
+
