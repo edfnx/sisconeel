@@ -202,6 +202,11 @@
 							);
 						?>
 
+							<script type="text/javascript">
+								cas = <?php echo utf8_decode(json_encode($llamadaObservs)); ?> ;
+								console.log(cas);
+							</script>
+
 						<?php echo $this->Form->hidden('RegLlamada.cita_otorgada', array('value' => 'no')); ?>
 						<?php echo $this->Form->hidden('RegLlamada.user_id', array('value'=>$current_user['id'])); ?>
 						<?php echo $this->Form->hidden('RegLlamada.user_mod', array('value'=>$current_user['id'])); ?>                
