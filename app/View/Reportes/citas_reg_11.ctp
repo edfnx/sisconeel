@@ -1,198 +1,91 @@
-<?php     
+<script type="text/javascript">
+	$(function() {
+
+		$.getJSON("/sisconeel/reportes/citas_reg_11_json", function(data) {
+						
+			$.plot("#placeholder", [ data ], {
+				series: {
+					bars: {
+						show: true,
+						barWidth: 0.8,
+						align: "center"
+					}
+				},
+				xaxis: {
+					mode: "categories",
+					tickLength: 0
+				}
+			});
+		});
+	});
+</script>
+
+<div class="row-fluid">
+	<div class="span12">
+		<div class="graphics">
+			<div class="page-header">
+				<h4>
+					
+				<?php echo "REPORTE ANUAL DE REGITRO DE CITAS DE ESSALUD EN LINEA - RAJUL\nPERIODO ENERO A DICIEMBRE DEL ".$anio;  ?>
+				</h4>
+			</div>
+			<header class="graphics-header">
+				<?php echo "En el Periodo de Enero a Diciembre del ".$anio." el registro de citas se dio de la siguiente manera como puede apreciarse en el Grafico de Barras que se muestra continuacion."; ?>
+			</header>
+			<div class="graphics-container">
+				<div id="placeholder" class="demo-placeholder"></div>
+			</div>
+			<footer class="graphics-footer">
+				GRAFICO No 1: Grafico del Reporte Anual de Ateniones por mes del Puesto de Salud Conduriri I-3
+			</footer>
+		</div>
+	</div>
+</div>
+
+
     
-    App::import('Vendor','xtcpdf');  
-    
-    // create new PDF document
-    $tcpdf = new XTCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
-    $textfont_body = 'freesansi';//'freesans'; // looks better, finer, and more condensed than 'dejavusans'
-    $textfont_title = 'freesansbi';
-        
-    $tcpdf->SetAuthor("EdFnX - Wilmer Eddy Chambi Llica"); 
-    $tcpdf->SetAutoPageBreak( true ); 
-        
-    //set margins
-    $tcpdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-    $tcpdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-    $tcpdf->SetFooterMargin(PDF_MARGIN_FOOTER);
-    
-    //set image scale factor
-    $tcpdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
-    
-    //set auto page breaks
-    $tcpdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-    
-    $fecha = date('Y-m-d');
-    
-    //set some language-dependent strings
-    //$tcpdf->setLanguageArray($l);
-    
-    // ---------------------------------------------------------
-    
-    // set font
-    $tcpdf->xfootertext = $current_user['nombres'].' '.$current_user['ap_paterno'].' '.$current_user['ap_materno']; 
-    
-    // add a page
-    $tcpdf->AddPage();
-    
-    $tcpdf->SetFont($textfont_title, 'B', 13);
-    $tcpdf->Ln(5);    
-    $tcpdf->Write(0, "REPORTE ANUAL DE REGITRO DE CITAS DE ESSALUD EN LINEA - RAJUL\nPERIODO ENERO A DICIEMBRE DEL ".$anio, '', 0, 'C', true, 0, false, false, 0);
-    
-    $tcpdf->Ln(4);
-    
-     $tcpdf->SetFont($textfont_title, 'B', 10);
-        
-    // MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0)
-    
-    // set color for background
-    $tcpdf->SetFillColor(255, 255, 255);
-    
-    $tcpdf->SetFont($textfont_body, '', 10);
-    
-    $tcpdf->MultiCell(170, 20, "En el Periodo de Enero a Diciembre del ".$anio." el registro de citas se dio de la siguiente manera como puede apreciarse en el Grafico de Barras que se muestra continuacion.", 0, 'J', 1, 1, 20, 47, true, 0, false, true, 40, 'T');
-        
-    //$tcpdf->Cell(56,7, $this->Session->read('cabina'),'LT',0,'C', 1);
-    
-    //-----INICIO CUERPO ESTADSITICO ANUAL-----
-    
-    $tcpdf->SetFont($textfont_title, 'S', 10);
-    
-    $tcpdf->MultiCell(60, 0, "GRAFICO No 1", 0, 'C', 1, 1, 80, 60, true, 0, false, true, 40, 'T');
-    
-    
-    //ARRAY DE VALORES REALES
-    $anio = array($enero,$febrero,$marzo,$abril,$mayo,$junio,$julio,$agosto,$setiembre,$octubre,$noviembre,$diciembre);
-    
-    //VALOR DE DIVISION DE ALGORITMO
-    //$div = 2;
-    
-    //ARRAY DE VALORES PARA GRAFICAR        
-    $anio2 = array($enero/2,$febrero/2,$marzo/2,$abril/2,$mayo/2,$junio/2,$julio/2,$agosto/2,$setiembre/2,$octubre/2,$noviembre/2,$diciembre/2);
-    
-    
-    //ARRAY DE NOMBRES DE MESES
-    $meses = array('Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Setiembre','Octubre','Noviembre','Diciembre');
-    
-    
-    //ARRAY DE LETRAS DE MESES
-    $letra = array('ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SET','OCT','NOV','DIC');
-        
-    $mayor = $anio2[0];
-          
-    $i = 0;
-    
-    for($i = 0; $i<12; $i++){
-        
-        if($anio2[$i]>$mayor){
-            $mayor = $anio2[$i];
-        }                
-    }
-    
-    $sobra = ($mayor % 20);
-    
-    $falta = 20 - $sobra;
-        
-    $limite = (($mayor + $falta)/2);
-    
-    $id = $mayor + $falta + 20;
-    
-    if($id%20>0){
-        $id = $id - 0.5;
-    }else if((($id/20)/0.25)%2 != 0){
-        $id = $id + 0.5;
-    }
-    
-    $fila = "";
-    
-    while($id>=0){
-                
-                $fila .= $id."\n\n\n"; 
-                $id = $id-20;                
-            }
-        
-    $tcpdf->SetFont($textfont_body, '', 8);
-    
-    $tcpdf->MultiCell(60, 0, $sobra, 0, 'C', 1, 1, 120, 63, true, 0, false, true, 40, 'T');
-    $tcpdf->MultiCell(60, 0, $falta, 0, 'C', 1, 1, 130, 63, true, 0, false, true, 40, 'T');
-    $tcpdf->MultiCell(60, 0, $limite, 0, 'C', 1, 1, 140, 63, true, 0, false, true, 40, 'T');
-        
-    //CUERPO              
-    
-    //numeros de linea
-    
-    $tcpdf->MultiCell(10, $limite, $fila, 0, 0, 1, 0, 40, 69, true, 0, false, true, 40, 'T');
-    
-    //linea de la y
-    
-    $tcpdf->MultiCell(5, $limite+10, '', 'L', 'J', 1, 0, 50, 70, true, 0, false, true, 40, 'T');
-    
-    $tcpdf->SetFont($textfont_body, '', 8);
-    
-    
-    for($i = 0; $i<12; $i++){
-        //generador de colores de cada barra
-        $color[$i][0] = rand(50,170);
-        $color[$i][1] = rand(130,250);
-        $color[$i][2] = rand(250,255); 
-        
-        $tcpdf->SetFillColor($color[$i][0], $color[$i][1], $color[$i][2]);
-        $tcpdf->MultiCell(10, $anio2[$i], $anio[$i], 1, 'C', 1, 0, 55+(10*$i), $limite - $anio2[$i]+80, true, 0, false, true, 40, 'T');
-        //$tcpdf->SetFillColor(255, 255, 255);
-        $tcpdf->MultiCell(10, 0, $letra[$i], 0, 'C', 0, 0, 55+(10*$i), $limite+83, true, 0, false, true, 40, 'T');
-        
-    }
-        
-    $tcpdf->SetFillColor(255, 255, 255);
-    $tcpdf->MultiCell(130, 0, '', 'T', 'J', 1, 1, 50, $limite+80, true, 0, false, true, 40, 'T');
-    /* NOMBRES DE LEYENDA
-    $tcpdf->SetFont($textfont_body, '', 8);
-    
-    $fila = 0;
-    
-    $y = 0;
-    
-    $f = 0;
-    
-    for($i = 0; $i<12; $i++){
-        
-        $tcpdf->SetFillColor($color[$i][0], $color[$i][1], $color[$i][2]);
-        $tcpdf->MultiCell(6, 3, $letra[$i], 0, 'C', 1, 0, 45+(24*$y), $limite+84+(6*$f), true, 0, false, true, 40, 'T');
-        $tcpdf->MultiCell(26, 3, $meses[$i], 0, 'L', 0, 0, 51+(24*$y), $limite+84+(6*$f), true, 0, false, true, 40, 'T');
-        
-        if($y==5){ 
-            $y=0; 
-            $f=$f+1;
-        }else{
-            $y=$y+1;
-        }        
-        
-    }    
-      */
-    $tcpdf->Ln(7);
-    
-    $tcpdf->SetFont($textfont_title, 'S', 10);
-    
-    $tcpdf->Write(0, "GRAFICO No 1: Grafico del Reporte Anual de Ateniones por mes del Puesto de Salud Conduriri I-3 ", '', 0, 'C', 1, 0, false, false, 0);
-    
-    //$tcpdf->SetFillColor(rand(0,255), rand(0,255), rand(0,255));
-    //$tcpdf->Cell(10,25, "lol" ,'LRT',1,'C', 1);
-      
-    
-    //$tcpdf->MultisCell(0,5, 'Copyright © SYSAAPS Conduriri. Derechos Reservados.'.' '.date('Y-m-d H:i:s'),'T',1,'C');
-        
-    // reset pointer to the last page
-    
-    //-----FIN CUERPO ESTADISTICO ANUAL-----
-    
-    $tcpdf->lastPage();
-    
-    // ---------------------------------------------------------
-    
-    //Close and output PDF document
-    $tcpdf->Output('REPORTE_ANUAL_CITAS_REGISTRADAS_'.$anio.'.pdf', 'I');
-    
-    //============================================================+
-    // END OF FILE                                                
-    //============================================================+
-     
-?>
+
+<style type="text/css">
+	.demo-placeholder {
+		width: 100%;
+		height: 100%;
+		font-size: 14px;
+		line-height: 14px;
+	}
+	.graphics{
+		margin-bottom: 30px;
+
+	}
+	.graphics > .page-header{
+		padding-bottom: 0px;
+		margin-bottom: 15px;
+	}
+	.graphics > .page-header h2{
+		text-align: center;
+		line-height: 1.2em;
+	}
+	.graphics-container
+	{	
+		box-sizing: border-box;
+		width: 600px;
+		height: 300px;
+		padding: 20px 15px 15px 15px;
+		margin: 15px auto 15px auto;
+		border: 1px solid rgb(221, 221, 221);
+		
+		box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+		-o-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+		-ms-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+		-moz-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+		-webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+	}
+
+	header.graphics-header{
+		text-align: center;
+	}
+	footer.graphics-footer{
+		font-size: 0.9em;
+		text-align: center;
+		font-style: italic;	
+	}
+</style>

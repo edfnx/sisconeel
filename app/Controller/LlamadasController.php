@@ -32,6 +32,7 @@
                                                                                             'LlamadaObserv.observacion'), 
                                                                             'recursive'=>0)
                                                                     ));
+
             //relaciones familiares
             $this->set('relfamiliares',$this->RelFamiliar->find('all',
                                                                 array(
