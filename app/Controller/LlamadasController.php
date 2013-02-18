@@ -18,13 +18,12 @@
             
             $user = $this->Session->read('user');
             //cas
-            $this->set('cas',$this->Ca->find('all',
-                                                array(
-                                                        'fields'=>array(
-                                                                        'Ca.id',
-                                                                        'Ca.cas'),
-                                                'recursive'=>0)
-                                            ));
+            
+            
+            $this->set('cas',$this->Ca->find('list',
+                array( 'fields'=>array( 'Ca.id', 'Ca.cas'), 'recursive'=>0))
+            );
+
             //observaciones
             $this->set('observaciones',$this->LlamadaObserv->find('all',
                                                                     array(
@@ -88,39 +87,6 @@
                     $this->Session->setFlash('Ha ocurrido un error, Intente de Nuevo');
                 }
             }
-        }
-        
-        public function especialidades(){
-            
-            $cas = $this->data['RegLlamada']['ca_id'];
-            
-            $this->Session->write('cas', $cas);
-            
-            $this->set('especialidades',$this->Especialidade->find('all',
-                                                    array(
-                                                            'fields'=>array('Especialidade.id','Especialidade.especialidad'),
-                                                            'conditions'=>array('Especialidade.ca_id'=>$cas)
-                                                            )
-                                                            ));
-            
-            $this->layout='ajax';
-        }
-        
-        public function medicos(){
-            
-            $cas = $this->Session->read('cas');
-            $this->Session->delete('cas');
-            
-            $espec = $this->data['RegLlamada']['especialidade_id'];
-            
-            $this->set('medicos',$this->Medico->find('all',
-                                                    array(
-                                                            'fields'=>array('Medico.id','Medico.medico'),
-                                                            'conditions'=>array('Medico.ca_id'=>$cas,'Medico.especialidade_id'=>$espec,)
-                                                            )
-                                                            ));
-            
-            $this->layout='ajax';
         }
         
         public function confirmar(){

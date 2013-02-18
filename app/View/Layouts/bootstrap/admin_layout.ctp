@@ -50,6 +50,7 @@ $cakeDescription = __d('SISCONEEL', 'EsSalud - SISCONEEL');
 		echo $this->Html->script('/plugins/flot/jquery.flot');
 		echo $this->Html->script('/plugins/flot/jquery.flot.categories');
 		echo $this->Html->script('/theme/js/main');
+		echo $this->Html->script('/theme/js/nesting-select');
 		
 		
 		echo $this->fetch('meta');
@@ -208,29 +209,11 @@ $cakeDescription = __d('SISCONEEL', 'EsSalud - SISCONEEL');
 			<div class="fix-right">
 			
 				<ul class="ss-nav">
-				<li> 
-				
-					CABINA:
-					<?php echo $this->Session->read('cabina'); ?>
-				
-				</li>
-				<li class="separtor"></li>
-				<li>
-					TURNO:
-					<?php
-						$turno = $this->Session->read('turno');
-
-						if($turno == "manana"){
-							echo "Ma&ntilde;ana";
-						}else if($turno == "tarde"){
-							echo "Tarde"; 
-						}else{
-							echo "Apoyo";	
-						}
-					?>
-				</li>
+					<li> 
+						CABINA:
+						<?php echo $this->Session->read('cabina'); ?>
+					</li>
 				</ul>
-			
 			</div>
 		</div>
 	</div>
