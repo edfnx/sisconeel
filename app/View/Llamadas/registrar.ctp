@@ -63,7 +63,7 @@
 							); 
 						?>
 
-						<?php echo $this->BtForm->input('RegLlamada.especialidad_id','Especialidad',
+						<?php echo $this->BtForm->input('RegLlamada.especialidade_id','Especialidad',
 							array(
 								'id' => 'specialist-f1',
 								'empty' => '(Seleccione)',
