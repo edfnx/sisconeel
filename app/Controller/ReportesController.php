@@ -774,6 +774,25 @@
             $espec = $this->Session->read('especialidad');
             $this->Session->delete('especialidad');
             
+            $this->set('especialidades_cas', $this->RegLlamada->query("SELECT ca_id ,count(ca_id) FROM reg_llamadas WHERE cacreated LIKE '%$anio%' GROUP BY ca_id"));
+                       
+                                        
+            $this->set('cas' ,$this->Ca->find('all',array(
+                                                        'fields'=>array(                                                                        
+                                                                        'Ca.cas'),
+                                                        'conditions'=>array(
+                                                                        'Ca.id'=>$cas),
+                                                        'recursive'=>0)
+                                        ));
+            
+            $this->set('especialidades' ,$this->Especialidade->find('all',array(
+                                                        'fields'=>array(                                                                        
+                                                                        'Especialidade.especialidad'),
+                                                        'conditions'=>array(
+                                                                        'Especialidade.id'=>$espec),
+                                                        'recursive'=>0)
+                                        ));
+            
             $this->layout = 'pdf'; //this will use the pdf.ctp layout 
 			$this->response->type('pdf');
         }
@@ -788,6 +807,36 @@
             $this->Session->delete('cas');
             $espec = $this->Session->read('especialidad');
             $this->Session->delete('especialidad');
+            
+            ///CONTEO DE ATENCIONES POR MES EN EL AÑO DE UNA OPERADORA                                   
+            $this->set('enero', $this->RegLlamada->find('count', array('conditions' => array('Regllamada.ca_id'=>$cas,'Regllamada.especialidade_id'=>$espec,'RegLlamada.created LIKE' => '%'.$anio.'-01%'))));
+            $this->set('febrero', $this->RegLlamada->find('count', array('conditions' => array('Regllamada.ca_id'=>$cas,'Regllamada.especialidade_id'=>$espec,'RegLlamada.created LIKE' => '%'.$anio.'-02%'))));
+            $this->set('marzo', $this->RegLlamada->find('count', array('conditions' => array('Regllamada.ca_id'=>$cas,'Regllamada.especialidade_id'=>$espec,'RegLlamada.created LIKE' => '%'.$anio.'-03%'))));
+            $this->set('abril', $this->RegLlamada->find('count', array('conditions' => array('Regllamada.ca_id'=>$cas,'Regllamada.especialidade_id'=>$espec,'RegLlamada.created LIKE' => '%'.$anio.'-04%'))));
+            $this->set('mayo', $this->RegLlamada->find('count', array('conditions' => array('Regllamada.ca_id'=>$cas,'Regllamada.especialidade_id'=>$espec,'RegLlamada.created LIKE' => '%'.$anio.'-05%'))));
+            $this->set('junio', $this->RegLlamada->find('count', array('conditions' => array('Regllamada.ca_id'=>$cas,'Regllamada.especialidade_id'=>$espec,'RegLlamada.created LIKE' => '%'.$anio.'-06%'))));
+            $this->set('julio', $this->RegLlamada->find('count', array('conditions' => array('Regllamada.ca_id'=>$cas,'Regllamada.especialidade_id'=>$espec,'RegLlamada.created LIKE' => '%'.$anio.'-07%'))));
+            $this->set('agosto', $this->RegLlamada->find('count', array('conditions' => array('Regllamada.ca_id'=>$cas,'Regllamada.especialidade_id'=>$espec,'RegLlamada.created LIKE' => '%'.$anio.'-08%'))));
+            $this->set('setiembre', $this->RegLlamada->find('count', array('conditions' => array('Regllamada.ca_id'=>$cas,'Regllamada.especialidade_id'=>$espec,'RegLlamada.created LIKE' => '%'.$anio.'-09%'))));
+            $this->set('octubre', $this->RegLlamada->find('count', array('conditions' => array('Regllamada.ca_id'=>$cas,'Regllamada.especialidade_id'=>$espec,'RegLlamada.created LIKE' => '%'.$anio.'-10%'))));
+            $this->set('noviembre', $this->RegLlamada->find('count', array('conditions' => array('Regllamada.ca_id'=>$cas,'Regllamada.especialidade_id'=>$espec,'RegLlamada.created LIKE' => "%$anio-11%"))));
+            $this->set('diciembre', $this->RegLlamada->find('count', array('conditions' => array('Regllamada.ca_id'=>$cas,'Regllamada.especialidade_id'=>$espec,'RegLlamada.created LIKE' => "%$anio-12%"))));
+            
+            $this->set('cas' ,$this->Ca->find('all',array(
+                                                        'fields'=>array(                                                                        
+                                                                        'Ca.cas'),
+                                                        'conditions'=>array(
+                                                                        'Ca.id'=>$cas),
+                                                        'recursive'=>0)
+                                        ));
+            
+            $this->set('especialidades' ,$this->Especialidade->find('all',array(
+                                                        'fields'=>array(                                                                        
+                                                                        'Especialidade.especialidad'),
+                                                        'conditions'=>array(
+                                                                        'Especialidade.id'=>$espec),
+                                                        'recursive'=>0)
+                                        ));
             
             $this->layout = 'pdf'; //this will use the pdf.ctp layout 
 			$this->response->type('pdf');
@@ -804,6 +853,30 @@
             $espec = $this->Session->read('especialidad');
             $this->Session->delete('especialidad');
             
+            
+            if($mes == "01"){ $this->set('mes','Enero');}
+            if($mes == "02"){ $this->set('mes','Febrero');}
+            if($mes == "03"){ $this->set('mes','Marzo');}
+            if($mes == "04"){ $this->set('mes','Abril');}
+            if($mes == "05"){ $this->set('mes','Mayo');}
+            if($mes == "06"){ $this->set('mes','Junio');}
+            if($mes == "07"){ $this->set('mes','Julio');}
+            if($mes == "08"){ $this->set('mes','Agosto');}
+            if($mes == "09"){ $this->set('mes','Setiembre');}
+            if($mes == "10"){ $this->set('mes','Octubre');}
+            if($mes == "11"){ $this->set('mes','Noviembre');}
+            if($mes == "12"){ $this->set('mes','Diciembre');}           
+            
+            $this->set('especialidades_cas', $this->RegLlamada->query("SELECT ca_id ,count(ca_id) FROM reg_llamadas WHERE created LIKE '%$anio-$mes%' GROUP BY ca_id"));
+                        
+            $this->set('cas' ,$this->Ca->find('all',array(
+                                                        'fields'=>array(
+                                                                        'Ca.id',
+                                                                        'Ca.cas'),
+                                                        'recursive'=>0)
+                                        ));
+            
+            
             $this->layout = 'pdf'; //this will use the pdf.ctp layout 
 			$this->response->type('pdf');
         }
@@ -819,6 +892,37 @@
             $this->Session->delete('cas');
             $espec = $this->Session->read('especialidad');
             $this->Session->delete('especialidad');
+            
+            if($mes == "01"){ $this->set('mes','Enero');}
+            if($mes == "02"){ $this->set('mes','Febrero');}
+            if($mes == "03"){ $this->set('mes','Marzo');}
+            if($mes == "04"){ $this->set('mes','Abril');}
+            if($mes == "05"){ $this->set('mes','Mayo');}
+            if($mes == "06"){ $this->set('mes','Junio');}
+            if($mes == "07"){ $this->set('mes','Julio');}
+            if($mes == "08"){ $this->set('mes','Agosto');}
+            if($mes == "09"){ $this->set('mes','Setiembre');}
+            if($mes == "10"){ $this->set('mes','Octubre');}
+            if($mes == "11"){ $this->set('mes','Noviembre');}
+            if($mes == "12"){ $this->set('mes','Diciembre');}
+            
+            $this->set('especialidad_cas', $this->RegLlamada->find('count', array('conditions' => array('Regllamada.ca_id'=>$cas,'Regllamada.especialidade_id'=>$espec,'RegLlamada.created LIKE' => "%$anio-$mes%"))));                                   
+            
+            $this->set('cas' ,$this->Ca->find('all',array(
+                                                        'fields'=>array(                                                                        
+                                                                        'Ca.cas'),
+                                                        'conditions'=>array(
+                                                                        'Ca.id'=>$cas),
+                                                        'recursive'=>0)
+                                        ));
+            
+            $this->set('especialidades' ,$this->Especialidade->find('all',array(
+                                                        'fields'=>array(                                                                        
+                                                                        'Especialidade.especialidad'),
+                                                        'conditions'=>array(
+                                                                        'Especialidade.id'=>$espec),
+                                                        'recursive'=>0)
+                                        ));
             
             $this->layout = 'pdf'; //this will use the pdf.ctp layout 
 			$this->response->type('pdf');
