@@ -25,7 +25,7 @@
             );
 
             //observaciones
-            $this->set('observaciones',$this->LlamadaObserv->find('all',
+            $this->set('llamadaObservs',$this->LlamadaObserv->find('list',
                                                                     array(
                                                                             'fields'=>array(
                                                                                             'LlamadaObserv.id',

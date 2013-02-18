@@ -98,30 +98,20 @@
 							<div class="controls cake-date" >
 								<?php
 									 echo $this->Form->dateTime('RegLlamada.fecha_cita',
-																'YMD',
-																'24',
-																array('empty'=>null,
-																		'monthNames'=>array(null,
-																							'Enero',
-																							'Febrero',
-																							'Marzo',
-																							'Abril',
-																							'Mayo',
-																							'Junio',
-																							'Julio',
-																							'Agosto',
-																							'Setiembre',
-																							'Octubre',
-																							'Noviembre',
-																							'Diciembre'
-																							),
-																		'minYear'=>date('Y'),
-																		'maxYear'=>date('Y')+1,
-																		'value'=>date('Y-m-d 12:00:00', strtotime("+1 day"))
-																		//'label'=>'Fecha Cita'
-																		)
-																
-																);
+										'YMD', '24',
+										array('empty'=>null,
+												'monthNames'=>array(
+														null,
+														'Enero', 'Febrero', 'Marzo',
+														'Abril', 'Mayo', 'Junio',
+														'Julio', 'Agosto', 'Setiembre',
+														'Octubre', 'Noviembre', 'Diciembre'
+													),
+												'minYear'=>date('Y'),
+												'maxYear'=>date('Y')+1,
+												'value'=>date('Y-m-d 12:00:00', strtotime("+1 day"))
+												)										
+										);
 								?>
 
 							</div>
@@ -207,30 +197,11 @@
 								)
 						);?>
 
+						<?php echo $this->BtForm->input('RegLlamada.llamada_observ_id', 'Observacion de la Cita',
+								array('empty' => '(Seleccione)')
+							);
+						?>
 
-						<div class="control-group">
-							<label class="control-label">
-								Observacion de la Cita
-							</label>
-							<div class="controls">
-								<select id="obs" name="data[RegLlamada][llamada_observ_id]">
-									<option>Seleccione Observacion</option>
-									<?php
-										foreach($observaciones as $observacion):
-											$id = $observacion['LlamadaObserv']['id'];
-											$nombre = $observacion['LlamadaObserv']['observacion'];
-										   
-											if($id == 1){
-												echo "<option value='$id' selected>$nombre</option>";
-											}else{
-												echo "<option value='$id'>$nombre</option>";   
-											}   
-										endforeach;
-									?>
-								</select>
-								
-							</div>
-						</div>					
 						<?php echo $this->Form->hidden('RegLlamada.cita_otorgada', array('value' => 'no')); ?>
 						<?php echo $this->Form->hidden('RegLlamada.user_id', array('value'=>$current_user['id'])); ?>
 						<?php echo $this->Form->hidden('RegLlamada.user_mod', array('value'=>$current_user['id'])); ?>                
