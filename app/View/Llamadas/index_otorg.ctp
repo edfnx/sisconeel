@@ -40,7 +40,7 @@
                         <td><?php   echo $llamotorgtotaluser['RegLlamada']['cabina']; ?></td>
                         <td><?php   echo $llamotorgtotaluser['RegLlamada']['dni_pac']; ?></td>
                         <td><?php   echo $llamotorgtotaluser['Ca']['cas']; ?></td>
-                        <td><?php   echo $llamotorgtotaluser['Medico']['espec']; ?></td>
+                        <td><?php   echo $llamotorgtotaluser['Especialidade']['especialidad']; ?></td>
                         <td><?php   echo $llamotorgtotaluser['RegLlamada']['fecha_cita']; ?></td>
                         <td><?php   echo $llamotorgtotaluser['RegLlamada']['cita_otorgada']; ?></td>
                         <td>

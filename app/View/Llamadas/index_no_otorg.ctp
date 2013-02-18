@@ -39,7 +39,7 @@
                         <td><?php   echo $llamnootortotaluser['RegLlamada']['cabina']; ?></td>
                         <td><?php   echo $llamnootortotaluser['RegLlamada']['dni_pac']; ?></td>
                         <td><?php   echo $llamnootortotaluser['Ca']['cas']; ?></td>
-                        <td><?php   echo $llamnootortotaluser['Medico']['espec']; ?></td>
+                        <td><?php   echo $llamnootortotaluser['Especialidade']['especialidad']; ?></td>
                         <td><?php   echo $llamnootortotaluser['RegLlamada']['fecha_cita']; ?></td>
                         <td><?php   echo $llamnootortotaluser['RegLlamada']['cita_otorgada']; ?></td>                        
                         <td><?php   echo $llamnootortotaluser['RegLlamada']['created']; ?></td>                                                                            

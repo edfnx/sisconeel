@@ -314,7 +314,8 @@
             ?>
         </p>
         
-        <?php echo $this->BtForm->input('Especialidad.especialidad', 'Especialidad',  array('empty' => 'Selecione Especialidad')); ?>
+        <label>ESPECIALIDAD</label>       
+            <?php echo $this->Form->select('Especialidad.especialidad',$especialidads, array('empty' => 'Todos')); ?>
         <?php
             echo $this->Form->end('Generar Reporte') 
         ?>       
