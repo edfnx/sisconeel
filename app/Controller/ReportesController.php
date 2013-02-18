@@ -268,7 +268,7 @@
         //INICIO REPORTES COMPLETO
         
         //REPORTE ESTADISTICO ANUAL COMPLETO
-        public function citas_reg_11(){
+        public function citas_reg_11_(){
             $anio = $this->Session->read('anio');
             $this->Session->delete('anio');            
             $mes = $this->Session->read('mes');
@@ -305,10 +305,7 @@
             $this->RequestHandler->setContent('json', 'application/json');
 
             $anio = $this->Session->read('anio');
-            $this->Session->delete('anio');            
-            $mes = $this->Session->read('mes');
-            $this->Session->delete('mes');
-                        
+            $mes = $this->Session->read('mes');                        
             $this->set('anio',$anio);                
             
             $months = array(
@@ -343,7 +340,7 @@
 
         }
 
-        public function citas_reg_11_html(){
+        public function citas_reg_11(){
             $anio = $this->Session->read('anio');
             $this->Session->delete('anio');            
             $mes = $this->Session->read('mes');

@@ -8,10 +8,10 @@
     class BtFormHelper extends AppHelper {
         public $helpers = array('Html', 'Form');
 
-        public function create($options = array()) {
+        public function create($name=null,$options = array()) {
             
             $options['class'] = 'form-horizontal';
-            return $this->Form->create($options);
+            return $this->Form->create($name, $options);
         }
 
         public function input($name, $label = null, $options = array()) {
@@ -23,7 +23,7 @@
             $options['label'] = false;
         	$options['div'] = false;
             
-            $options['required'] = 'required';
+            //$options['required'] = 'required';
 
             if (!isset($options['class'])) {
                 $options['class'] = 'input-xlarge';
