@@ -331,7 +331,7 @@
                                                                                                         'RegLlamada.cabina',
                                                                                                         'RegLlamada.dni_pac',
                                                                                                         'Ca.cas',
-                                                                                                        'Medico.espec',
+                                                                                                        'Especialidade.especialidad',
                                                                                                         'RegLlamada.fecha_cita',
                                                                                                         'RegLlamada.cita_otorgada',
                                                                                                         'RegLlamada.estado',
@@ -361,7 +361,7 @@
                                                                                                         'RegLlamada.cabina',
                                                                                                         'RegLlamada.dni_pac',
                                                                                                         'Ca.cas',
-                                                                                                        'Medico.espec',
+                                                                                                        'Especialidade.especialidad',
                                                                                                         'RegLlamada.fecha_cita',
                                                                                                         'RegLlamada.cita_otorgada',
                                                                                                         'RegLlamada.created'
