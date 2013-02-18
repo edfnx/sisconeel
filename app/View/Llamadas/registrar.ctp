@@ -5,19 +5,19 @@
 		<div class="row-fluid">
 			<div class="span4">
 				<div class="ss-boxit">
-					<div class="amount"><?php echo $llamregstotalcab; ?></div>
+					<b> &laquo; <?php echo $llamregstotalcab; ?> &raquo; </b> 
 					Citas registradas Cabina <?php echo $this->Session->read('cabina'); ?>
 				</div>
 			</div>
 			<div class="span4">
 				<div class="ss-boxit">
-					<div class="amount"><?php echo $llamregstotaluser; ?></div>
+					<b> &laquo; <?php echo $llamregstotaluser; ?> &raquo; </b> 
 					Citas registradas por el/la operador(a)
 				</div>
 			</div>
 			<div class="span4">
 				<div class="ss-boxit">
-					<div class="amount"><?php echo $llamregscabuser; ?></div>					
+					<b> &laquo; <?php echo $llamregscabuser; ?> &raquo; </b> 
 					Citas registradas Cabina <?php echo $this->Session->read('cabina'); ?> por el/la operador(a)
 				</div>
 			</div>
@@ -58,7 +58,8 @@
 									array(
 										'controller' =>'autocompletes',
 									 	'action' => 'specialties')
-									)
+									),
+								'required' => 'required'
 								)
 							); 
 						?>
@@ -75,8 +76,8 @@
 									array(
 										'controller' =>'autocompletes',
 									 	'action' => 'doctors')
-									)
-
+									),
+								'required' => 'required'
 								)
 						);?>
 
@@ -110,12 +111,13 @@
 												'minYear'=>date('Y'),
 												'maxYear'=>date('Y')+1,
 												'value'=>date('Y-m-d 12:00:00', strtotime("+1 day"))
-												)										
+												)
 										);
 								?>
 
 							</div>
 						</div>
+						
 						<?php echo $this->BtForm->input('RegLlamada.llamada_observ_id', 'Observacion de la Cita');
 						?>
 
@@ -140,6 +142,7 @@
 								</select>
 							</div>
 						</div>
+
 						<?php echo $this->Form->hidden('RegLlamada.cita_otorgada', array('value' => 'si')); ?>
 						<?php echo $this->Form->hidden('RegLlamada.user_id', array('value'=>$current_user['id'])); ?>
 						<?php echo $this->Form->hidden('RegLlamada.user_mod', array('value'=>$current_user['id'])); ?>

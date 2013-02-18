@@ -28,12 +28,9 @@ footer.main-footer{
     box-shadow: 0px 0px 2px #eee;
 }
 
-.ss-boxit .amount{
+.ss-boxit b{
     font-weight: bold;
     font-size: 1em;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #efefef;
-    margin-bottom: 8px;
 }
 
 /**Cake date */
