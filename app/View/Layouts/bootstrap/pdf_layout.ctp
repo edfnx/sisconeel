@@ -34,16 +34,18 @@ $cakeDescription = __d('SISCONEEL', 'EsSalud - SISCONEEL');
 		echo $this->Html->css('/bootstrap-cerulean/css/bootswatch');
 		echo $this->Html->css('/bootstrap-cerulean/css/bootstrap-responsive');
 		echo $this->Html->css('/theme/css/master.css');
+		echo $this->Html->css('/theme/css/graphic.css');
 
-		
+
+
 		echo $this->Html->script('/plugins/jquery/jquery-1.8.2.min');
 		echo $this->Html->script('/bootstrap-cerulean/js/bootstrap.min');
 		echo $this->Html->script('/plugins/jquery.jeditable.mini.js');
 
 		/* 'main.js' */
+		
 
 		// Data table 
-		
 		echo $this->Html->script('/plugins/dataTables/jquery.dataTables.min.js');
 		echo $this->Html->css('/plugins/dataTables/jquery.dataTables');
 
@@ -113,7 +115,7 @@ $cakeDescription = __d('SISCONEEL', 'EsSalud - SISCONEEL');
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="span10 offset1">
+			<div class="span8 offset2">
 				<div class="wrapper">
 					<header class="header-pdf">
 						<div class="img-logo">

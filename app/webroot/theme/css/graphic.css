@@ -1,0 +1,43 @@
+.demo-placeholder {
+	width: 100%;
+	height: 100%;
+	font-size: 14px;
+	line-height: 14px;
+}
+.graphics{
+	margin-bottom: 30px;
+
+}
+.graphics > .page-header{
+	padding-bottom: 0px;
+	margin-bottom: 15px;
+}
+.graphics > .page-header h2{
+	text-align: center;
+	line-height: 1.2em;
+}
+.graphics-container
+{	
+	box-sizing: border-box;
+	width: 500px;
+	height: 300px;
+	padding: 20px 15px 15px 15px;
+	margin: 15px auto 15px auto;
+	/*border: 1px solid rgb(221, 221, 221);
+	
+	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+	-o-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+	-ms-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+	-moz-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+	-webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+	*/
+}
+header.graphics-header{
+	text-align: center;
+}
+footer.graphics-footer{
+	padding-top: 20px;
+	font-size: 0.9em;
+	text-align: center;
+	font-style: italic;	
+}

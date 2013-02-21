@@ -1,83 +1,76 @@
-<?php     
-    
-    App::import('Vendor','xtcpdf');  
-    
-    // create new PDF document
-    $tcpdf = new XTCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
-    $textfont_body = 'freesansi';//'freesans'; // looks better, finer, and more condensed than 'dejavusans'
-    $textfont_title = 'freesansbi';
-        
-    $tcpdf->SetAuthor("EdFnX - Wilmer Eddy Chambi Llica"); 
-    $tcpdf->SetAutoPageBreak( true ); 
-        
-    //set margins
-    $tcpdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-    $tcpdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-    $tcpdf->SetFooterMargin(PDF_MARGIN_FOOTER);
-    
-    //set image scale factor
-    $tcpdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
-    
-    //set auto page breaks
-    $tcpdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-    
-    $fecha = date('Y-m-d');
-    
-    //set some language-dependent strings
-    //$tcpdf->setLanguageArray($l);
-    
-    // ---------------------------------------------------------
-    
-    // set font
-    $tcpdf->xfootertext = $current_user['nombres'].' '.$current_user['ap_paterno'].' '.$current_user['ap_materno']; 
-    
-    // add a page
-    $tcpdf->AddPage();
-    
-    $tcpdf->SetFont($textfont_title, 'B', 13);
-    $tcpdf->Ln(5);    
-    $tcpdf->Write(0, "REPORTE ANUAL DE ATENCIONES DEL PUESTO DE SALUD CONDURIRI I-3\nPERIODO ENERO A DICIEMBRE DEL ".$fecha, '', 0, 'C', true, 0, false, false, 0);
-    
-    $tcpdf->Ln(4);
-    
-     $tcpdf->SetFont($textfont_title, 'B', 10);
-        
-    // MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0)
-    
-    // set color for background
-    $tcpdf->SetFillColor(255, 255, 255);
-    
-    $tcpdf->SetFont($textfont_body, '', 10);
-    
-    $tcpdf->MultiCell(170, 20, "En el Periodo de Enero a Diciembre del ".$fecha." las atenciones se dieron de la siguiente manera como puede apreciarse en el Grafico de Barras que se muestra continuacion.", 0, 'J', 1, 1, 20, 45, true, 0, false, true, 40, 'T');
-    
-    foreach($operador_citas as $operador_cita):
-        
-        $tcpdf->Cell(100,7,$operador_cita[0]['count(user_id)'],0,1,'C', 1);
-        
-        foreach($operadores as $operador):
-        
-            if($operador_cita['reg_llamadas']['user_id'] == $operador['User']['id']){
-                $tcpdf->Cell(100,7,$operador['User']['id']." ".$operador['User']['nombres']." ".$operador['User']['ap_paterno']." ".$operador['User']['ap_materno'],0,1,'C', 1);
-            }
-            
-        endforeach;
-        
-    endforeach;
-    
-    $tcpdf->Cell(56,7, 'citas_reg_2111',0,0,'C', 1);
-    
-    //$tcpdf->Cell(56,7, print_r($operador_cita),0,0,'C', 1);
-    
-    $tcpdf->lastPage();
-    
-    // ---------------------------------------------------------
-    
-    //Close and output PDF document
-    $tcpdf->Output('REPORTE_ANUAL_ATENCIONES_'.$fecha.'.pdf', 'I');
-    
-    //============================================================+
-    // END OF FILE                                                
-    //============================================================+
+<script type="text/javascript">
+
+	$(function() {
+
+		// jqPlot //
+
+		$.jqplot.config.enablePlugins = true;
+        var s1 = [2, 6, 7, 10];
+        var ticks = ['ENE', 'FEB', 'MAR', 'ABR'];
+
+
+        data = <?php echo utf8_decode(json_encode($data)); ?>
+         
+        plot1 = $.jqplot('chart1', [data], {
+            // Only animate if we're not using excanvas (not in IE 7 or IE 8)..
+            animate: !$.jqplot.use_excanvas,
+            seriesDefaults:{
+                renderer:$.jqplot.BarRenderer,
+                pointLabels: { show: true }
+            },
+            axes: {
+                xaxis: {
+                    renderer: $.jqplot.CategoryAxisRenderer,
+                    //ticks: ticks
+                }
+            },
+            highlighter: { show: false }
+        });
      
+        $('#chart1').bind('jqplotDataClick', 
+            function (ev, seriesIndex, pointIndex, data) {
+                $('#info1').html('series: '+seriesIndex+', point: '+pointIndex+', data: '+data);
+            }
+        );
+
+	});
+</script>
+	
+
+<div class="row-fluid">
+	<div class="span12">
+		<div class="graphics">
+			<div class="page-header">
+				<h4>					
+				<?php echo "REPORTE ANUAL DE ATENCIONES DEL PUESTO DE SALUD CONDURIRI I-3\nPERIODO ENERO A DICIEMBRE DEL ".$fecha ; ?>
+				</h4>
+			</div>
+			<header class="graphics-header">
+				<?php echo "En el Periodo de Enero a Diciembre del ".$fecha." las atenciones se dieron de la siguiente manera como puede apreciarse en el Grafico de Barras que se muestra continuacion."; ?>
+			</header>
+			
+			<div class="graphics-container">
+				<div id="chart1"></div>
+			</div>
+
+			<article>
+				
+			</article>
+
+			<footer class="graphics-footer">
+				GRAFICO No 1: Grafico del Reporte Anual de Ateniones por mes del Puesto de Salud Conduriri I-3
+			</footer>
+			<!--<p><label><input id="enableTooltip" type="checkbox">Enable tooltip</label></p>-->
+		</div>
+	</div>
+</div>
+
+<?php 
+	/* jquery.jqplot */
+	echo $this->Html->script('/plugins/jqplot/jquery.jqplot');
+	echo $this->Html->css('/plugins/jqplot/jquery.jqplot');
+	
+	echo $this->Html->script('/plugins/jqplot/jqplot.barRenderer.min');
+	echo $this->Html->script('/plugins/jqplot/jqplot.categoryAxisRenderer.min');
+	echo $this->Html->script('/plugins/jqplot/jqplot.pointLabels.min');
 ?>
