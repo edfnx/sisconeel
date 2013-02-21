@@ -50,8 +50,7 @@
     $tcpdf->SetFont($textfont_body, '', 10);
     
     $tcpdf->MultiCell(170, 20, "En el Periodo de Enero a Diciembre del ".$fecha." las atenciones se dieron de la siguiente manera como puede apreciarse en el Grafico de Barras que se muestra continuacion.", 0, 'J', 1, 1, 20, 45, true, 0, false, true, 40, 'T');
-    
-    
+      
     
     $tcpdf->Cell(100,7,$mes,0,1,'C', 1);
         

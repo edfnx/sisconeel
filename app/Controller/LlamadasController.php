@@ -112,7 +112,7 @@
                                                                                                     'RegLlamada.cabina'=>$cabina,
                                                                                                     'RegLlamada.fecha_cita LIKE' => "%$fecha_maniana%",
                                                                                                     'Regllamada.cita_otorgada' => 1,
-                                                                                                    'RegLlamada.estado'=>0), 
+                                                                                                    'RegLlamada.estado'=>'regs'), 
                                                                             'recursive'=>0)
                                                                     ));
             //respuestas
@@ -167,10 +167,10 @@
                 $id = $this->data['ConfLlamada']['reg_llamada_id'];
                 
                 $user = $this->data['ConfLlamada']['user_id'];
-                
+                                
                 if($this->ConfLlamada->save($this->request->data)) {
                     
-                     if($this->RegLlamada->updateAll(array('RegLlamada.estado' => '1','RegLlamada.user_mod'=>$user),array('RegLlamada.id'=>$id))){
+                     if($this->RegLlamada->updateAll(array('RegLlamada.estado' => "'conf'",'RegLlamada.user_mod'=>$user),array('RegLlamada.id'=>$id))){
                         $this->Session->setFlash('Cita Confirmada');
                         $this->redirect(array('action'=>'confirmar'), null, true);    
                     } else {
@@ -216,7 +216,7 @@
                                                                                                         'RegLlamada.cabina'=>$cabina,
                                                                                                         'RegLlamada.fecha_cita >' => "$fechacom",
                                                                                                         'Regllamada.cita_otorgada' => 1,
-                                                                                                        'RegLlamada.estado'=>0), 
+                                                                                                        'RegLlamada.estado'=>'regs'), 
                                                                                 'recursive'=>0)));
             //relaciones
             $this->set('relaciones',$this->RelFamiliar->find('all',
@@ -257,9 +257,9 @@
                 
                 if($this->ElimLlamada->save($this->request->data)) {
                     
-                     if($this->RegLlamada->updateAll(array('RegLlamada.estado' => '2','RegLlamada.user_mod'=>$user),array('RegLlamada.id'=>$id))){
+                     if($this->RegLlamada->updateAll(array('RegLlamada.estado' => "'elim'",'RegLlamada.user_mod'=>$user),array('RegLlamada.id'=>$id))){
                         $this->Session->setFlash('Cita Eliminada');
-                        $this->redirect(array('action'=>'eliminar'), null, true);    
+                        $this->redirect(array('action'=>'eliminar'), null, true); 
                     } else {
                         $this->Session->setFlash('Ha ocurrido un error tipo2, Intente de Nuevo');
                     }
@@ -300,17 +300,20 @@
                                                                                                         'Ca.cas',
                                                                                                         'Especialidade.especialidad',
                                                                                                         'RegLlamada.fecha_cita',
-                                                                                                        'RegLlamada.cita_otorgada',
                                                                                                         'RegLlamada.estado',
                                                                                                         'RegLlamada.created'
                                                                                                         ),                                                                                    
                                                                                     'conditions' => array(
                                                                                                         'RegLlamada.turno'=>$turno,
-                                                                                                        'RegLlamada.cita_otorgada'=>'si',
+                                                                                                        'RegLlamada.cita_otorgada'=>1,
                                                                                                         'RegLlamada.created LIKE' => "%$fecha%",
                                                                                                         'RegLlamada.user_id'=>$user), 
                                                                                     'recursive'=>0)
                                                                     ));
+                                                                    
+            $this->layout = 'pdf'; //this will use the pdf.ctp layout 
+			$this->response->type('pdf');
+        
         }
         
         public function index_no_otorg(){
@@ -326,20 +329,20 @@
                                                                             array(  'fields'=>array(
                                                                                                         'RegLlamada.turno',
                                                                                                         'RegLlamada.cabina',
-                                                                                                        'RegLlamada.dni_pac',
                                                                                                         'Ca.cas',
                                                                                                         'Especialidade.especialidad',
-                                                                                                        'RegLlamada.fecha_cita',
-                                                                                                        'RegLlamada.cita_otorgada',
+                                                                                                        'LlamadaObserv.observacion',
                                                                                                         'RegLlamada.created'
                                                                                                         ),                                                                                    
                                                                                     'conditions' => array(
                                                                                                         'RegLlamada.turno'=>$turno,
-                                                                                                        'RegLlamada.cita_otorgada'=>'no',
+                                                                                                        'RegLlamada.cita_otorgada'=> 0,
                                                                                                         'RegLlamada.created LIKE' => "%$fecha%",
                                                                                                         'RegLlamada.user_id'=>$user), 
                                                                                     'recursive'=>0)
                                                                     ));
+            $this->layout = 'pdf'; //this will use the pdf.ctp layout 
+			$this->response->type('pdf');        
         }
         
         public function index_conf(){
@@ -357,6 +360,8 @@
                                                                                                         'ConfLlamada.cabina',
                                                                                                         'RegLlamada.dni_pac',
                                                                                                         'Respuesta.respuesta',
+                                                                                                        'ConfLlamada.datos_llamada',
+                                                                                                        'RelFamiliar.relacion',
                                                                                                         'ConfLlamada.observacion',
                                                                                                         'ConfLlamada.created'
                                                                                                         ),
@@ -367,6 +372,8 @@
                                                                                                         ), 
                                                                                     'recursive'=>0)
                                                                     ));
+            $this->layout = 'pdf'; //this will use the pdf.ctp layout 
+			$this->response->type('pdf');            
         }
         
         public function index_elim(){
@@ -383,6 +390,8 @@
                                                                                                         'ElimLlamada.turno',
                                                                                                         'ElimLlamada.cabina',
                                                                                                         'RegLlamada.dni_pac',
+                                                                                                        'ElimLlamada.telefono',
+                                                                                                        'ElimLlamada.datos_llamada',
                                                                                                         'RelFamiliar.relacion',
                                                                                                         'ElimLlamada.observacion',
                                                                                                         'ElimLlamada.created'
@@ -394,6 +403,12 @@
                                                                                                         ), 
                                                                                     'recursive'=>0)
                                                                     ));
+            $this->layout = 'pdf'; //this will use the pdf.ctp layout 
+			$this->response->type('pdf');
+        }
+        
+        public function ssh(){
+            
         }
     }
     

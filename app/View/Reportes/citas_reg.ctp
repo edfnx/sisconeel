@@ -1,6 +1,6 @@
-<div style="margin-left: 5%; margin-top: 2%; width: 500px; float: bottom; text-align: left; font-size: small;">
+<div style="margin-left: 5%; margin-top: 2%; width: 300px; float: bottom; text-align: left; font-size: small;">
     
-    <div style="text-align: center; font-size: large; margin-bottom: 15px;">
+    <div style="text-align: left; font-size: large; margin-bottom: 15px;">
         COMPLETO
     </div>
     <div style="font-size: small; margin-bottom: 20px;">
@@ -57,7 +57,7 @@
             echo $this->Form->end('Generar Reporte') 
         ?>                
     </div>
-    <div style="text-align: center; font-size: large; margin-bottom: 15px;">
+    <div style="text-align: left; font-size: large; margin-bottom: 15px;">
         POR OPERADOR(A)
     </div>
     <div style="font-size: small; margin-bottom: 20px;">
@@ -142,7 +142,7 @@
             echo $this->Form->end('Generar Reporte') 
         ?>        
     </div>
-    <div style="text-align: center; font-size: large; margin-bottom: 15px;">
+    <div style="text-align: left; font-size: large; margin-bottom: 15px;">
         CAS
     </div>
     <div style="font-size: small; margin-bottom: 20px;">
@@ -218,7 +218,7 @@
         </p>
         
         <div id="divcas">
-			<?php echo $this->BtForm->input('Cas.cas', 'Cas',  array('empty' => 'Selecione Cas')); ?>
+			<?php echo $this->BtForm->input('Cas.cas', 'Cas',  array('empty' => 'Selecione Cas','required'=>'required')); ?>
 			<?php echo $this->Ajax->observeField('CasCas', array('url'=>array('action'=>'espec'), 'update'=>'divespec')); ?>
 		</div>
 		
@@ -239,7 +239,7 @@
             echo $this->Form->end('Generar Reporte') 
         ?>       
     </div>
-    <div style="text-align: center; font-size: large; margin-bottom: 15px;">
+    <div style="text-align: left; font-size: large; margin-bottom: 15px;">
         ESPECIALIDAD
     </div>
     <div style="font-size: small; margin-bottom: 20px;">

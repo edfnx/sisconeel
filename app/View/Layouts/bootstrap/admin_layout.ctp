@@ -85,16 +85,16 @@ $cakeDescription = __d('SISCONEEL', 'EsSalud - SISCONEEL');
 								</li>
 								<li class="divider"></li>
 								<li>
-									<?php echo $this->html->link('Otorgadas', array('controller'=>'llamadas','action'=>'index_otorg')); ?>
+									<?php echo $this->html->link('Otorgadas', array('controller'=>'llamadas','action'=>'index_otorg'),array('target' => '_blank')); ?>
 								</li>
 								<li>
-									<?php echo $this->html->link('No Otorgads', array('controller'=>'llamadas','action'=>'index_no_otorg')); ?>
+                                    <?php echo $this->html->link('No Otorgadas', array('controller'=>'llamadas','action'=>'index_no_otorg'),array('target' => '_blank')); ?>
 								</li>
 								<li>
-									<?php echo $this->html->link('Confirmadas', array('controller'=>'llamadas','action'=>'index_conf')); ?>
+                                    <?php echo $this->html->link('Confirmadas', array('controller'=>'llamadas','action'=>'index_conf'),array('target' => '_blank')); ?>
 								</li>
 								<li>
-									<?php echo $this->html->link('Eliminadas', array('controller'=>'llamadas','action'=>'index_elim')); ?>
+                                    <?php echo $this->html->link('Eliminadas', array('controller'=>'llamadas','action'=>'index_elim'),array('target' => '_blank')); ?>
 								</li>								
 								
 							</ul>
