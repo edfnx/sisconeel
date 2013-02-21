@@ -4,7 +4,6 @@
 		public $helpers = array('Html', 'Form');
 		public $name='Reportes';        
 		public $uses=array('Historial','RegLlamada','Ca','Especialidade','Medico','LlamadaObserv','User','ConfLlamada','Respuesta','ElimLlamada','RelFamiliar');
-		public $months = array( 'ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SET', 'OCT', 'NOV', 'DIC');
 		
 		//public $layout = 'admin';
 		
@@ -587,50 +586,6 @@
 			$this->response->type('pdf');
 		}
 
-		public function citas_reg_2111_json(){
-
-			// Cabeceras JSON
-			$this->viewClass = 'Json';
-			$this->RequestHandler->setContent('json', 'application/json');
-			
-			$anio = $this->Session->read('anio');
-			$mes = $this->Session->read('mes');
-			$operador = $this->Session->read('operador');
-						
-			$operador_citas = $this->RegLlamada->query("SELECT user_id , count(user_id) as amount FROM reg_llamadas WHERE created LIKE '%$anio%' GROUP BY user_id");                        
-	
-						
-			$operadores = $this->User->find(
-				'all',array(
-						'fields'=>array(
-										'User.id',
-										'User.nombres',
-										'User.ap_paterno',
-										'User.ap_materno'
-									),
-						'recursive' => 0 )
-			);
-
-			$data = array();
-
-			foreach($operador_citas as $operador_cita){
-				foreach($operadores as $operador){
-					if($operador_cita['reg_llamadas']['user_id'] == $operador['User']['id']){
-						array_push( $data, 
-							array(
-								$operador['User']['id'],
-								$operador_cita[0]['amount'],
-								$operador['User']['nombres']." ".$operador['User']['ap_paterno']." ".$operador['User']['ap_materno']
-							)
-						);
-				   }
-				}
-			}
-
-			$this->set('data', $data);
-			$this->set('__serialize', 'data');
-		}
-
 		public function citas_reg_2111(){
 
 			$anio = $this->Session->read('anio');
@@ -655,8 +610,8 @@
 					if($operador_cita['reg_llamadas']['user_id'] == $operador['User']['id']){
 						array_push( $data, 
 							array(
-								 intval($operador['User']['id']),
-								 intval($operador_cita[0]['amount']),
+								intval($operador['User']['id']),
+								intval($operador_cita[0]['amount']),
 								$operador['User']['nombres']." ".$operador['User']['ap_paterno']." ".$operador['User']['ap_materno']
 							)
 						);
@@ -708,6 +663,7 @@
 		
 		//GRAFICO ESTADISTICO MENSUAL DE TODAS LAS OPERADORAS                                
 		public function citas_reg_2121(){
+			
 			$anio = $this->Session->read('anio');
 			$this->Session->delete('anio');            
 			$mes = $this->Session->read('mes');
@@ -715,29 +671,18 @@
 			$operador = $this->Session->read('operador');
 			$this->Session->delete('operador');
 			
-			if($mes == "01"){ $this->set('mes','Enero');}
-			if($mes == "02"){ $this->set('mes','Febrero');}
-			if($mes == "03"){ $this->set('mes','Marzo');}
-			if($mes == "04"){ $this->set('mes','Abril');}
-			if($mes == "05"){ $this->set('mes','Mayo');}
-			if($mes == "06"){ $this->set('mes','Junio');}
-			if($mes == "07"){ $this->set('mes','Julio');}
-			if($mes == "08"){ $this->set('mes','Agosto');}
-			if($mes == "09"){ $this->set('mes','Setiembre');}
-			if($mes == "10"){ $this->set('mes','Octubre');}
-			if($mes == "11"){ $this->set('mes','Noviembre');}
-			if($mes == "12"){ $this->set('mes','Diciembre');}           
+			// Obteniendo Mes
+			$this->set('mes', $this->getMonth($mes, 'large'));
 			
 			$this->set('operador_citas', $this->RegLlamada->query("SELECT user_id ,count(user_id) FROM reg_llamadas WHERE created LIKE '%$anio-$mes%' GROUP BY user_id"));
-						
 			$this->set('operadores' ,$this->User->find('all',array(
-														'fields'=>array(
-																		'User.id',
-																		'User.nombres',
-																		'User.ap_paterno',
-																		'User.ap_materno'),
-														'recursive'=>0)
-										));
+				'fields'=>array(
+					'User.id',
+					'User.nombres',
+					'User.ap_paterno',
+					'User.ap_materno'),
+				'recursive'=>0)
+			));
 			
 			$this->layout = 'pdf'; //this will use the pdf.ctp layout 
 			$this->response->type('pdf');
@@ -752,18 +697,8 @@
 			$operador = $this->Session->read('operador');
 			$this->Session->delete('operador');
 			
-			if($mes == "01"){ $this->set('mes','Enero');}
-			if($mes == "02"){ $this->set('mes','Febrero');}
-			if($mes == "03"){ $this->set('mes','Marzo');}
-			if($mes == "04"){ $this->set('mes','Abril');}
-			if($mes == "05"){ $this->set('mes','Mayo');}
-			if($mes == "06"){ $this->set('mes','Junio');}
-			if($mes == "07"){ $this->set('mes','Julio');}
-			if($mes == "08"){ $this->set('mes','Agosto');}
-			if($mes == "09"){ $this->set('mes','Setiembre');}
-			if($mes == "10"){ $this->set('mes','Octubre');}
-			if($mes == "11"){ $this->set('mes','Noviembre');}
-			if($mes == "12"){ $this->set('mes','Diciembre');}
+			// Obteniendo Mes
+			$this->set('mes', $this->getMonth($mes, 'large'));
 			
 			///CONTEO DE ATENCIONES POR MES EN EL AÑO DE UNA OPERADORA                                   
 			$this->set('citas_operador', $this->RegLlamada->find('count', array('conditions' => array('Regllamada.user_id'=>$operador,'RegLlamada.created LIKE' => "%$anio-$mes%"))));
@@ -928,18 +863,8 @@
 			$this->Session->delete('especialidad');
 			
 			
-			if($mes == "01"){ $this->set('mes','Enero');}
-			if($mes == "02"){ $this->set('mes','Febrero');}
-			if($mes == "03"){ $this->set('mes','Marzo');}
-			if($mes == "04"){ $this->set('mes','Abril');}
-			if($mes == "05"){ $this->set('mes','Mayo');}
-			if($mes == "06"){ $this->set('mes','Junio');}
-			if($mes == "07"){ $this->set('mes','Julio');}
-			if($mes == "08"){ $this->set('mes','Agosto');}
-			if($mes == "09"){ $this->set('mes','Setiembre');}
-			if($mes == "10"){ $this->set('mes','Octubre');}
-			if($mes == "11"){ $this->set('mes','Noviembre');}
-			if($mes == "12"){ $this->set('mes','Diciembre');}           
+			// Obteniendo Mes
+			$this->set('mes', $this->getMonth($mes, 'large'));
 			
 			$this->set('especialidades_cas', $this->RegLlamada->query("SELECT ca_id ,count(ca_id) FROM reg_llamadas WHERE created LIKE '%$anio-$mes%' GROUP BY ca_id"));
 						
@@ -967,18 +892,8 @@
 			$espec = $this->Session->read('especialidad');
 			$this->Session->delete('especialidad');
 			
-			if($mes == "01"){ $this->set('mes','Enero');}
-			if($mes == "02"){ $this->set('mes','Febrero');}
-			if($mes == "03"){ $this->set('mes','Marzo');}
-			if($mes == "04"){ $this->set('mes','Abril');}
-			if($mes == "05"){ $this->set('mes','Mayo');}
-			if($mes == "06"){ $this->set('mes','Junio');}
-			if($mes == "07"){ $this->set('mes','Julio');}
-			if($mes == "08"){ $this->set('mes','Agosto');}
-			if($mes == "09"){ $this->set('mes','Setiembre');}
-			if($mes == "10"){ $this->set('mes','Octubre');}
-			if($mes == "11"){ $this->set('mes','Noviembre');}
-			if($mes == "12"){ $this->set('mes','Diciembre');}
+			// Obteniendo Mes
+			$this->set('mes', $this->getMonth($mes, 'large'));
 			
 			$this->set('especialidad_cas', $this->RegLlamada->find('count', array('conditions' => array('Regllamada.ca_id'=>$cas,'Regllamada.especialidade_id'=>$espec,'RegLlamada.created LIKE' => "%$anio-$mes%"))));                                   
 			
@@ -1136,18 +1051,8 @@
 			$espec = $this->Session->read('especialidad');
 			$this->Session->delete('especialidad');
 			
-			if($mes == "01"){ $this->set('mes','Enero');}
-			if($mes == "02"){ $this->set('mes','Febrero');}
-			if($mes == "03"){ $this->set('mes','Marzo');}
-			if($mes == "04"){ $this->set('mes','Abril');}
-			if($mes == "05"){ $this->set('mes','Mayo');}
-			if($mes == "06"){ $this->set('mes','Junio');}
-			if($mes == "07"){ $this->set('mes','Julio');}
-			if($mes == "08"){ $this->set('mes','Agosto');}
-			if($mes == "09"){ $this->set('mes','Setiembre');}
-			if($mes == "10"){ $this->set('mes','Octubre');}
-			if($mes == "11"){ $this->set('mes','Noviembre');}
-			if($mes == "12"){ $this->set('mes','Diciembre');}           
+			// Obteniendo Mes
+			$this->set('mes', $this->getMonth($mes, 'large'));        
 			
 			$this->set('tot_especialidades', $this->RegLlamada->query("SELECT especialidade_id ,count(especialidade_id) FROM reg_llamadas WHERE created LIKE '%$anio-$mes%' GROUP BY especialidade_id"));
 						
@@ -1171,18 +1076,8 @@
 			$espec = $this->Session->read('especialidad');
 			$this->Session->delete('especialidad');
 			
-			if($mes == "01"){ $this->set('mes','Enero');}
-			if($mes == "02"){ $this->set('mes','Febrero');}
-			if($mes == "03"){ $this->set('mes','Marzo');}
-			if($mes == "04"){ $this->set('mes','Abril');}
-			if($mes == "05"){ $this->set('mes','Mayo');}
-			if($mes == "06"){ $this->set('mes','Junio');}
-			if($mes == "07"){ $this->set('mes','Julio');}
-			if($mes == "08"){ $this->set('mes','Agosto');}
-			if($mes == "09"){ $this->set('mes','Setiembre');}
-			if($mes == "10"){ $this->set('mes','Octubre');}
-			if($mes == "11"){ $this->set('mes','Noviembre');}
-			if($mes == "12"){ $this->set('mes','Diciembre');}
+			// Obteniendo Mes
+			$this->set('mes', $this->getMonth($mes, 'large'));
 			
 			///CONTEO DE ATENCIONES POR MES EN EL AÑO DE UNA ESPECIALIDAD
 			$this->set('especialidades_mes', $this->RegLlamada->find('count', array('conditions' => array('Regllamada.especialidade_id'=>$espec,'RegLlamada.created LIKE' => "%$anio-$mes%"))));                                   
@@ -1273,7 +1168,36 @@
 		public function acceso(){
 			$this->set('Users',$this->User->find('all'));
 		}
-		
+
+
+		public function seedCode($i = null)
+		{
+				
+		}
+
+		// Mount Metods
+
+		protected function getMonths($type = "large")
+		{
+			$months = array( 
+							'short' => array( 'ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SET', 'OCT', 'NOV', 'DIC'),
+							'large' => array( 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre', 'Noviembre', 'Diciembre')
+						);
+
+			return $months[$type];
+		}
+
+		protected function getMonth($id=0, $type = "large")
+		{
+			$id = intval($id);
+
+			$months = array( 
+							'short' => array( 'ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SET', 'OCT', 'NOV', 'DIC'),
+							'large' => array( 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre', 'Noviembre', 'Diciembre')
+						);
+
+			return $months[$type][$id-1];
+		}
 	}
 	
 ?>
