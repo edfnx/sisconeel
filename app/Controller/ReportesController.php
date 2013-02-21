@@ -306,20 +306,7 @@
 			$mes = $this->Session->read('mes');                        
 			$this->set('anio',$anio);                
 			
-			$months = array(
-				'ENE',
-				'FEB',
-				'MAR',
-				'ABR',
-				'MAY',
-				'JUN',
-				'JUL',
-				'AGO',
-				'SET',
-				'OCT',
-				'NOV',
-				'DIC',
-				);
+			$months =  $this->getMonths("short");
 
 			$data = array();
 
@@ -1195,7 +1182,6 @@
 							'short' => array( 'ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SET', 'OCT', 'NOV', 'DIC'),
 							'large' => array( 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre', 'Noviembre', 'Diciembre')
 						);
-
 			return $months[$type][$id-1];
 		}
 	}
