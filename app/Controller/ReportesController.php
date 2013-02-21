@@ -5,8 +5,6 @@
         var $name='Reportes';        
         var $uses=array('Historial','RegLlamada','Ca','Especialidade','Medico','LlamadaObserv','User','ConfLlamada','Respuesta','ElimLlamada','RelFamiliar');
         
-        //public $layout = 'admin';
-        
         //menu
         public function index(){
             
@@ -585,18 +583,23 @@
 			$operador_citas = $this->RegLlamada->query("SELECT user_id , count(user_id) as amount FROM reg_llamadas WHERE created LIKE '%$anio%' GROUP BY user_id");                        
 			$operadores = $this->User->find('all',array( 'fields'=>array('User.id', 'User.nombres', 'User.ap_paterno', 'User.ap_materno'), 'recursive' => 0 ));
 
-			$data = array();
+			$data = array('source_list' => array(), 'leyend' => array());
 
 			foreach($operador_citas as $operador_cita){
 				foreach($operadores as $operador){
 					if($operador_cita['reg_llamadas']['user_id'] == $operador['User']['id']){
-						array_push( $data, 
+						array_push( $data['source_list'], 							
 							array(
-								intval($operador['User']['id']),
-								intval($operador_cita[0]['amount']),
-								$operador['User']['nombres']." ".$operador['User']['ap_paterno']." ".$operador['User']['ap_materno']
-							)
+									$this->seedCode($operador['User']['id']),
+									intval($operador_cita[0]['amount'])								
+								)
 						);
+						array_push( $data['leyend'], 
+							 array(
+									$this->seedCode($operador['User']['id']),
+									$operador['User']['nombres']." ".$operador['User']['ap_paterno']." ".$operador['User']['ap_materno']
+								)
+							);
 				   }
 				}
 			}
@@ -1158,12 +1161,24 @@
 		}
 
 
-		public function seedCode($i = null)
+		// MEtodo de Generacion de Codigos
+		public function seedCode($i = 0, $letter = "A")
 		{
-				
+			$code = null;
+			$i = intval($i);
+
+			if ($i < 10) {
+				$code = $letter."00".$i;
+			}  if ( $i > 10 && $i < 100) {
+				$code = $letter."0".$i;
+			} else {
+				$code = $letter.$i;
+			}
+	
+			return $code;
 		}
 
-		// Mount Metods
+		// Metods para Meses
 
 		protected function getMonths($type = "large")
 		{
@@ -1184,8 +1199,7 @@
 			return $months[$type][$id-1];
 		}
 
-		// Session Functions
-
+		// Metodos de Session 
 		private function readSession($value=null)
 		{
 			if ($value != null) {

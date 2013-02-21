@@ -74,14 +74,3 @@
 		</div>
 	</div>
 </div>
-
-
-<?php 
-	/* jquery.jqplot */
-	echo $this->Html->script('/plugins/jqplot/jquery.jqplot');
-	echo $this->Html->css('/plugins/jqplot/jquery.jqplot');
-	
-	echo $this->Html->script('/plugins/jqplot/jqplot.barRenderer.min');
-	echo $this->Html->script('/plugins/jqplot/jqplot.categoryAxisRenderer.min');
-	echo $this->Html->script('/plugins/jqplot/jqplot.pointLabels.min');
-?>
