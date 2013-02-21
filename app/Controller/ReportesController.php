@@ -576,17 +576,11 @@
 
 		public function citas_reg_2111(){
 
-			$anio = $this->Session->read('anio');
-			$this->Session->delete('anio');
-						
-			$mes = $this->Session->read('mes');
-			$this->Session->delete('mes');
-			
-			$operador = $this->Session->read('operador');
-			$this->Session->delete('operador');
+			$anio = $this->readSession('anio');
+			$mes = $this->readSession('mes');
+			$operador = $this->readSession('operador');
 
 			$this->set('fecha', date('Y-m-d'));
-						
 			
 			$operador_citas = $this->RegLlamada->query("SELECT user_id , count(user_id) as amount FROM reg_llamadas WHERE created LIKE '%$anio%' GROUP BY user_id");                        
 			$operadores = $this->User->find('all',array( 'fields'=>array('User.id', 'User.nombres', 'User.ap_paterno', 'User.ap_materno'), 'recursive' => 0 ));
@@ -614,12 +608,9 @@
 		
 		//GRAFICO ESTADISTICO ANUAL POR OPERADORA
 		public function citas_reg_2112(){
-			$anio = $this->Session->read('anio');
-			$this->Session->delete('anio');            
-			$mes = $this->Session->read('mes');
-			$this->Session->delete('mes');
-			$operador = $this->Session->read('operador');
-			$this->Session->delete('operador');
+			$anio = $this->readSession('anio');
+			$mes = $this->readSession('mes');
+			$operador = $this->readSession('operador');
 			
 			///CONTEO DE ATENCIONES POR MES EN EL AÑO DE UNA OPERADORA                                   
 			$this->set('enero', $this->RegLlamada->find('count', array('conditions' => array('Regllamada.user_id'=>$operador,'RegLlamada.created LIKE' => '%'.$anio.'-01%'))));
@@ -636,7 +627,7 @@
 			$this->set('diciembre', $this->RegLlamada->find('count', array('conditions' => array('Regllamada.user_id'=>$operador,'RegLlamada.created LIKE' => "%$anio-12%"))));
 			
 			$this->set('operadores' ,$this->User->find('all',array(
-														'fields'=>array(                                                                        
+														'fields'=>array(
 																		'User.nombres',
 																		'User.ap_paterno',
 																		'User.ap_materno'),
@@ -852,18 +843,7 @@
             $this->Session->delete('especialidad');
             
             
-            if($mes == "01"){ $this->set('mes','Enero');}
-            if($mes == "02"){ $this->set('mes','Febrero');}
-            if($mes == "03"){ $this->set('mes','Marzo');}
-            if($mes == "04"){ $this->set('mes','Abril');}
-            if($mes == "05"){ $this->set('mes','Mayo');}
-            if($mes == "06"){ $this->set('mes','Junio');}
-            if($mes == "07"){ $this->set('mes','Julio');}
-            if($mes == "08"){ $this->set('mes','Agosto');}
-            if($mes == "09"){ $this->set('mes','Setiembre');}
-            if($mes == "10"){ $this->set('mes','Octubre');}
-            if($mes == "11"){ $this->set('mes','Noviembre');}
-            if($mes == "12"){ $this->set('mes','Diciembre');}           
+            $this->set('mes',$this->getMonth($mes));
             
             $this->set('especialidades_cas', $this->RegLlamada->query("SELECT especialidade_id ,count(especialidade_id) FROM reg_llamadas WHERE ca_id = $cas AND created LIKE '%$anio-$mes%' GROUP BY especialidade_id"));
                         
@@ -1191,19 +1171,30 @@
 							'short' => array( 'ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SET', 'OCT', 'NOV', 'DIC'),
 							'large' => array( 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre', 'Noviembre', 'Diciembre')
 						);
-
 			return $months[$type];
 		}
 
 		protected function getMonth($id=0, $type = "large")
 		{
 			$id = intval($id);
-
 			$months = array( 
 							'short' => array( 'ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SET', 'OCT', 'NOV', 'DIC'),
 							'large' => array( 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre', 'Noviembre', 'Diciembre')
 						);
 			return $months[$type][$id-1];
+		}
+
+		// Session Functions
+
+		private function readSession($value=null)
+		{
+			if ($value != null) {
+				$result = $this->Session->read($value);	// Lee variable de session 
+				$this->Session->delete($value);			// Borra variable de session
+			} else {
+				$result = null;
+			}
+			return $result;
 		}
 	}
 	
