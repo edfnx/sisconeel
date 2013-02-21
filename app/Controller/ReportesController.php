@@ -615,8 +615,8 @@
 			$mes = $this->readSession('mes');
 			$operador = $this->readSession('operador');
 			
-			///CONTEO DE ATENCIONES POR MES EN EL AÑO DE UNA OPERADORA                                   
-			$this->set('enero', $this->RegLlamada->find('count', array('conditions' => array('Regllamada.user_id'=>$operador,'RegLlamada.created LIKE' => '%'.$anio.'-01%'))));
+        
+            ///CONTEO DE ATENCIONES POR MES EN EL AÑO DE UNA OPERADORA                                   
 			$this->set('febrero', $this->RegLlamada->find('count', array('conditions' => array('Regllamada.user_id'=>$operador,'RegLlamada.created LIKE' => '%'.$anio.'-02%'))));
 			$this->set('marzo', $this->RegLlamada->find('count', array('conditions' => array('Regllamada.user_id'=>$operador,'RegLlamada.created LIKE' => '%'.$anio.'-03%'))));
 			$this->set('abril', $this->RegLlamada->find('count', array('conditions' => array('Regllamada.user_id'=>$operador,'RegLlamada.created LIKE' => '%'.$anio.'-04%'))));
@@ -629,15 +629,11 @@
 			$this->set('noviembre', $this->RegLlamada->find('count', array('conditions' => array('Regllamada.user_id'=>$operador,'RegLlamada.created LIKE' => "%$anio-11%"))));
 			$this->set('diciembre', $this->RegLlamada->find('count', array('conditions' => array('Regllamada.user_id'=>$operador,'RegLlamada.created LIKE' => "%$anio-12%"))));
 			
-			$this->set('operadores' ,$this->User->find('all',array(
-														'fields'=>array(
-																		'User.nombres',
-																		'User.ap_paterno',
-																		'User.ap_materno'),
-														'conditions'=>array(
-																		'User.id'=>$operador),
-														'recursive'=>0)
-										));
+			$this->set('operadores' ,$this->User->find('all',array( 
+                    'fields'=>array( 'User.nombres', 'User.ap_paterno', 'User.ap_materno'),
+                    'conditions'=>array('User.id'=>$operador),
+                    'recursive'=>0)
+                    ));
 			
 			$this->layout = 'pdf'; //this will use the pdf.ctp layout 
 			$this->response->type('pdf');
@@ -646,28 +642,44 @@
 		//GRAFICO ESTADISTICO MENSUAL DE TODAS LAS OPERADORAS                                
 		public function citas_reg_2121(){
 			
-			$anio = $this->Session->read('anio');
-			$this->Session->delete('anio');            
-			$mes = $this->Session->read('mes');
-			$this->Session->delete('mes');
-			$operador = $this->Session->read('operador');
-			$this->Session->delete('operador');
+			$anio = $this->readSession('anio');
+			$mes = $this->readSession('mes');
+			$operador = $this->readSession('operador');
 			
 			// Obteniendo Mes
 			$this->set('mes', $this->getMonth($mes, 'large'));
 			
-			$this->set('operador_citas', $this->RegLlamada->query("SELECT user_id ,count(user_id) FROM reg_llamadas WHERE created LIKE '%$anio-$mes%' GROUP BY user_id"));
-			$this->set('operadores' ,$this->User->find('all',array(
-				'fields'=>array(
-					'User.id',
-					'User.nombres',
-					'User.ap_paterno',
-					'User.ap_materno'),
-				'recursive'=>0)
-			));
-			
-			$this->layout = 'pdf'; //this will use the pdf.ctp layout 
-			$this->response->type('pdf');
+			$operador_citas = $this->RegLlamada->query("SELECT user_id ,count(user_id) as amount FROM reg_llamadas WHERE created LIKE '%$anio-$mes%' GROUP BY user_id");
+			$operadores = $this->User->find('all',array(
+				    'fields'=>array('User.id', 'User.nombres', 'User.ap_paterno', 'User.ap_materno'),
+				    'recursive'=>0)
+	           );
+
+            $this->set('fecha', date('Y-m-d'));
+            $data = array('source_list' => array(), 'leyend' => array());
+
+            foreach($operador_citas as $operador_cita){
+                foreach($operadores as $operador){
+                    if($operador_cita['reg_llamadas']['user_id'] == $operador['User']['id']){
+                        array_push( $data['source_list'],                           
+                            array(
+                                    $this->seedCode($operador['User']['id']),
+                                    intval($operador_cita[0]['amount'])                             
+                                )
+                        );
+                        array_push( $data['leyend'], 
+                             array(
+                                    $this->seedCode($operador['User']['id']),
+                                    $operador['User']['nombres']." ".$operador['User']['ap_paterno']." ".$operador['User']['ap_materno']
+                                )
+                            );
+                   }
+                }
+            }
+
+            $this->set('data', $data);
+
+			$this->layout = 'bootstrap/pdf_layout';
 		}
 		
 		//GRAFICO ESTADISTICO MENSUAL DE UNA OPERADORA
