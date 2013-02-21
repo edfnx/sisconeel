@@ -50,10 +50,19 @@
     $tcpdf->SetFont($textfont_body, '', 10);
     
     $tcpdf->MultiCell(170, 20, "En el Periodo de Enero a Diciembre del ".$fecha." las atenciones se dieron de la siguiente manera como puede apreciarse en el Grafico de Barras que se muestra continuacion.", 0, 'J', 1, 1, 20, 45, true, 0, false, true, 40, 'T');
-        
-    $tcpdf->Cell(56,7, $this->Session->read('cabina'),'LT',0,'C', 1);
     
-    $tcpdf->Cell(56,7, 'citas_reg_121',0,0,'C', 1);
+    $tcpdf->Cell(100,7,$mes,0,1,'C', 1);
+        
+    $tcpdf->Cell(100,7,$especialidad_cas,0,1,'C', 1);
+    
+    foreach($cas as $ca);
+        $tcpdf->Cell(100,7,$ca['Ca']['cas'],0,1,'C', 1);
+    
+    foreach($especialidades as $especialidad);
+        $tcpdf->Cell(100,7,$especialidad['Especialidade']['especialidad'],0,1,'C', 1);
+        
+    
+    $tcpdf->Cell(56,7, 'citas_reg_3122',0,0,'C', 1);
     
     $tcpdf->lastPage();
     

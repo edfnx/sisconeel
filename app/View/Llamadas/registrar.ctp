@@ -140,7 +140,7 @@
 								</select>
 							</div>
 						</div>
-						<?php echo $this->Form->hidden('RegLlamada.cita_otorgada', array('value' => 'si')); ?>
+						<?php echo $this->Form->hidden('RegLlamada.cita_otorgada', array('value' => 1)); ?>
 						<?php echo $this->Form->hidden('RegLlamada.user_id', array('value'=>$current_user['id'])); ?>
 						<?php echo $this->Form->hidden('RegLlamada.user_mod', array('value'=>$current_user['id'])); ?>
 						<?php echo $this->BtForm->submit('Registrar Llamada'); ?>
@@ -179,7 +179,7 @@
 						<?php echo $this->BtForm->input('RegLlamada.llamada_observ_id', 'Observacion de la Cita');
 						?>
 
-						<?php echo $this->Form->hidden('RegLlamada.cita_otorgada', array('value' => 'no')); ?>
+						<?php echo $this->Form->hidden('RegLlamada.cita_otorgada', array('value' => 0)); ?>
 						<?php echo $this->Form->hidden('RegLlamada.user_id', array('value'=>$current_user['id'])); ?>
 						<?php echo $this->Form->hidden('RegLlamada.user_mod', array('value'=>$current_user['id'])); ?>                
 						<?php echo $this->BtForm->submit('Registrar Llamada'); ?>

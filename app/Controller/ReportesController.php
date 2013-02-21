@@ -144,7 +144,7 @@
                     
                     if($this->data['Cas']['tipo'] == 1){
                         if($mes == ""){
-                            if($cas == ""){
+                            if($espec == ""){
                                 //GRAFICO ESTADISTICO ANUAL DE TODAS LAS ESPECIALIDADES DEL CAS
                                 $this->redirect(array('action'=>'citas_reg_3111'), null, true);                                
                             }else{
@@ -152,7 +152,7 @@
                                 $this->redirect(array('action'=>'citas_reg_3112'), null, true);                                
                             }
                         }else{
-                            if($cas == ""){
+                            if($espec == ""){
                                 //GRAFICO ESTADISTICO MENSUAL DE TODAS LAS ESPECIALIDADES DEL CAS
                                 $this->redirect(array('action'=>'citas_reg_3121'), null, true);
                             }else{
@@ -162,7 +162,7 @@
                         }
                     }else if($this->data['Cas']['tipo'] == 2){
                         if($mes == ""){
-                            if($cas == ""){
+                            if($espec == ""){
                                 //LISTADO ANUAL DE TODAS LAS ESPECIALIDADES DEL CAS
                                 $this->redirect(array('action'=>'citas_reg_3211'), null, true);                                
                             }else{
@@ -170,7 +170,7 @@
                                 $this->redirect(array('action'=>'citas_reg_3212'), null, true);                                
                             }
                         }else{
-                            if($cas == ""){
+                            if($espec == ""){
                                 //LISTADO MENSUAL DE TODAS LAS ESPECIALIDADES DEL CAS
                                 $this->redirect(array('action'=>'citas_reg_3221'), null, true);
                             }else{
@@ -774,8 +774,7 @@
             $espec = $this->Session->read('especialidad');
             $this->Session->delete('especialidad');
             
-            $this->set('especialidades_cas', $this->RegLlamada->query("SELECT ca_id ,count(ca_id) FROM reg_llamadas WHERE cacreated LIKE '%$anio%' GROUP BY ca_id"));
-                       
+            $this->set('especialidades_cas', $this->RegLlamada->query("SELECT especialidade_id ,count(especialidade_id) FROM reg_llamadas WHERE ca_id = $cas AND created LIKE '%$anio%' GROUP BY especialidade_id"));
                                         
             $this->set('cas' ,$this->Ca->find('all',array(
                                                         'fields'=>array(                                                                        
@@ -784,12 +783,11 @@
                                                                         'Ca.id'=>$cas),
                                                         'recursive'=>0)
                                         ));
-            
+                         
             $this->set('especialidades' ,$this->Especialidade->find('all',array(
                                                         'fields'=>array(                                                                        
+                                                                        'Especialidade.id',
                                                                         'Especialidade.especialidad'),
-                                                        'conditions'=>array(
-                                                                        'Especialidade.id'=>$espec),
                                                         'recursive'=>0)
                                         ));
             
@@ -867,12 +865,20 @@
             if($mes == "11"){ $this->set('mes','Noviembre');}
             if($mes == "12"){ $this->set('mes','Diciembre');}           
             
-            $this->set('especialidades_cas', $this->RegLlamada->query("SELECT ca_id ,count(ca_id) FROM reg_llamadas WHERE created LIKE '%$anio-$mes%' GROUP BY ca_id"));
+            $this->set('especialidades_cas', $this->RegLlamada->query("SELECT especialidade_id ,count(especialidade_id) FROM reg_llamadas WHERE ca_id = $cas AND created LIKE '%$anio-$mes%' GROUP BY especialidade_id"));
                         
             $this->set('cas' ,$this->Ca->find('all',array(
-                                                        'fields'=>array(
-                                                                        'Ca.id',
+                                                        'fields'=>array(                                                                        
                                                                         'Ca.cas'),
+                                                        'conditions'=>array(
+                                                                        'Ca.id'=>$cas),
+                                                        'recursive'=>0)
+                                        ));
+                         
+            $this->set('especialidades' ,$this->Especialidade->find('all',array(
+                                                        'fields'=>array(                                                                        
+                                                                        'Especialidade.id',
+                                                                        'Especialidade.especialidad'),
                                                         'recursive'=>0)
                                         ));
             

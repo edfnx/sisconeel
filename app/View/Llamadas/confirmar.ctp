@@ -41,10 +41,15 @@
 
 		<?php echo $this->Form->hidden('ConfLlamada.turno', array('value'=>$this->Session->read('turno'))); ?>
 		<?php echo $this->Form->hidden('ConfLlamada.cabina', array('value'=>$this->Session->read('cabina'))); ?>
-
-		<div id="divcas">
+        
+        <div id="divespec">            
 			<?php echo $this->BtForm->input('ConfLlamada.reg_llamada_id', 'Cita por DNI',  array('empty' => 'Seleccione DNI')); ?>
-			<?php echo $this->Ajax->observeField('llamadaid', array('url'=>array('action'=>'datos'), 'update'=>'divdatos')); ?>
+			<?php echo $this->Ajax->observeField('ConfLlamadaRegLlamadaId', array('url'=>array('action'=>'datos'), 'update'=>'divdatos')); ?>
+		</div>
+        
+		<div id="divcas">            
+			<?php echo $this->BtForm->input('ConfLlamada.reg_llamada_id', 'Cita por DNI',  array('empty' => 'Seleccione DNI')); ?>
+			<?php echo $this->Ajax->observeField('ConfLlamadaRegLlamadaId', array('url'=>array('action'=>'datos'), 'update'=>'divdatos')); ?>
 		</div>
 		
 	   <div class="control-group">

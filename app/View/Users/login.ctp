@@ -9,19 +9,22 @@
         <?php echo $this->BtForm->create(); ?>
         <?php echo $this->BtForm->input('username', 'Usuario',
                                         array(
-                                                'placeholder'=>'Ingrese su Usuario'
+                                                'placeholder'=>'Ingrese su Usuario',
+                                                'required'=>'required'
                                                 )
                                         );
         ?>
         <?php echo $this->BtForm->input('password', 'Password',
                                         array(
-                                                'placeholder'=>'Ingrese su Password'
+                                                'placeholder'=>'Ingrese su Password',
+                                                'required'=>'required'
                                                 )
                                         );
         ?>
         <?php echo $this->BtForm->input('cabina', 'Numero de Cabina',
                                         array(
                                                 'placeholder'=>'Numero de Cabina',
+                                                'required'=>'required'
                                                 )
                                         );
         ?>

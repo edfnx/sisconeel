@@ -6,7 +6,7 @@
     echo "Datos Personales: ".$dato['RegLlamada']['aps_nombs']."<br />";
     echo "Telefono: ".$dato['RegLlamada']['telefono']."<br />";
     echo "CAS: ".$dato['Ca']['cas']."<br />";
-    echo "Especialidad: ".$dato['Medico']['espec']."<br />";
+    echo "Especialidad: ".$dato['Especialidade']['especialidad']."<br />";
     echo "Medico: ".$dato['Medico']['medico']."<br />";
     echo "Consultorio: ".$dato['RegLlamada']['consultorio']."<br />";
     echo "Acto Medico: ".$dato['RegLlamada']['acto_medico']."<br />";

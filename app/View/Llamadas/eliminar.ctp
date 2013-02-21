@@ -79,8 +79,9 @@
     Datos Personales
 </label>
 <div id="divdatos">
-    
-</div> 
+ 
+</div>
+<br /> 
 <?php
      echo $this->Form->input('ElimLlamada.datos_llamada',
                                 array(
@@ -90,6 +91,10 @@
                                         )
                                 );
 ?>
+
+<?php echo $this->BtForm->input('ElimLlamada.telefono', 'Telefono o Celular'); ?>
+
+
 <label>
     Relacion Familiar
 </label>
