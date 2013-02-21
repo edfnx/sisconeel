@@ -2,7 +2,8 @@
 	$(function() {
 
 		$.getJSON("/sisconeel/reportes/citas_reg_11_json", function(data) {
-						
+			console.log(data);
+
 			$.plot("#placeholder", [ data ], {
 				series: {
 					bars: {
@@ -16,7 +17,37 @@
 					tickLength: 0
 				}
 			});
+
+			// jqPlot //
+
+			$.jqplot.config.enablePlugins = true;
+	        var s1 = [2, 6, 7, 10];
+	        var ticks = ['ENE', 'FEB', 'MAR', 'ABR'];
+	         
+	        plot1 = $.jqplot('chart1', [data], {
+	            // Only animate if we're not using excanvas (not in IE 7 or IE 8)..
+	            animate: !$.jqplot.use_excanvas,
+	            seriesDefaults:{
+	                renderer:$.jqplot.BarRenderer,
+	                pointLabels: { show: true }
+	            },
+	            axes: {
+	                xaxis: {
+	                    renderer: $.jqplot.CategoryAxisRenderer
+	                    //,ticks: ticks
+	                }
+	            },
+	            highlighter: { show: false }
+	        });
+	     
+	        $('#chart1').bind('jqplotDataClick', 
+	            function (ev, seriesIndex, pointIndex, data) {
+	                $('#info1').html('series: '+seriesIndex+', point: '+pointIndex+', data: '+data);
+	        });
+
 		});
+
+
 	});
 </script>
 
@@ -25,15 +56,17 @@
 		<div class="graphics">
 			<div class="page-header">
 				<h4>
-					
-				<?php echo "REPORTE ANUAL DE REGITRO DE CITAS DE ESSALUD EN LINEA - RAJUL\nPERIODO ENERO A DICIEMBRE DEL ".$anio;  ?>
+					<?php echo "REPORTE ANUAL DE REGITRO DE CITAS DE ESSALUD EN LINEA - RAJUL\nPERIODO ENERO A DICIEMBRE DEL ".$anio;  ?>
 				</h4>
 			</div>
 			<header class="graphics-header">
 				<?php echo "En el Periodo de Enero a Diciembre del ".$anio." el registro de citas se dio de la siguiente manera como puede apreciarse en el Grafico de Barras que se muestra continuacion."; ?>
 			</header>
 			<div class="graphics-container">
-				<div id="placeholder" class="demo-placeholder"></div>
+				<div id="placeholder" class="demo-placeholder" ></div>
+			</div>
+			<div class="graphics-container">
+				<div id="chart1"></div>
 			</div>
 			<footer class="graphics-footer">
 				GRAFICO No 1: Grafico del Reporte Anual de Ateniones por mes del Puesto de Salud Conduriri I-3
@@ -43,49 +76,12 @@
 </div>
 
 
-    
-
-<style type="text/css">
-	.demo-placeholder {
-		width: 100%;
-		height: 100%;
-		font-size: 14px;
-		line-height: 14px;
-	}
-	.graphics{
-		margin-bottom: 30px;
-
-	}
-	.graphics > .page-header{
-		padding-bottom: 0px;
-		margin-bottom: 15px;
-	}
-	.graphics > .page-header h2{
-		text-align: center;
-		line-height: 1.2em;
-	}
-	.graphics-container
-	{	
-		box-sizing: border-box;
-		width: 600px;
-		height: 300px;
-		padding: 20px 15px 15px 15px;
-		margin: 15px auto 15px auto;
-		border: 1px solid rgb(221, 221, 221);
-		
-		box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-		-o-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-		-ms-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-		-moz-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-		-webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-	}
-
-	header.graphics-header{
-		text-align: center;
-	}
-	footer.graphics-footer{
-		font-size: 0.9em;
-		text-align: center;
-		font-style: italic;	
-	}
-</style>
+<?php 
+	/* jquery.jqplot */
+	echo $this->Html->script('/plugins/jqplot/jquery.jqplot');
+	echo $this->Html->css('/plugins/jqplot/jquery.jqplot');
+	
+	echo $this->Html->script('/plugins/jqplot/jqplot.barRenderer.min');
+	echo $this->Html->script('/plugins/jqplot/jqplot.categoryAxisRenderer.min');
+	echo $this->Html->script('/plugins/jqplot/jqplot.pointLabels.min');
+?>

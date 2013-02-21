@@ -111,7 +111,7 @@
 												'minYear'=>date('Y'),
 												'maxYear'=>date('Y')+1,
 												'value'=>date('Y-m-d 12:00:00', strtotime("+1 day"))
-												)
+											)
 										);
 								?>
 
