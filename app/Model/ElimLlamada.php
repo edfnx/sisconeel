@@ -3,6 +3,6 @@
         public $name = 'ElimLlamada';
         
         //public $hasMany = array('RegLlamada');
-        public $belongsTo = array('RegLlamada','RelFamiliar','User');
+        public $belongsTo = array('RegLlamada','RelFamiliar','User','Cabina');
     }
 ?>

@@ -64,5 +64,6 @@ $cakeDescription = __d('SISCONEEL', 'EsSalud - SISCONEEL');
 			SISCONEEL - Copyright &copy; Oficina de Soporte Informatico RAJUL - WECHLL - EsSalud 2013 
 		</p>
 	</footer>
+    <?php echo $this->element('sql_dump'); ?>
 </body>
 </html>

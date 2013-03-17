@@ -20,14 +20,7 @@
                                                 'required'=>'required'
                                                 )
                                         );
-        ?>
-        <?php echo $this->BtForm->input('cabina', 'Numero de Cabina',
-                                        array(
-                                                'placeholder'=>'Numero de Cabina',
-                                                'required'=>'required'
-                                                )
-                                        );
-        ?>
+        ?>        
         <?php echo $this->BtForm->submit('Ingresar'); ?>
                     
         <?php echo $this->Form->end() ?>

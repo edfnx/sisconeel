@@ -40,7 +40,7 @@ class AppController extends Controller {
     public $components = array(
         'Session',
         'Auth'=>array(
-            'loginRedirect'=>array('controller'=>'users','action'=>'confirmacion'),
+            'loginRedirect'=>array('controller'=>'reportes','action'=>'citas_reg'),
             'logoutRedirect'=>array('controller'=>'users','action'=>'login'),
             'authError'=>'Acceso Restringido - No tiene suficientes permisos para entrar en este area',
             'authorize'=>array('controller')

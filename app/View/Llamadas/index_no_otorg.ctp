@@ -78,7 +78,7 @@
                     $tcpdf->Cell(20,7, "Apoyo",'LT',0,'C', 1);
                 }
                 
-                $tcpdf->Cell(20,7, $llamnootortotaluser['RegLlamada']['cabina'],'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $llamnootortotaluser['Cabina']['cabina'],'LT',0,'C', 1);
                 $tcpdf->Cell(50,7, $llamnootortotaluser['Ca']['cas'],'LT',0,'C', 1); 
                 $tcpdf->Cell(50,7, $llamnootortotaluser['Especialidade']['especialidad'] ,'LT',0,'C', 1);
                 $tcpdf->Cell(70,7, $llamnootortotaluser['LlamadaObserv']['observacion'] ,'LT',0,'C', 1);

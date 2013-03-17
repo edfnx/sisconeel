@@ -182,15 +182,8 @@ $cakeDescription = __d('SISCONEEL', 'EsSalud - SISCONEEL');
 	<div class="ss-subnav ss-subnav-fixed">
 		<div class="container">
 
-			<ul class="ss-nav">
-				<li> 
-				
-					CABINA:
-					<?php echo $this->Session->read('cabina'); ?>
-				
-				</li>
-				<li class="separtor"></li>
-				<li>
+			<ul class="ss-nav">				
+                <li>
 					TURNO:
 					<?php
 						$turno = $this->Session->read('turno');
@@ -200,19 +193,34 @@ $cakeDescription = __d('SISCONEEL', 'EsSalud - SISCONEEL');
 						}else if($turno == "tarde"){
 							echo "Tarde"; 
 						}else{
-							echo "Apoyo";
+							echo "Personal de Apoyo";
 						}
 					?>
 				</li>
+                <li class="separtor"></li>
+                <li> 
+				
+					CABINA:
+					<?php echo $this->Session->read('num_cabina'); ?>
+				
+				</li>
 			</ul>
 
-			<div class="fix-right">
-			
-				<ul class="ss-nav">
-					<li> 
-						CABINA:
-						<?php echo $this->Session->read('cabina'); ?>
-					</li>
+			<div class="fix-right">			
+				<ul class="ss-nav">                    
+                    <li class="separtor"></li>
+					<li>
+					PRIVILEGIO:
+					<?php
+						if($current_user['role']=='admin'){
+                            echo "Administrador";
+                        }else if($current_user['role']=='super'){
+                            echo "Supervisor";
+                        }else if($current_user['role']=='oper'){
+                            echo "Operador";
+                        }
+					?>
+				</li>
 				</ul>
 			</div>
 		</div>

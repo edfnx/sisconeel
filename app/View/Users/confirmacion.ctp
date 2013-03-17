@@ -7,7 +7,8 @@
         
             <?php echo $this->BtForm->create(); ?>
                 <?php echo $this->Form->hidden('Historial.user_id',array('value'=>$current_user['id'])); ?>
-                <?php echo $this->Form->hidden('Historial.role',array('value'=>$current_user['role'])); ?>    
+                <?php echo $this->Form->hidden('Historial.role',array('value'=>$current_user['role'])); ?>
+                <?php echo $this->Form->hidden('Historial.turno',array('value'=>$current_user['turno'])); ?>
          
                 <h1>
                     <?php 
@@ -26,38 +27,15 @@
                         }                
                     ?>
                 </h1>
-                <?php
-                        $fecha_actual = strtotime(date("Y-m-d H:i:00"));
-                        
-                        $fecha_dia = strtotime(date("Y-m-d 06:00:00"));
-                        
-                        $fecha_tarde  = strtotime(date("Y-m-d 14:00:00"));
-                        
-                        $fecha_noche = strtotime(date("Y-m-d 22:00:00"));
-                        
-                        if($fecha_actual > $fecha_dia && $fecha_actual < $fecha_tarde){
-                            $turno = "manana";
-                        }else if($fecha_actual > $fecha_tarde && $fecha_actual < $fecha_noche){
-                            $turno = "tarde";
-                        }else{
-                            $turno = "apoyo";
-                        }
-                ?>
                 
                 Estas ingresando 
                 <h1 style="font-size: medium;">
-                    <?php 
-                        if($current_user['turno'] == $turno){
-                            if($current_user['turno']=="manana"){
-                                echo "en el Turno<br />Ma&ntilde;ana";
-                            }else if($current_user['turno']=="tarde"){
-                                echo "en el Turno<br />Tarde"; 
-                            }else{
-                                echo "como Personal de Apoyo";
-                            }                   
-                        }else {
-                            echo "como Personal de Apoyo";      
-                        }               
+                    
+                    <?php
+                        
+                        $turno = $this->Session->read('turno');
+                        
+                        echo $turno;            
                     ?>
                 </h1>
                 <?php

@@ -80,7 +80,7 @@
                     $tcpdf->Cell(20,7, "Apoyo",'LT',0,'C', 1);
                 }
                 
-                $tcpdf->Cell(15,7, $llamelimtotaluser['ElimLlamada']['cabina'],'LT',0,'C', 1);
+                $tcpdf->Cell(15,7, $llamelimtotaluser['Cabina']['cabina'],'LT',0,'C', 1);
                 $tcpdf->Cell(20,7, $llamelimtotaluser['RegLlamada']['dni_pac'],'LT',0,'C', 1);
                 $tcpdf->Cell(25,7, $llamelimtotaluser['ElimLlamada']['telefono'],'LT',0,'C', 1);
                 $tcpdf->Cell(50,7, $llamelimtotaluser['ElimLlamada']['datos_llamada'],'LT',0,'C', 1);

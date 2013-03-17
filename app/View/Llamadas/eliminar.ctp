@@ -8,7 +8,7 @@
                     <div class="amount">
                         <?php echo $llamelimtotalcab;  ?>
                     </div>
-                    Citas Eliminadas Cabina <?php echo $this->Session->read('cabina'); ?>                        
+                    Citas Eliminadas Cabina <?php echo $this->Session->read('num_cabina'); ?>                        
                 </div>
             </div>
             <div class="span4">
@@ -24,7 +24,7 @@
                     <div class="amount">
                         <?php echo $llamelimcabuser; ?>
                     </div>                  
-                       Citas Eliminadas Cabina <?php echo $this->Session->read('cabina'); ?> por el/la operador(a)
+                       Citas Eliminadas Cabina <?php echo $this->Session->read('num_cabina'); ?> por el/la operador(a)
                 </div>
             </div>
         </div>  
@@ -47,39 +47,32 @@
                                 ); 
 ?>
 <?php
-    echo $this->Form->hidden('ElimLlamada.cabina',
+    echo $this->Form->hidden('ElimLlamada.cabina_id',
                                 array(
-                                        'value'=>$this->Session->read('cabina')
+                                        'value'=>$this->Session->read('id_cabina')
                                         )
                                 ); 
 ?>                
-<label>
-    Cita por DNI
-</label>
 <div id="divcas">
-    <select id="llamadaid" name="data[ElimLlamada][reg_llamada_id]">
-	    <option>Seleccione DNI</option>
-	    <?php
-		   foreach($llamregsfechatotals as $llamregsfechatotal):
-		      $id = $llamregsfechatotal['RegLlamada']['id'];
-              $nombre = $llamregsfechatotal['RegLlamada']['dni_pac'];
-			  echo "<option value='$id'>$nombre</option>";
-	       endforeach;
-		?>
-	</select>
+    
+    <?php echo $this->BtForm->input('ElimLlamada.dni_pac', 'Ingrese DNI', array('required' => 'required')); ?>
     <?php
-        echo $this->Ajax->observeField('llamadaid',
+        echo $this->Ajax->observeField('ElimLlamadaDniPac',
                                 array(
+                                        'frequency'=>0,
                                         'url'=>array('action'=>'datos2'),
-                                        'update'=>'divdatos'
-                                        ));
+                                        'update'=>'divdatos',
+                                        'before'=>'$("#divdatos").html("Cargando Datos...")'
+                                        ));    
+    							
     ?>
+    
 </div>
 <label>
     Datos Personales
 </label>
 <div id="divdatos">
- 
+    
 </div>
 <br /> 
 <?php

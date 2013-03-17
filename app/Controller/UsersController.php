@@ -4,7 +4,7 @@
         public $helpers = array('Html', 'Form');
         public $name='Users';        
         public $components = array('Session');
-        public $uses=array('User','Historial');
+        public $uses=array('User','Historial','Cabina');
         
         
         function beforeFilter(){
@@ -22,10 +22,20 @@
                         
             $id2 = $dato[0]['User']['user_mod'];
                 
-            $user_cre = $this->User->find('first',array('fields'=>array('User.username'),'conditions'=>array('User.id' => $id1),'recursive'=>0));
+            $user_cre = $this->User->find('first',array(
+                                                        'fields'=>array(
+                                                                        'User.username'),
+                                                        'conditions'=>array
+                                                                        ('User.id' => $id1),
+                                                        'recursive'=>0));
             $this->set('usercreated',$user_cre);
                 
-            $user_mod = $this->User->find('first',array('fields'=>array('User.username'),'conditions'=>array('User.id' => $id2),'recursive'=>0));
+            $user_mod = $this->User->find('first',array(
+                                                        'fields'=>array(
+                                                                        'User.username'),
+                                                        'conditions'=>array(
+                                                                        'User.id' => $id2),
+                                                        'recursive'=>0));
             $this->set('usermodified',$user_mod);
             
         }
@@ -69,12 +79,72 @@
             
             if($this->request->is('post')){
                 
-                $cabina = $this->data['User']['cabina'];
+                //$cabina = $this->data['User']['cabina'];
                 
-                $this->Session->write('cabina', $cabina);
+                //$this->Session->write('cabina', $cabina);
                 
                 if($this->Auth->login()){
-                    $this->redirect($this->Auth->redirect());
+                    
+                    $turno = $this->Auth->user('turno');
+                    
+                    $fecha_actual = strtotime(date("Y-m-d H:i:00"));
+                    $fecha_dia = strtotime(date("Y-m-d 05:45:00"));
+                    $fecha_dia_salida = strtotime(date("Y-m-d 14:00:00"));                                
+                    $fecha_tarde  = strtotime(date("Y-m-d 13:45:00"));
+                    $fecha_noche = strtotime(date("Y-m-d 22:10:00"));
+                    
+                    if($fecha_actual > $fecha_dia && $fecha_actual < $fecha_dia_salida && $turno == 'manana'){
+                        //$this->Session->write('horario','manana');
+                        $this->Session->write('turno','manana');
+                    }else if($fecha_actual > $fecha_dia && $fecha_actual < $fecha_dia_salida && $turno == 'tarde'){
+                        //$this->Session->write('horario','manana');
+                        $this->Session->write('turno','apoyo');
+                    }else if($fecha_actual > $fecha_tarde && $fecha_actual < $fecha_noche && $turno == 'manana'){
+                        //$this->Session->write('horario','tarde');
+                        $this->Session->write('turno','apoyo');
+                    }else if($fecha_actual > $fecha_tarde && $fecha_actual < $fecha_noche && $turno == 'tarde'){
+                        //$this->Session->write('horario','tarde');
+                        $this->Session->write('turno','tarde');
+                    }else{
+                        $this->Session->write('turno','rest');
+                    }
+                    
+                    $id = $this->Auth->user('id');                    
+                    
+                    $role = $this->Auth->user('role');
+                    
+                    $ip_pc = $_SERVER['REMOTE_ADDR'];
+                    
+                    $cabina = $this->Cabina->find('first',array('fields'=>array('Cabina.id','Cabina.cabina'),'conditions'=>array('Cabina.ip' => $ip_pc),'recursive'=>0));
+                    
+                    
+                    $this->Session->write('id_cabina',$cabina['Cabina']['id']);
+                    
+                    $this->Session->write('num_cabina',$cabina['Cabina']['cabina']);
+                    
+                    
+                    $this->request->data['Historial']['user_id'] = $id;
+                    
+                    $this->request->data['Historial']['cabina_id'] = $cabina['Cabina']['id'];
+                    
+                    $this->request->data['Historial']['turno'] = $this->Session->read('turno');
+                    
+                                     
+                    if($this->Historial->save($this->data)){
+                        
+                        $historial_id = $this->Historial->read('Historial.id');
+                        
+                        $this->Session->write('historial',$historial_id['Historial']['id']);
+                                                
+                        if($role=='admin'){
+                            $this->redirect($this->Auth->redirect());
+                        }else if($role=="super"){
+                            $this->redirect(array('controller'=>'llamadas','action'=>'registrar'),null,true);
+                        }else if($role=="oper"){
+                            $this->redirect(array('controller'=>'llamadas','action'=>'registrar'),null,true);
+                        }
+                    }                
+                    
                 }else{
                     $this->Session->setFlash('el usuario o el password son incorrectos');
                 }
@@ -83,114 +153,15 @@
         }
         
         public function logout(){
+            
+            $id = $this->Session->read('historial');
+            
+            $this->Historial->id = $id;
+            
+            $this->Historial->save($this->request->data);
+            
             $this->redirect($this->Auth->logout());
         }
-        
-        public function confirmacion(){
-            
-            if(!empty($this->data)){
-                $this->Historial->create();
-                
-                //$role = $this->request->data['Historial']['role'];
-                                               
-                //$cabina = $this->request->data['Historial']['cabina'];
-                
-                //$this->Session->write('cabina', $cabina);
-                
-                //$fecha_actual = strtotime(date("d-m-Y H:i:00",time()));
-                
-                $fecha_actual = strtotime(date("Y-m-d H:i:00"));
-                
-                $fecha_dia = strtotime(date("Y-m-d 06:45:00"));
-                
-                $fecha_tarde  = strtotime(date("Y-m-d 13:00:00"));
-                
-                $fecha_noche = strtotime(date("Y-m-d 21:00:00"));
-                
-                if($fecha_actual > $fecha_dia && $fecha_actual < $fecha_tarde){
-                    $this->Session->write('turno','manana');
-                }else if($fecha_actual > $fecha_tarde && $fecha_actual < $fecha_noche){
-                    $this->Session->write('turno','tarde');
-                }else{
-                    $this->Session->write('turno','apoyo');
-                }
-                
-                
-                $user = $this->request->data['Historial']['user_id'];
-                
-                $this->Session->write('user',$user);
-                
-                $role = $this->request->data['Historial']['role'];
-                
-                if($this->Historial->save($this->data)){
-                    if($role=='admin'){
-                        $this->redirect(array('controller'=>'reportes','action'=>'citas_reg'),null,true);
-                    }else if($role=="super"){
-                        $this->redirect(array('controller'=>'llamadas','action'=>'registrar'),null,true);
-                    }else if($role=="oper"){
-                        $this->redirect(array('controller'=>'llamadas','action'=>'registrar'),null,true);
-                    }
-                }
-            }
-            
-            $this->layout = 'bootstrap/login_layout';
-        } 
-        
-        public function index2($id = null) {
-                        
-            if ($this->request->is('post')) {
-                $cdiag = $this->request->data['Ciediez']['cdiag'];
-                
-                $ddiag = $this->request->data['Ciediez']['ddiag'];                
-                //$fecha11 = strlen($fecha1);
-                                
-                if($cdiag != ""){
-                    $this->redirect(array('action' => 'index/'.$cdiag));
-                    
-                }else{
-                    $this->redirect(array('action' => 'ddiag/'.$ddiag));
-                }
-            }
-            
-            if($id != "") {
-                $Listadiagnosticos = $this->Ciediez->find('all',
-                                                    array(
-                                                            'fields'=>array('Ciediez.ce_cdiag','Ciediez.ce_ddiag','Ciediez.ce_raiz','Ciediez.ce_nivel','Ciediez.ce_sexo'),
-                                                            'conditions'=>array('Ciediez.ce_cdiag LIKE' => "%$id%")
-                                                            ));
-                $this->set('diagnosticos',$Listadiagnosticos);
-                
-                $this->layout = 'bootstrap/login_layout';   
-            }                                   
-        }
-              
-        public function ddiag2($id = null) {
-            if ($this->request->is('post')) {
-                $cdiag = $this->request->data['Ciediez']['cdiag'];
-                
-                $ddiag = $this->request->data['Ciediez']['ddiag'];                
-                //$fecha11 = strlen($fecha1);
-                                
-                if($cdiag != ""){
-                    $this->redirect(array('action' => 'index/'.$cdiag));
-                    
-                }else{
-                    $this->redirect(array('action' => 'ddiag/'.$ddiag));
-                }
-            }
-            
-            if($id != "") {
-                $Listadiagnosticos = $this->Ciediez->find('all',
-                                                    array(
-                                                            'fields'=>array('Ciediez.ce_cdiag','Ciediez.ce_ddiag','Ciediez.ce_raiz','Ciediez.ce_nivel','Ciediez.ce_sexo'),
-                                                            'conditions'=>array('Ciediez.ce_ddiag LIKE' => "%$id%")
-                                                            ));
-                $this->set('diagnosticos',$Listadiagnosticos);
-                
-                $this->layout = 'bootstrap/login_layout';
-
-            }
-        }
-               
+                      
     }
 ?>

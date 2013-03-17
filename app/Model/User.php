@@ -2,7 +2,7 @@
     class User extends AppModel{
         public $name = 'User';
         
-        public $hasMany = array('Cas','LlamadaObserv','Medico','RegLlamada','Respuesta','ConfLlamada','ElimLlamada','Historial','RelFamiliar');
+        public $hasMany = array('Cabina','Cas','Feriado','LlamadaObserv','Medico','RegLlamada','Respuesta','ConfLlamada','ElimLlamada','Historial','RelFamiliar','Cabina','Feriado');
         //public $belongsTo = array();
         
         public function beforeSave(){

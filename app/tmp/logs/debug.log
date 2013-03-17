@@ -1,0 +1,108 @@
+2013-01-09 15:52:01 Debug: Notice (8): Undefined index: ddiag in [C:\xampp\htdocs\cie10\app\Controller\CiediezsController.php, line 38]
+Trace:
+CiediezsController::ddiag() - APP\Controller\CiediezsController.php, line 38
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 186
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 161
+[main] - APP\webroot\index.php, line 92
+
+2013-01-09 15:52:37 Debug: Notice (8): Undefined index: cdiag in [C:\xampp\htdocs\cie10\app\Controller\CiediezsController.php, line 9]
+Trace:
+CiediezsController::index() - APP\Controller\CiediezsController.php, line 9
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 186
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 161
+[main] - APP\webroot\index.php, line 92
+
+2013-01-09 15:53:02 Debug: Notice (8): Undefined index: cdiag in [C:\xampp\htdocs\cie10\app\Controller\CiediezsController.php, line 36]
+Trace:
+CiediezsController::ddiag() - APP\Controller\CiediezsController.php, line 36
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 186
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 161
+[main] - APP\webroot\index.php, line 92
+
+2013-01-09 15:53:09 Debug: Notice (8): Undefined index: cdiag in [C:\xampp\htdocs\cie10\app\Controller\CiediezsController.php, line 36]
+Trace:
+CiediezsController::ddiag() - APP\Controller\CiediezsController.php, line 36
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 186
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 161
+[main] - APP\webroot\index.php, line 92
+
+2013-01-09 15:53:22 Debug: Notice (8): Undefined index: cdiag in [C:\xampp\htdocs\cie10\app\Controller\CiediezsController.php, line 36]
+Trace:
+CiediezsController::ddiag() - APP\Controller\CiediezsController.php, line 36
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 186
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 161
+[main] - APP\webroot\index.php, line 92
+
+2013-01-09 17:16:58 Debug: Notice (8): Undefined index: ddiag in [C:\xampp\htdocs\cie10\app\Controller\CiediezsController.php, line 11]
+Trace:
+CiediezsController::index() - APP\Controller\CiediezsController.php, line 11
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 186
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 161
+[main] - APP\webroot\index.php, line 92
+
+2013-01-09 17:17:30 Debug: Notice (8): Undefined index: cdiag in [C:\xampp\htdocs\cie10\app\Controller\CiediezsController.php, line 9]
+Trace:
+CiediezsController::index() - APP\Controller\CiediezsController.php, line 9
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 186
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 161
+[main] - APP\webroot\index.php, line 92
+
+2013-01-09 17:22:55 Debug: Notice (8): Undefined index: cdiag in [C:\xampp\htdocs\cie10\app\Controller\CiediezsController.php, line 36]
+Trace:
+CiediezsController::ddiag() - APP\Controller\CiediezsController.php, line 36
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 186
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 161
+[main] - APP\webroot\index.php, line 92
+
+2013-01-09 17:23:17 Debug: Notice (8): Undefined index: ddiag in [C:\xampp\htdocs\cie10\app\Controller\CiediezsController.php, line 38]
+Trace:
+CiediezsController::ddiag() - APP\Controller\CiediezsController.php, line 38
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 186
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 161
+[main] - APP\webroot\index.php, line 92
+
+2013-01-09 17:23:34 Debug: Notice (8): Undefined index: ddiag in [C:\xampp\htdocs\cie10\app\Controller\CiediezsController.php, line 11]
+Trace:
+CiediezsController::index() - APP\Controller\CiediezsController.php, line 11
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 186
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 161
+[main] - APP\webroot\index.php, line 92
+
+2013-01-09 17:25:39 Debug: Notice (8): Undefined index: ddiag in [C:\xampp\htdocs\cie10\app\Controller\CiediezsController.php, line 11]
+Trace:
+CiediezsController::index() - APP\Controller\CiediezsController.php, line 11
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 186
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 161
+[main] - APP\webroot\index.php, line 92
+
+2013-01-10 18:06:45 Debug: Notice (8): Undefined index: cdiag in [C:\xampp\htdocs\cie10\app\Controller\CiediezsController.php, line 9]
+Trace:
+CiediezsController::index() - APP\Controller\CiediezsController.php, line 9
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 186
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 161
+[main] - APP\webroot\index.php, line 92
+

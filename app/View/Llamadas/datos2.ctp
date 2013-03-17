@@ -1,7 +1,13 @@
 <?php 
-    
+            
     foreach($datos as $dato);
     
+    echo $this->Form->hidden('ElimLlamada.reg_llamada_id',
+                                array(
+                                        'value'=>$dato['RegLlamada']['id']
+                                        )
+                                );
+                                    
     echo "Nombres: ".$dato['RegLlamada']['dni_pac']."<br />";
     echo "Datos Personales: ".$dato['RegLlamada']['aps_nombs']."<br />";
     echo "Telefono: ".$dato['RegLlamada']['telefono']."<br />";

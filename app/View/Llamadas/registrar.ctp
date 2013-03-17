@@ -6,7 +6,7 @@
 			<div class="span4">
 				<div class="ss-boxit">
 					<b> &laquo; <?php echo $llamregstotalcab; ?> &raquo; </b> 
-					Citas registradas Cabina <?php echo $this->Session->read('cabina'); ?>
+					Citas registradas Cabina <?php echo $this->Session->read('num_cabina'); ?>
 				</div>
 			</div>
 			<div class="span4">
@@ -18,7 +18,7 @@
 			<div class="span4">
 				<div class="ss-boxit">
 					<b> &laquo; <?php echo $llamregscabuser; ?> &raquo; </b> 
-					Citas registradas Cabina <?php echo $this->Session->read('cabina'); ?> por el/la operador(a)
+					Citas registradas Cabina <?php echo $this->Session->read('num_cabina'); ?> por el/la operador(a)
 				</div>
 			</div>
 		</div>	
@@ -41,7 +41,7 @@
 					<div data-tip="Cita entregada ">
 						<?php echo $this->BtForm->create('RegLlamada');  ?>
 						<?php echo $this->Form->hidden('RegLlamada.turno', array('value'=>$this->Session->read('turno'))); ?>
-						<?php echo $this->Form->hidden('RegLlamada.cabina', array('value'=>$this->Session->read('cabina'))); ?>
+						<?php echo $this->Form->hidden('RegLlamada.cabina_id', array('value'=>$this->Session->read('id_cabina'))); ?>
 						
 						<?php echo $this->BtForm->input('RegLlamada.dni_pac', 'DNI', array('required' => 'required')); ?>
 						<?php echo $this->BtForm->input('RegLlamada.aps_nombs', 'Apellidos y Nombres'); ?>
@@ -154,7 +154,7 @@
 					<div data-tip="Cita no entregada ">
 						<?php echo $this->BtForm->create('RegLlamada');  ?>
 						<?php echo $this->Form->hidden('RegLlamada.turno', array('value'=>$this->Session->read('turno'))); ?>
-						<?php echo $this->Form->hidden('RegLlamada.cabina', array('value'=>$this->Session->read('cabina'))); ?>
+						<?php echo $this->Form->hidden('RegLlamada.cabina_id', array('value'=>$this->Session->read('id_cabina'))); ?>
 						
 						<?php echo $this->BtForm->input('RegLlamada.ca_id', 'Centros Asistencial', 
 							array(

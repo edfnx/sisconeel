@@ -367,7 +367,7 @@
 																							'RegLlamada.cabina',
 																							'RegLlamada.dni_pac',
 																							'ca.cas',
-																							'Medico.espec',
+																							'Especialidade.especialidad',
 																							'RegLlamada.estado',
 																							'RegLlamada.created',
 																							'User.username'                                                                                                                                                                                               
@@ -383,7 +383,7 @@
 																							'RegLlamada.cabina',
 																							'RegLlamada.dni_pac',
 																							'ca.cas',
-																							'Medico.espec',
+																							'Especialidade.especialidad',
 																							'RegLlamada.estado',
 																							'RegLlamada.created',
 																							'User.username'                                                                                                                                                                                               
@@ -399,7 +399,7 @@
 																							'RegLlamada.cabina',
 																							'RegLlamada.dni_pac',
 																							'ca.cas',
-																							'Medico.espec',
+																							'Especialidade.especialidad',
 																							'RegLlamada.estado',
 																							'RegLlamada.created',
 																							'User.username'                                                                                                                                                                                               
@@ -415,7 +415,7 @@
 																							'RegLlamada.cabina',
 																							'RegLlamada.dni_pac',
 																							'ca.cas',
-																							'Medico.espec',
+																							'Especialidade.especialidad',
 																							'RegLlamada.estado',
 																							'RegLlamada.created',
 																							'User.username'                                                                                                                                                                                               
@@ -431,7 +431,7 @@
 																							'RegLlamada.cabina',
 																							'RegLlamada.dni_pac',
 																							'ca.cas',
-																							'Medico.espec',
+																							'Especialidade.especialidad',
 																							'RegLlamada.estado',
 																							'RegLlamada.created',
 																							'User.username'                                                                                                                                                                                               
@@ -447,7 +447,7 @@
 																							'RegLlamada.cabina',
 																							'RegLlamada.dni_pac',
 																							'ca.cas',
-																							'Medico.espec',
+																							'Especialidade.especialidad',
 																							'RegLlamada.estado',
 																							'RegLlamada.created',
 																							'User.username'                                                                                                                                                                                               
@@ -463,7 +463,7 @@
 																							'RegLlamada.cabina',
 																							'RegLlamada.dni_pac',
 																							'ca.cas',
-																							'Medico.espec',
+																							'Especialidade.especialidad',
 																							'RegLlamada.estado',
 																							'RegLlamada.created',
 																							'User.username'                                                                                                                                                                                               
@@ -479,7 +479,7 @@
 																							'RegLlamada.cabina',
 																							'RegLlamada.dni_pac',
 																							'ca.cas',
-																							'Medico.espec',
+																							'Especialidade.especialidad',
 																							'RegLlamada.estado',
 																							'RegLlamada.created',
 																							'User.username'                                                                                                                                                                                               
@@ -495,7 +495,7 @@
 																							'RegLlamada.cabina',
 																							'RegLlamada.dni_pac',
 																							'ca.cas',
-																							'Medico.espec',
+																							'Especialidade.especialidad',
 																							'RegLlamada.estado',
 																							'RegLlamada.created',
 																							'User.username'                                                                                                                                                                                               
@@ -511,7 +511,7 @@
 																							'RegLlamada.cabina',
 																							'RegLlamada.dni_pac',
 																							'ca.cas',
-																							'Medico.espec',
+																							'Especialidade.especialidad',
 																							'RegLlamada.estado',
 																							'RegLlamada.created',
 																							'User.username'                                                                                                                                                                                               
@@ -527,7 +527,7 @@
 																							'RegLlamada.cabina',
 																							'RegLlamada.dni_pac',
 																							'ca.cas',
-																							'Medico.espec',
+																							'Especialidade.especialidad',
 																							'RegLlamada.estado',
 																							'RegLlamada.created',
 																							'User.username'                                                                                                                                                                                               
@@ -543,7 +543,7 @@
 																							'RegLlamada.cabina',
 																							'RegLlamada.dni_pac',
 																							'ca.cas',
-																							'Medico.espec',
+																							'Especialidade.especialidad',
 																							'RegLlamada.estado',
 																							'RegLlamada.created',
 																							'User.username'                                                                                                                                                                                               

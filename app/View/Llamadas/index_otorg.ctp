@@ -80,7 +80,7 @@
                     $tcpdf->Cell(20,7, "Apoyo",'LT',0,'C', 1);
                 }
                 
-                $tcpdf->Cell(15,7, $llamotorgtotaluser['RegLlamada']['cabina'],'LT',0,'C', 1);
+                $tcpdf->Cell(15,7, $llamotorgtotaluser['Cabina']['cabina'],'LT',0,'C', 1);
                 $tcpdf->Cell(20,7, $llamotorgtotaluser['RegLlamada']['dni_pac'],'LT',0,'C', 1);
                 $tcpdf->Cell(50,7, $llamotorgtotaluser['Ca']['cas'],'LT',0,'C', 1); 
                 $tcpdf->Cell(50,7, $llamotorgtotaluser['Especialidade']['especialidad'] ,'LT',0,'C', 1);

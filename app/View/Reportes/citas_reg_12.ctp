@@ -77,7 +77,7 @@
                 $tcpdf->Cell(20,7, $ene['RegLlamada']['cabina'],'LT',0,'C', 1);
                 $tcpdf->Cell(30,7, $ene['RegLlamada']['dni_pac'],'LT',0,'C', 1);
                 $tcpdf->Cell(50,7, $ene['Ca']['cas'],'LT',0,'C', 1); 
-                $tcpdf->Cell(40,7, $ene['Medico']['espec'] ,'LT',0,'C', 1);
+                $tcpdf->Cell(40,7, $ene['Especialidade']['especialidad'] ,'LT',0,'C', 1);
                 $tcpdf->Cell(20,7, $ene['RegLlamada']['estado'] ,'LT',0,'C', 1);
                 $tcpdf->Cell(36,7, $ene['RegLlamada']['created'] ,'LT',0,'C', 1);
                 $tcpdf->Cell(40,7, $ene['User']['username'],'LRT',1,'C', 1);
@@ -112,14 +112,14 @@
         //foreach($fichauno as $ficha1);
         
         $tcpdf->Cell(10,7, "Num" ,'LT',0,'C', 1);
-        $tcpdf->Cell(56,7, "Turno" ,'LT',0,'C', 1); 
-        $tcpdf->Cell(56,7, "Cabina" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "DNI" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "CAS" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "Especialidad" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "Estado" ,'LT',0,'C', 1);
+        $tcpdf->Cell(20,7, "Turno" ,'LT',0,'C', 1); 
+        $tcpdf->Cell(20,7, "Cabina" ,'LT',0,'C', 1);
+        $tcpdf->Cell(30,7, "DNI" ,'LT',0,'C', 1);
+        $tcpdf->Cell(50,7, "CAS" ,'LT',0,'C', 1);
+        $tcpdf->Cell(40,7, "Especialidad" ,'LT',0,'C', 1);
+        $tcpdf->Cell(20,7, "Estado" ,'LT',0,'C', 1);
         $tcpdf->Cell(36,7, "Fecha Creacion" ,'LT',0,'C', 1);
-        $tcpdf->Cell(56,7, "Registrado Por" ,'LRT',1,'C', 1);
+        $tcpdf->Cell(40,7, "Registrado Por" ,'LRT',1,'C', 1);
         
         $num = 1;
             
@@ -129,14 +129,14 @@
                 $tcpdf->SetFont($textfont_body, '', 10);
                 
                 $tcpdf->Cell(10,7, $num ,'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $feb['RegLlamada']['turno'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $feb['RegLlamada']['cabina'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $feb['RegLlamada']['dni_pac'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $feb['Ca']['cas'],'LT',0,'C', 1); 
-                $tcpdf->Cell(56,7, $feb['Medico']['espec'] ,'LT',0,'C', 1);
-                $tcpdf->Cell(58,7, $feb['RegLlamada']['estado'] ,'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $feb['RegLlamada']['turno'],'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $feb['RegLlamada']['cabina'],'LT',0,'C', 1);
+                $tcpdf->Cell(30,7, $feb['RegLlamada']['dni_pac'],'LT',0,'C', 1);
+                $tcpdf->Cell(50,7, $feb['Ca']['cas'],'LT',0,'C', 1); 
+                $tcpdf->Cell(40,7, $feb['Especialidade']['especialidad'] ,'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $feb['RegLlamada']['estado'] ,'LT',0,'C', 1);
                 $tcpdf->Cell(36,7, $feb['RegLlamada']['created'] ,'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $feb['User']['username'],'LRT',1,'C', 1);
+                $tcpdf->Cell(40,7, $feb['User']['username'],'LRT',1,'C', 1);
                                 
                 $num = $num+1;
             endforeach; 
@@ -168,14 +168,14 @@
         //foreach($fichauno as $ficha1);
         
         $tcpdf->Cell(10,7, "Num" ,'LT',0,'C', 1);
-        $tcpdf->Cell(56,7, "Turno" ,'LT',0,'C', 1); 
-        $tcpdf->Cell(56,7, "Cabina" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "DNI" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "CAS" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "Especialidad" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "Estado" ,'LT',0,'C', 1);
+        $tcpdf->Cell(20,7, "Turno" ,'LT',0,'C', 1); 
+        $tcpdf->Cell(20,7, "Cabina" ,'LT',0,'C', 1);
+        $tcpdf->Cell(30,7, "DNI" ,'LT',0,'C', 1);
+        $tcpdf->Cell(50,7, "CAS" ,'LT',0,'C', 1);
+        $tcpdf->Cell(40,7, "Especialidad" ,'LT',0,'C', 1);
+        $tcpdf->Cell(20,7, "Estado" ,'LT',0,'C', 1);
         $tcpdf->Cell(36,7, "Fecha Creacion" ,'LT',0,'C', 1);
-        $tcpdf->Cell(56,7, "Registrado Por" ,'LRT',1,'C', 1);
+        $tcpdf->Cell(40,7, "Registrado Por" ,'LRT',1,'C', 1);
         
         $num = 1;
             
@@ -185,14 +185,14 @@
                 $tcpdf->SetFont($textfont_body, '', 10);
                 
                 $tcpdf->Cell(10,7, $num ,'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $mar['RegLlamada']['turno'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $mar['RegLlamada']['cabina'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $mar['RegLlamada']['dni_pac'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $mar['Ca']['cas'],'LT',0,'C', 1); 
-                $tcpdf->Cell(56,7, $mar['Medico']['espec'] ,'LT',0,'C', 1);
-                $tcpdf->Cell(58,7, $mar['RegLlamada']['estado'] ,'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $mar['RegLlamada']['turno'],'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $mar['RegLlamada']['cabina'],'LT',0,'C', 1);
+                $tcpdf->Cell(30,7, $mar['RegLlamada']['dni_pac'],'LT',0,'C', 1);
+                $tcpdf->Cell(50,7, $mar['Ca']['cas'],'LT',0,'C', 1); 
+                $tcpdf->Cell(40,7, $mar['Especialidade']['especialidad'] ,'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $mar['RegLlamada']['estado'] ,'LT',0,'C', 1);
                 $tcpdf->Cell(36,7, $mar['RegLlamada']['created'] ,'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $mar['User']['username'],'LRT',1,'C', 1);
+                $tcpdf->Cell(40,7, $mar['User']['username'],'LRT',1,'C', 1);
                                 
                 $num = $num+1;
             endforeach; 
@@ -224,14 +224,14 @@
         //foreach($fichauno as $ficha1);
         
         $tcpdf->Cell(10,7, "Num" ,'LT',0,'C', 1);
-        $tcpdf->Cell(56,7, "Turno" ,'LT',0,'C', 1); 
-        $tcpdf->Cell(56,7, "Cabina" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "DNI" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "CAS" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "Especialidad" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "Estado" ,'LT',0,'C', 1);
+        $tcpdf->Cell(20,7, "Turno" ,'LT',0,'C', 1); 
+        $tcpdf->Cell(20,7, "Cabina" ,'LT',0,'C', 1);
+        $tcpdf->Cell(30,7, "DNI" ,'LT',0,'C', 1);
+        $tcpdf->Cell(50,7, "CAS" ,'LT',0,'C', 1);
+        $tcpdf->Cell(40,7, "Especialidad" ,'LT',0,'C', 1);
+        $tcpdf->Cell(20,7, "Estado" ,'LT',0,'C', 1);
         $tcpdf->Cell(36,7, "Fecha Creacion" ,'LT',0,'C', 1);
-        $tcpdf->Cell(56,7, "Registrado Por" ,'LRT',1,'C', 1);
+        $tcpdf->Cell(40,7, "Registrado Por" ,'LRT',1,'C', 1);
         
         $num = 1;
             
@@ -241,14 +241,14 @@
                 $tcpdf->SetFont($textfont_body, '', 10);
                 
                 $tcpdf->Cell(10,7, $num ,'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $abr['RegLlamada']['turno'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $abr['RegLlamada']['cabina'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $abr['RegLlamada']['dni_pac'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $abr['Ca']['cas'],'LT',0,'C', 1); 
-                $tcpdf->Cell(56,7, $abr['Medico']['espec'] ,'LT',0,'C', 1);
-                $tcpdf->Cell(58,7, $abr['RegLlamada']['estado'] ,'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $abr['RegLlamada']['turno'],'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $abr['RegLlamada']['cabina'],'LT',0,'C', 1);
+                $tcpdf->Cell(30,7, $abr['RegLlamada']['dni_pac'],'LT',0,'C', 1);
+                $tcpdf->Cell(50,7, $abr['Ca']['cas'],'LT',0,'C', 1); 
+                $tcpdf->Cell(40,7, $abr['Especialidade']['especialidad'] ,'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $abr['RegLlamada']['estado'] ,'LT',0,'C', 1);
                 $tcpdf->Cell(36,7, $abr['RegLlamada']['created'] ,'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $abr['User']['username'],'LRT',1,'C', 1);
+                $tcpdf->Cell(40,7, $abr['User']['username'],'LRT',1,'C', 1);
                                 
                 $num = $num+1;
             endforeach; 
@@ -280,14 +280,14 @@
         //foreach($fichauno as $ficha1);
         
         $tcpdf->Cell(10,7, "Num" ,'LT',0,'C', 1);
-        $tcpdf->Cell(56,7, "Turno" ,'LT',0,'C', 1); 
-        $tcpdf->Cell(56,7, "Cabina" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "DNI" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "CAS" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "Especialidad" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "Estado" ,'LT',0,'C', 1);
+        $tcpdf->Cell(20,7, "Turno" ,'LT',0,'C', 1); 
+        $tcpdf->Cell(20,7, "Cabina" ,'LT',0,'C', 1);
+        $tcpdf->Cell(30,7, "DNI" ,'LT',0,'C', 1);
+        $tcpdf->Cell(50,7, "CAS" ,'LT',0,'C', 1);
+        $tcpdf->Cell(40,7, "Especialidad" ,'LT',0,'C', 1);
+        $tcpdf->Cell(20,7, "Estado" ,'LT',0,'C', 1);
         $tcpdf->Cell(36,7, "Fecha Creacion" ,'LT',0,'C', 1);
-        $tcpdf->Cell(56,7, "Registrado Por" ,'LRT',1,'C', 1);
+        $tcpdf->Cell(40,7, "Registrado Por" ,'LRT',1,'C', 1);
         
         $num = 1;
             
@@ -297,14 +297,14 @@
                 $tcpdf->SetFont($textfont_body, '', 10);
                 
                 $tcpdf->Cell(10,7, $num ,'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $may['RegLlamada']['turno'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $may['RegLlamada']['cabina'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $may['RegLlamada']['dni_pac'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $may['Ca']['cas'],'LT',0,'C', 1); 
-                $tcpdf->Cell(56,7, $may['Medico']['espec'] ,'LT',0,'C', 1);
-                $tcpdf->Cell(58,7, $may['RegLlamada']['estado'] ,'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $may['RegLlamada']['turno'],'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $may['RegLlamada']['cabina'],'LT',0,'C', 1);
+                $tcpdf->Cell(30,7, $may['RegLlamada']['dni_pac'],'LT',0,'C', 1);
+                $tcpdf->Cell(50,7, $may['Ca']['cas'],'LT',0,'C', 1); 
+                $tcpdf->Cell(40,7, $may['Especialidade']['especialidad'] ,'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $may['RegLlamada']['estado'] ,'LT',0,'C', 1);
                 $tcpdf->Cell(36,7, $may['RegLlamada']['created'] ,'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $may['User']['username'],'LRT',1,'C', 1);
+                $tcpdf->Cell(40,7, $may['User']['username'],'LRT',1,'C', 1);
                                 
                 $num = $num+1;
             endforeach; 
@@ -336,14 +336,14 @@
         //foreach($fichauno as $ficha1);
         
         $tcpdf->Cell(10,7, "Num" ,'LT',0,'C', 1);
-        $tcpdf->Cell(56,7, "Turno" ,'LT',0,'C', 1); 
-        $tcpdf->Cell(56,7, "Cabina" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "DNI" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "CAS" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "Especialidad" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "Estado" ,'LT',0,'C', 1);
+        $tcpdf->Cell(20,7, "Turno" ,'LT',0,'C', 1); 
+        $tcpdf->Cell(20,7, "Cabina" ,'LT',0,'C', 1);
+        $tcpdf->Cell(30,7, "DNI" ,'LT',0,'C', 1);
+        $tcpdf->Cell(50,7, "CAS" ,'LT',0,'C', 1);
+        $tcpdf->Cell(40,7, "Especialidad" ,'LT',0,'C', 1);
+        $tcpdf->Cell(20,7, "Estado" ,'LT',0,'C', 1);
         $tcpdf->Cell(36,7, "Fecha Creacion" ,'LT',0,'C', 1);
-        $tcpdf->Cell(56,7, "Registrado Por" ,'LRT',1,'C', 1);
+        $tcpdf->Cell(40,7, "Registrado Por" ,'LRT',1,'C', 1);
         
         $num = 1;
             
@@ -353,14 +353,14 @@
                 $tcpdf->SetFont($textfont_body, '', 10);
                 
                 $tcpdf->Cell(10,7, $num ,'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $jun['RegLlamada']['turno'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $jun['RegLlamada']['cabina'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $jun['RegLlamada']['dni_pac'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $jun['Ca']['cas'],'LT',0,'C', 1); 
-                $tcpdf->Cell(56,7, $jun['Medico']['espec'] ,'LT',0,'C', 1);
-                $tcpdf->Cell(58,7, $jun['RegLlamada']['estado'] ,'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $jun['RegLlamada']['turno'],'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $jun['RegLlamada']['cabina'],'LT',0,'C', 1);
+                $tcpdf->Cell(30,7, $jun['RegLlamada']['dni_pac'],'LT',0,'C', 1);
+                $tcpdf->Cell(50,7, $jun['Ca']['cas'],'LT',0,'C', 1); 
+                $tcpdf->Cell(40,7, $jun['Especialidade']['especialidad'] ,'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $jun['RegLlamada']['estado'] ,'LT',0,'C', 1);
                 $tcpdf->Cell(36,7, $jun['RegLlamada']['created'] ,'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $jun['User']['username'],'LRT',1,'C', 1);
+                $tcpdf->Cell(40,7, $jun['User']['username'],'LRT',1,'C', 1);
                                
                 $num = $num+1;
             endforeach; 
@@ -392,14 +392,14 @@
         //foreach($fichauno as $ficha1);
         
         $tcpdf->Cell(10,7, "Num" ,'LT',0,'C', 1);
-        $tcpdf->Cell(56,7, "Turno" ,'LT',0,'C', 1); 
-        $tcpdf->Cell(56,7, "Cabina" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "DNI" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "CAS" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "Especialidad" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "Estado" ,'LT',0,'C', 1);
+        $tcpdf->Cell(20,7, "Turno" ,'LT',0,'C', 1); 
+        $tcpdf->Cell(20,7, "Cabina" ,'LT',0,'C', 1);
+        $tcpdf->Cell(30,7, "DNI" ,'LT',0,'C', 1);
+        $tcpdf->Cell(50,7, "CAS" ,'LT',0,'C', 1);
+        $tcpdf->Cell(40,7, "Especialidad" ,'LT',0,'C', 1);
+        $tcpdf->Cell(20,7, "Estado" ,'LT',0,'C', 1);
         $tcpdf->Cell(36,7, "Fecha Creacion" ,'LT',0,'C', 1);
-        $tcpdf->Cell(56,7, "Registrado Por" ,'LRT',1,'C', 1);
+        $tcpdf->Cell(40,7, "Registrado Por" ,'LRT',1,'C', 1);
         
         $num = 1;
             
@@ -409,14 +409,14 @@
                 $tcpdf->SetFont($textfont_body, '', 10);
                 
                 $tcpdf->Cell(10,7, $num ,'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $jul['RegLlamada']['turno'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $jul['RegLlamada']['cabina'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $jul['RegLlamada']['dni_pac'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $jul['Ca']['cas'],'LT',0,'C', 1); 
-                $tcpdf->Cell(56,7, $jul['Medico']['espec'] ,'LT',0,'C', 1);
-                $tcpdf->Cell(58,7, $jul['RegLlamada']['estado'] ,'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $jul['RegLlamada']['turno'],'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $jul['RegLlamada']['cabina'],'LT',0,'C', 1);
+                $tcpdf->Cell(30,7, $jul['RegLlamada']['dni_pac'],'LT',0,'C', 1);
+                $tcpdf->Cell(50,7, $jul['Ca']['cas'],'LT',0,'C', 1); 
+                $tcpdf->Cell(40,7, $jul['Especialidade']['especialidad'] ,'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $jul['RegLlamada']['estado'] ,'LT',0,'C', 1);
                 $tcpdf->Cell(36,7, $jul['RegLlamada']['created'] ,'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $jul['User']['username'],'LRT',1,'C', 1);
+                $tcpdf->Cell(40,7, $jul['User']['username'],'LRT',1,'C', 1);
                                
                 $num = $num+1;
             endforeach; 
@@ -448,14 +448,14 @@
         //foreach($fichauno as $ficha1);
         
         $tcpdf->Cell(10,7, "Num" ,'LT',0,'C', 1);
-        $tcpdf->Cell(56,7, "Turno" ,'LT',0,'C', 1); 
-        $tcpdf->Cell(56,7, "Cabina" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "DNI" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "CAS" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "Especialidad" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "Estado" ,'LT',0,'C', 1);
+        $tcpdf->Cell(20,7, "Turno" ,'LT',0,'C', 1); 
+        $tcpdf->Cell(20,7, "Cabina" ,'LT',0,'C', 1);
+        $tcpdf->Cell(30,7, "DNI" ,'LT',0,'C', 1);
+        $tcpdf->Cell(50,7, "CAS" ,'LT',0,'C', 1);
+        $tcpdf->Cell(40,7, "Especialidad" ,'LT',0,'C', 1);
+        $tcpdf->Cell(20,7, "Estado" ,'LT',0,'C', 1);
         $tcpdf->Cell(36,7, "Fecha Creacion" ,'LT',0,'C', 1);
-        $tcpdf->Cell(56,7, "Registrado Por" ,'LRT',1,'C', 1);
+        $tcpdf->Cell(40,7, "Registrado Por" ,'LRT',1,'C', 1);
         
         $num = 1;
             
@@ -465,14 +465,14 @@
                 $tcpdf->SetFont($textfont_body, '', 10);
                 
                 $tcpdf->Cell(10,7, $num ,'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $ago['RegLlamada']['turno'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $ago['RegLlamada']['cabina'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $ago['RegLlamada']['dni_pac'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $ago['Ca']['cas'],'LT',0,'C', 1); 
-                $tcpdf->Cell(56,7, $ago['Medico']['espec'] ,'LT',0,'C', 1);
-                $tcpdf->Cell(58,7, $ago['RegLlamada']['estado'] ,'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $ago['RegLlamada']['turno'],'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $ago['RegLlamada']['cabina'],'LT',0,'C', 1);
+                $tcpdf->Cell(30,7, $ago['RegLlamada']['dni_pac'],'LT',0,'C', 1);
+                $tcpdf->Cell(50,7, $ago['Ca']['cas'],'LT',0,'C', 1); 
+                $tcpdf->Cell(40,7, $ago['Especialidade']['especialidad'] ,'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $ago['RegLlamada']['estado'] ,'LT',0,'C', 1);
                 $tcpdf->Cell(36,7, $ago['RegLlamada']['created'] ,'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $ago['User']['username'],'LRT',1,'C', 1);
+                $tcpdf->Cell(40,7, $ago['User']['username'],'LRT',1,'C', 1);
                                 
                 $num = $num+1;
             endforeach; 
@@ -504,14 +504,14 @@
         //foreach($fichauno as $ficha1);
         
         $tcpdf->Cell(10,7, "Num" ,'LT',0,'C', 1);
-        $tcpdf->Cell(56,7, "Turno" ,'LT',0,'C', 1); 
-        $tcpdf->Cell(56,7, "Cabina" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "DNI" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "CAS" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "Especialidad" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "Estado" ,'LT',0,'C', 1);
+        $tcpdf->Cell(20,7, "Turno" ,'LT',0,'C', 1); 
+        $tcpdf->Cell(20,7, "Cabina" ,'LT',0,'C', 1);
+        $tcpdf->Cell(30,7, "DNI" ,'LT',0,'C', 1);
+        $tcpdf->Cell(50,7, "CAS" ,'LT',0,'C', 1);
+        $tcpdf->Cell(40,7, "Especialidad" ,'LT',0,'C', 1);
+        $tcpdf->Cell(20,7, "Estado" ,'LT',0,'C', 1);
         $tcpdf->Cell(36,7, "Fecha Creacion" ,'LT',0,'C', 1);
-        $tcpdf->Cell(56,7, "Registrado Por" ,'LRT',1,'C', 1);
+        $tcpdf->Cell(40,7, "Registrado Por" ,'LRT',1,'C', 1);
         
         $num = 1;
             
@@ -521,14 +521,14 @@
                 $tcpdf->SetFont($textfont_body, '', 10);
                 
                 $tcpdf->Cell(10,7, $num ,'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $set['RegLlamada']['turno'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $set['RegLlamada']['cabina'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $set['RegLlamada']['dni_pac'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $set['Ca']['cas'],'LT',0,'C', 1); 
-                $tcpdf->Cell(56,7, $set['Medico']['espec'] ,'LT',0,'C', 1);
-                $tcpdf->Cell(58,7, $set['RegLlamada']['estado'] ,'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $set['RegLlamada']['turno'],'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $set['RegLlamada']['cabina'],'LT',0,'C', 1);
+                $tcpdf->Cell(30,7, $set['RegLlamada']['dni_pac'],'LT',0,'C', 1);
+                $tcpdf->Cell(50,7, $set['Ca']['cas'],'LT',0,'C', 1); 
+                $tcpdf->Cell(40,7, $set['Especialidade']['especialidad'] ,'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $set['RegLlamada']['estado'] ,'LT',0,'C', 1);
                 $tcpdf->Cell(36,7, $set['RegLlamada']['created'] ,'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $set['User']['username'],'LRT',1,'C', 1);
+                $tcpdf->Cell(40,7, $set['User']['username'],'LRT',1,'C', 1);
                                
                 $num = $num+1;
             endforeach; 
@@ -560,14 +560,14 @@
         //foreach($fichauno as $ficha1);
         
         $tcpdf->Cell(10,7, "Num" ,'LT',0,'C', 1);
-        $tcpdf->Cell(56,7, "Turno" ,'LT',0,'C', 1); 
-        $tcpdf->Cell(56,7, "Cabina" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "DNI" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "CAS" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "Especialidad" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "Estado" ,'LT',0,'C', 1);
+        $tcpdf->Cell(20,7, "Turno" ,'LT',0,'C', 1); 
+        $tcpdf->Cell(20,7, "Cabina" ,'LT',0,'C', 1);
+        $tcpdf->Cell(30,7, "DNI" ,'LT',0,'C', 1);
+        $tcpdf->Cell(50,7, "CAS" ,'LT',0,'C', 1);
+        $tcpdf->Cell(40,7, "Especialidad" ,'LT',0,'C', 1);
+        $tcpdf->Cell(20,7, "Estado" ,'LT',0,'C', 1);
         $tcpdf->Cell(36,7, "Fecha Creacion" ,'LT',0,'C', 1);
-        $tcpdf->Cell(56,7, "Registrado Por" ,'LRT',1,'C', 1);
+        $tcpdf->Cell(40,7, "Registrado Por" ,'LRT',1,'C', 1);
         
         $num = 1;
             
@@ -577,14 +577,14 @@
                 $tcpdf->SetFont($textfont_body, '', 10);
                 
                 $tcpdf->Cell(10,7, $num ,'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $oct['RegLlamada']['turno'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $oct['RegLlamada']['cabina'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $oct['RegLlamada']['dni_pac'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $oct['Ca']['cas'],'LT',0,'C', 1); 
-                $tcpdf->Cell(56,7, $oct['Medico']['espec'] ,'LT',0,'C', 1);
-                $tcpdf->Cell(58,7, $oct['RegLlamada']['estado'] ,'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $oct['RegLlamada']['turno'],'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $oct['RegLlamada']['cabina'],'LT',0,'C', 1);
+                $tcpdf->Cell(30,7, $oct['RegLlamada']['dni_pac'],'LT',0,'C', 1);
+                $tcpdf->Cell(50,7, $oct['Ca']['cas'],'LT',0,'C', 1); 
+                $tcpdf->Cell(40,7, $oct['Especialidade']['especialidad'] ,'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $oct['RegLlamada']['estado'] ,'LT',0,'C', 1);
                 $tcpdf->Cell(36,7, $oct['RegLlamada']['created'] ,'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $oct['User']['username'],'LRT',1,'C', 1);
+                $tcpdf->Cell(40,7, $oct['User']['username'],'LRT',1,'C', 1);
                                
                 $num = $num+1;
             endforeach; 
@@ -616,14 +616,14 @@
         //foreach($fichauno as $ficha1);
         
         $tcpdf->Cell(10,7, "Num" ,'LT',0,'C', 1);
-        $tcpdf->Cell(56,7, "Turno" ,'LT',0,'C', 1); 
-        $tcpdf->Cell(56,7, "Cabina" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "DNI" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "CAS" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "Especialidad" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "Estado" ,'LT',0,'C', 1);
+        $tcpdf->Cell(20,7, "Turno" ,'LT',0,'C', 1); 
+        $tcpdf->Cell(20,7, "Cabina" ,'LT',0,'C', 1);
+        $tcpdf->Cell(30,7, "DNI" ,'LT',0,'C', 1);
+        $tcpdf->Cell(50,7, "CAS" ,'LT',0,'C', 1);
+        $tcpdf->Cell(40,7, "Especialidad" ,'LT',0,'C', 1);
+        $tcpdf->Cell(20,7, "Estado" ,'LT',0,'C', 1);
         $tcpdf->Cell(36,7, "Fecha Creacion" ,'LT',0,'C', 1);
-        $tcpdf->Cell(56,7, "Registrado Por" ,'LRT',1,'C', 1);
+        $tcpdf->Cell(40,7, "Registrado Por" ,'LRT',1,'C', 1);
         
         $num = 1;
             
@@ -633,14 +633,14 @@
                 $tcpdf->SetFont($textfont_body, '', 10);
                 
                 $tcpdf->Cell(10,7, $num ,'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $nov['RegLlamada']['turno'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $nov['RegLlamada']['cabina'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $nov['RegLlamada']['dni_pac'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $nov['Ca']['cas'],'LT',0,'C', 1); 
-                $tcpdf->Cell(56,7, $nov['Medico']['espec'] ,'LT',0,'C', 1);
-                $tcpdf->Cell(58,7, $nov['RegLlamada']['estado'] ,'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $nov['RegLlamada']['turno'],'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $nov['RegLlamada']['cabina'],'LT',0,'C', 1);
+                $tcpdf->Cell(30,7, $nov['RegLlamada']['dni_pac'],'LT',0,'C', 1);
+                $tcpdf->Cell(50,7, $nov['Ca']['cas'],'LT',0,'C', 1); 
+                $tcpdf->Cell(40,7, $nov['Especialidade']['especialidad'] ,'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $nov['RegLlamada']['estado'] ,'LT',0,'C', 1);
                 $tcpdf->Cell(36,7, $nov['RegLlamada']['created'] ,'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $nov['User']['username'],'LRT',1,'C', 1);
+                $tcpdf->Cell(40,7, $nov['User']['username'],'LRT',1,'C', 1);
                                 
                 $num = $num+1;
             endforeach; 
@@ -672,14 +672,14 @@
         //foreach($fichauno as $ficha1);
         
         $tcpdf->Cell(10,7, "Num" ,'LT',0,'C', 1);
-        $tcpdf->Cell(56,7, "Turno" ,'LT',0,'C', 1); 
-        $tcpdf->Cell(56,7, "Cabina" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "DNI" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "CAS" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "Especialidad" ,'LT',0,'C', 1);
-        $tcpdf->Cell(58,7, "Estado" ,'LT',0,'C', 1);
+        $tcpdf->Cell(20,7, "Turno" ,'LT',0,'C', 1); 
+        $tcpdf->Cell(20,7, "Cabina" ,'LT',0,'C', 1);
+        $tcpdf->Cell(30,7, "DNI" ,'LT',0,'C', 1);
+        $tcpdf->Cell(50,7, "CAS" ,'LT',0,'C', 1);
+        $tcpdf->Cell(40,7, "Especialidad" ,'LT',0,'C', 1);
+        $tcpdf->Cell(20,7, "Estado" ,'LT',0,'C', 1);
         $tcpdf->Cell(36,7, "Fecha Creacion" ,'LT',0,'C', 1);
-        $tcpdf->Cell(56,7, "Registrado Por" ,'LRT',1,'C', 1);
+        $tcpdf->Cell(40,7, "Registrado Por" ,'LRT',1,'C', 1);
         
         $num = 1;
             
@@ -689,14 +689,14 @@
                 $tcpdf->SetFont($textfont_body, '', 10);
                 
                 $tcpdf->Cell(10,7, $num ,'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $dic['RegLlamada']['turno'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $dic['RegLlamada']['cabina'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $dic['RegLlamada']['dni_pac'],'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $dic['Ca']['cas'],'LT',0,'C', 1); 
-                $tcpdf->Cell(56,7, $dic['Medico']['espec'] ,'LT',0,'C', 1);
-                $tcpdf->Cell(58,7, $dic['RegLlamada']['estado'] ,'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $dic['RegLlamada']['turno'],'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $dic['RegLlamada']['cabina'],'LT',0,'C', 1);
+                $tcpdf->Cell(30,7, $dic['RegLlamada']['dni_pac'],'LT',0,'C', 1);
+                $tcpdf->Cell(50,7, $dic['Ca']['cas'],'LT',0,'C', 1); 
+                $tcpdf->Cell(40,7, $dic['Especialidade']['especialidad'] ,'LT',0,'C', 1);
+                $tcpdf->Cell(20,7, $dic['RegLlamada']['estado'] ,'LT',0,'C', 1);
                 $tcpdf->Cell(36,7, $dic['RegLlamada']['created'] ,'LT',0,'C', 1);
-                $tcpdf->Cell(56,7, $dic['User']['username'],'LRT',1,'C', 1);
+                $tcpdf->Cell(40,7, $dic['User']['username'],'LRT',1,'C', 1);
                                
                 $num = $num+1;
             endforeach; 

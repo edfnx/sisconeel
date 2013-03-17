@@ -8,7 +8,7 @@
 					<div class="amount">
 						<?php  echo $llamconftotalcab; ?>
 					</div>
-					Citas Confirmadas Cabina <?php echo $this->Session->read('cabina'); ?>                        
+					Citas Confirmadas Cabina <?php echo $this->Session->read('num_cabina'); ?>                        
 				</div>
 			</div>
 			<div class="span4">
@@ -24,7 +24,7 @@
 					<div class="amount">
 						<?php echo $llamconfcabuser; ?>
 					</div>					
-	   					Citas Confirmadas Cabina <?php echo $this->Session->read('cabina'); ?> por el/la operador(a)
+	   					Citas Confirmadas Cabina <?php echo $this->Session->read('num_cabina'); ?> por el/la operador(a)
 				</div>
 			</div>
 		</div>	
@@ -40,15 +40,15 @@
 		<?php echo $this->BtForm->create(); ?>
 
 		<?php echo $this->Form->hidden('ConfLlamada.turno', array('value'=>$this->Session->read('turno'))); ?>
-		<?php echo $this->Form->hidden('ConfLlamada.cabina', array('value'=>$this->Session->read('cabina'))); ?>
+		<?php echo $this->Form->hidden('ConfLlamada.cabina_id', array('value'=>$this->Session->read('id_cabina'))); ?>
         
         <div id="divespec">            
-			<?php echo $this->BtForm->input('ConfLlamada.reg_llamada_id', 'Cita por DNI',  array('empty' => 'Seleccione DNI')); ?>
-			<?php echo $this->Ajax->observeField('ConfLlamadaRegLlamadaId', array('url'=>array('action'=>'datos'), 'update'=>'divdatos')); ?>
+			<?php echo $this->BtForm->input('ConfLlamada.especialidade', 'Especialidad',  array('empty' => 'Especialidades')); ?>
+			<?php echo $this->Ajax->observeField('ConfLlamadaEspecialidade', array('url'=>array('action'=>'dni'), 'update'=>'divdni')); ?>
 		</div>
         
-		<div id="divcas">            
-			<?php echo $this->BtForm->input('ConfLlamada.reg_llamada_id', 'Cita por DNI',  array('empty' => 'Seleccione DNI')); ?>
+		<div id="divdni">            
+			<?php echo $this->BtForm->input('ConfLlamada.reg_llamada_id', 'Cita por DNI',  array('empty' => 'DNI por Cabina')); ?>
 			<?php echo $this->Ajax->observeField('ConfLlamadaRegLlamadaId', array('url'=>array('action'=>'datos'), 'update'=>'divdatos')); ?>
 		</div>
 		

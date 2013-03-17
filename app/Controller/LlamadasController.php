@@ -3,7 +3,7 @@
     class LlamadasController extends AppController {
         public $helpers = array('Html', 'Form','Ajax','SuprForm');
         var $name='Llamadas';        
-        var $uses=array('RegLlamada','Ca','Medico','LlamadaObserv','User','ConfLlamada','Respuesta','ElimLlamada','RelFamiliar','Especialidade');
+        var $uses=array('RegLlamada','Ca','Medico','LlamadaObserv','User','ConfLlamada','Respuesta','ElimLlamada','RelFamiliar','Especialidade','Cabina');
         
         
         public function index(){
@@ -14,9 +14,9 @@
             
             $turno = $this->Session->read('turno');
             
-            $cabina = $this->Session->read('cabina');
+            $cabina = $this->Session->read('id_cabina');
             
-            $user = $this->Session->read('user');
+            $user = $this->Auth->user('id');
             //cas
             
             
@@ -47,8 +47,8 @@
             $this->set('llamregstotalcab',$this->RegLlamada->find('count',
                                                                     array(
                                                                             'conditions' => array(
-                                                                                                    'RegLlamada.turno'=>$turno,
-                                                                                                    'RegLlamada.cabina'=>$cabina,
+                                                                                                    //'RegLlamada.turno'=>$turno,
+                                                                                                    'RegLlamada.cabina_id'=>$cabina,
                                                                                                     'RegLlamada.created LIKE' => "%$fecha%"), 
                                                                             'recursive'=>0)
                                                                     ));
@@ -56,7 +56,7 @@
             $this->set('llamregstotaluser',$this->RegLlamada->find('count',
                                                                     array(
                                                                             'conditions' => array(
-                                                                                                    'RegLlamada.turno'=>$turno,
+                                                                                                    //'RegLlamada.turno'=>$turno,
                                                                                                     'RegLlamada.created LIKE' => "%$fecha%",
                                                                                                     'RegLlamada.user_id'=>$user), 
                                                                             'recursive'=>0)
@@ -66,7 +66,7 @@
                                                                     array(
                                                                             'conditions' => array(
                                                                                                     'RegLlamada.turno'=>$turno,
-                                                                                                    'RegLlamada.cabina'=>$cabina,
+                                                                                                    'RegLlamada.cabina_id'=>$cabina,
                                                                                                     'RegLlamada.created LIKE' => "%$fecha%",
                                                                                                     'RegLlamada.user_id'=>$user), 
                                                                             'recursive'=>0)
@@ -93,23 +93,31 @@
         public function confirmar(){
             $turno = $this->Session->read('turno');
             
-            $cabina = $this->Session->read('cabina');
+            $cabina = $this->Session->read('id_cabina');
             
-            $user = $this->Session->read('user');
+            $user = $this->Auth->user('id');
             
             //fecha actual 
             $fecha = date('Y-m-d');
             //fecha del dia siguiente para poder confirmar las citas del dia siguiente y no dejar citas al aire
             $fecha_maniana = date('Y-m-d', strtotime("+1 day"));            
             //total de llamadas registradas en la cabina en el dia
-
+                
+            $this->set('especialidades',$this->Especialidade->find('list',
+                                                            array(
+                                                                    'fields'=>array(
+                                                                                    'Especialidade.id',
+                                                                                    'Especialidade.especialidad'), 
+                                                                    'recursive'=>0)
+                                                            ));
+            
             $this->set('regLlamadas',$this->RegLlamada->find('list',
                                                                     array(
                                                                             'fields'=>array(
                                                                                                 'RegLlamada.id',
                                                                                                 'RegLlamada.dni_pac'),
                                                                             'conditions' => array(
-                                                                                                    'RegLlamada.cabina'=>$cabina,
+                                                                                                    'RegLlamada.cabina_id'=>$cabina,
                                                                                                     'RegLlamada.fecha_cita LIKE' => "%$fecha_maniana%",
                                                                                                     'Regllamada.cita_otorgada' => 1,
                                                                                                     'RegLlamada.estado'=>'regs'), 
@@ -132,29 +140,29 @@
                                                                     'recursive'=>0)
                                                             ));            
 
-            //total de llamadas registradas en la cabina en el dia en el turno
+            //total de llamadas confirmadas en la cabina en el dia
             $this->set('llamconftotalcab',$this->ConfLlamada->find('count',
                                                                     array(
                                                                             'conditions' => array(
-                                                                                                    'ConfLlamada.turno'=>$turno,
-                                                                                                    'ConfLlamada.cabina'=>$cabina,
+                                                                                                    //'ConfLlamada.turno'=>$turno,
+                                                                                                    'ConfLlamada.cabina_id'=>$cabina,
                                                                                                     'ConfLlamada.created LIKE' => "%$fecha%"), 
                                                                     'recursive'=>0)));
-            //total de llamadas registradas del usuario en el dia en el turno
+            //total de llamadas confirmadas del usuario en el dia
             $this->set('llamconftotaluser',$this->ConfLlamada->find('count',
                                                                     array(
                                                                             'conditions' => array(
-                                                                                                    'ConfLlamada.turno'=>$turno,
+                                                                                                    //'ConfLlamada.turno'=>$turno,
                                                                                                     'ConfLlamada.created LIKE' => "%$fecha%",
                                                                                                     'ConfLlamada.user_id'=>$user), 
                                                                             'recursive'=>0)
                                                                     ));
-            //total de llamadas registradas del usuario en la cabina en el dia en el turno
+            //total de llamadas confirmadas del usuario en la cabina en el dia en el turno
             $this->set('llamconfcabuser',$this->ConfLlamada->find('count',
                                                                     array(
                                                                             'conditions' => array(
                                                                                                     'ConfLlamada.turno'=>$turno,
-                                                                                                    'ConfLlamada.cabina'=>$cabina,
+                                                                                                    'ConfLlamada.cabina_id'=>$cabina,
                                                                                                     'ConfLlamada.created LIKE' => "%$fecha%",
                                                                                                     'ConfLlamada.user_id'=>$user), 
                                                                             'recursive'=>0)
@@ -183,6 +191,35 @@
             }
         }
         
+        public function dni(){
+            
+            $especialidad = $this->data['ConfLlamada']['especialidade'];
+            
+            $fecha_maniana = date('Y-m-d', strtotime("+1 day"));
+            
+            $this->set('regLlamadas',$this->RegLlamada->find('list',
+                                                        array(  'fields'=>array(
+                                                                                    'RegLlamada.id',
+                                                                                    'RegLlamada.dni_pac'),
+                                                                'conditions'=>array(
+                                                                                    'RegLlamada.especialidade_id'=>$especialidad,
+                                                                                    'RegLlamada.fecha_cita LIKE' => "%$fecha_maniana%",
+                                                                                    'Regllamada.cita_otorgada' => 1,
+                                                                                    'RegLlamada.estado'=>'regs'),
+                                                                'recursive'=>0)
+                                                            ));   
+                                 
+                                 /* 
+                                    ,
+                                                                                    'RegLlamada.fecha_cita'=>"%$fecha_maniana%",
+                                                                                    'Regllamada.cita_otorgada' => 1,
+                                                                                    'RegLlamada.estado'=>'regs'
+                                 
+                                 */
+                                                            
+            $this->layout='ajax';
+        }
+        
         public function datos(){
             
             $llamada = $this->data['ConfLlamada']['reg_llamada_id'];
@@ -199,9 +236,9 @@
         public function eliminar(){
             $turno = $this->Session->read('turno');
             
-            $cabina = $this->Session->read('cabina');
+            $cabina = $this->Session->read('id_cabina');
             
-            $user = $this->Session->read('user');
+            $user = $this->Auth->user('id');
             
             //fecha actual simple
             $fecha = date('Y-m-d');
@@ -213,7 +250,7 @@
             $this->set('llamregsfechatotals',$this->RegLlamada->find('all',array('fields'=>array(       'RegLlamada.id',
                                                                                                         'RegLlamada.dni_pac'),
                                                                                 'conditions' => array(
-                                                                                                        'RegLlamada.cabina'=>$cabina,
+                                                                                                        'RegLlamada.cabina_id'=>$cabina,
                                                                                                         'RegLlamada.fecha_cita >' => "$fechacom",
                                                                                                         'Regllamada.cita_otorgada' => 1,
                                                                                                         'RegLlamada.estado'=>'regs'), 
@@ -224,25 +261,25 @@
                                                                                                         'RelFamiliar.id',
                                                                                                         'RelFamiliar.relacion'), 
                                                                                 'recursive'=>0)));            
-            //total de llamadas registradas en la cabina en el dia en el turno
+            //total de llamadas eliminadas en la cabina en el dia 
             $this->set('llamelimtotalcab',$this->ElimLlamada->find('count',
                                                                         array(  'conditions' => array(
-                                                                                                        'ElimLlamada.turno'=>$turno,
-                                                                                                        'ElimLlamada.cabina'=>$cabina,
+                                                                                                        //'ElimLlamada.turno'=>$turno,
+                                                                                                        'ElimLlamada.cabina_id'=>$cabina,
                                                                                                         'ElimLlamada.created LIKE' => "%$fecha%"), 
                                                                                 'recursive'=>0)));
-            //total de llamadas registradas del usuario en el dia en el turno
+            //total de llamadas eliminadas del usuario en el dia 
             $this->set('llamelimtotaluser',$this->ElimLlamada->find('count',
                                                                         array(  'conditions' => array(
-                                                                                                        'ElimLlamada.turno'=>$turno,
+                                                                                                        //'ElimLlamada.turno'=>$turno,
                                                                                                         'ElimLlamada.created LIKE' => "%$fecha%",
                                                                                                         'ElimLlamada.user_id'=>$user), 
                                                                                 'recursive'=>0)));
-            //total de llamadas registradas del usuario en la cabina en el dia en el turno
+            //total de llamadas eliminadas del usuario en la cabina en el dia en el turno
             $this->set('llamelimcabuser',$this->ElimLlamada->find('count',
                                                                         array(  'conditions' => array(
                                                                                                         'ElimLlamada.turno'=>$turno,
-                                                                                                        'ElimLlamada.cabina'=>$cabina,
+                                                                                                        'ElimLlamada.cabina_id'=>$cabina,
                                                                                                         'ElimLlamada.created LIKE' => "%$fecha%",
                                                                                                         'ElimLlamada.user_id'=>$user), 
                                                                                 'recursive'=>0)));
@@ -272,10 +309,17 @@
         
         public function datos2(){
             
-            $llamada = $this->data['ElimLlamada']['reg_llamada_id'];
+            $llamada = $this->data['ElimLlamada']['dni_pac'];
+            
+            $fechacom = date('Y-m-d 06:59:59');
             
             $this->set('datos',$this->RegLlamada->find('all',
-                                                        array('conditions'=>array('RegLlamada.id'=>$llamada)
+                                                        array('conditions'=>array(
+                                                                                    'RegLlamada.dni_pac'=>$llamada,
+                                                                                    //'RegLlamada.cabina_id'=>$cabina,
+                                                                                    'RegLlamada.fecha_cita >' => "$fechacom",
+                                                                                    'Regllamada.cita_otorgada' => 1,
+                                                                                    'RegLlamada.estado'=>'regs')
                                                             )
                                                             ));          
             
@@ -287,7 +331,7 @@
             
             $turno = $this->Session->read('turno');
             
-            $user = $this->Session->read('user');
+            $user = $this->Auth->user('id');
             
             //fecha actual simple
             $fecha = date('Y-m-d');
@@ -295,7 +339,7 @@
             $this->set('llamotorgtotalusers',$this->RegLlamada->find('all',
                                                                             array(  'fields'=>array(
                                                                                                         'RegLlamada.turno',
-                                                                                                        'RegLlamada.cabina',
+                                                                                                        'Cabina.cabina',
                                                                                                         'RegLlamada.dni_pac',
                                                                                                         'Ca.cas',
                                                                                                         'Especialidade.especialidad',
@@ -320,7 +364,7 @@
             
             $turno = $this->Session->read('turno');
             
-            $user = $this->Session->read('user');
+            $user = $this->Auth->user('id');
             
             //fecha actual simple
             $fecha = date('Y-m-d');
@@ -328,7 +372,7 @@
             $this->set('llamnootortotalusers',$this->RegLlamada->find('all',
                                                                             array(  'fields'=>array(
                                                                                                         'RegLlamada.turno',
-                                                                                                        'RegLlamada.cabina',
+                                                                                                        'Cabina.cabina',
                                                                                                         'Ca.cas',
                                                                                                         'Especialidade.especialidad',
                                                                                                         'LlamadaObserv.observacion',
@@ -349,7 +393,7 @@
             
             $turno = $this->Session->read('turno');
             
-            $user = $this->Session->read('user');
+            $user = $this->Auth->user('id');
             
             //fecha actual simple
             $fecha = date('Y-m-d');
@@ -357,7 +401,7 @@
             $this->set('llamconftotalusers',$this->ConfLlamada->find('all',
                                                                             array(  'fields'=>array(
                                                                                                         'ConfLlamada.turno',
-                                                                                                        'ConfLlamada.cabina',
+                                                                                                        'Cabina.cabina',
                                                                                                         'RegLlamada.dni_pac',
                                                                                                         'Respuesta.respuesta',
                                                                                                         'ConfLlamada.datos_llamada',
@@ -380,7 +424,7 @@
             
             $turno = $this->Session->read('turno');
             
-            $user = $this->Session->read('user');
+            $user = $this->Auth->user('id');
             
             //fecha actual simple
             $fecha = date('Y-m-d');
@@ -388,7 +432,7 @@
             $this->set('llamelimtotalusers',$this->ElimLlamada->find('all',
                                                                             array(  'fields'=>array(
                                                                                                         'ElimLlamada.turno',
-                                                                                                        'ElimLlamada.cabina',
+                                                                                                        'Cabina.cabina',
                                                                                                         'RegLlamada.dni_pac',
                                                                                                         'ElimLlamada.telefono',
                                                                                                         'ElimLlamada.datos_llamada',
@@ -407,9 +451,7 @@
 			$this->response->type('pdf');
         }
         
-        public function ssh(){
-            
-        }
+        
     }
     
 ?>
