@@ -10,8 +10,11 @@
 
 
         data = <?php echo utf8_decode(json_encode($data)); ?>
+
+        console.log(data['source_list']);
+        console.log(data.source_list);
          
-        plot1 = $.jqplot('chart1', [data], {
+        plot1 = $.jqplot('chart1', [data.source_list], {
             // Only animate if we're not using excanvas (not in IE 7 or IE 8)..
             animate: !$.jqplot.use_excanvas,
             seriesDefaults:{
@@ -32,6 +35,8 @@
                 $('#info1').html('series: '+seriesIndex+', point: '+pointIndex+', data: '+data);
             }
         );
+
+        //$('#leyend').
 
 	});
 </script>
@@ -64,13 +69,3 @@
 		</div>
 	</div>
 </div>
-
-<?php 
-	/* jquery.jqplot */
-	echo $this->Html->script('/plugins/jqplot/jquery.jqplot');
-	echo $this->Html->css('/plugins/jqplot/jquery.jqplot');
-	
-	echo $this->Html->script('/plugins/jqplot/jqplot.barRenderer.min');
-	echo $this->Html->script('/plugins/jqplot/jqplot.categoryAxisRenderer.min');
-	echo $this->Html->script('/plugins/jqplot/jqplot.pointLabels.min');
-?>
